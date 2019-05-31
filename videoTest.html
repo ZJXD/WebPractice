@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VideoTest</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="js/jquery-3.3.1.mim.js"></script> -->
+    <script>
+        $(document).ready(function () {
+            $("#btnPlay").on("click", function () {
+                let video = $("#myVedio")[0];
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+                return false;
+            });
+
+            $("#selectFile").on("click", function () {
+                $('#fileInput').click();
+                $('#videoSou').attr("src", "test2.mp4");
+            });
+
+            $("#fileInput").change(function (file) {
+                $("body").append(file.target.files[0]);
+                let url = URL.createObjectURL(file.target.files[0]);
+                let video = $('#videoSou')[0];
+                $('#videoSou')[0].src = url;
+                $('#videoSou')[0].onload = function () {
+                    URL.revokeObjectURL(src);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <video id="myVedio" controls poster="video.png" width="640px" height="480px">
+            <source id="videoSou" src="" />
+            <p>Your browser does not support the video tag.</p>
+        </video>
+    </div>
+    <div>
+        <input type="file" id="fileInput">
+        <!-- <button id="selectFile">选择文件</button> -->
+    </div>
+    <div class="control">
+        <a href="#" id="btnPlay">Play/Pause</a>
+    </div>
+</body>
+
+</html>

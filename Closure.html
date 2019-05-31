@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        h2 {
+            font-size: 1.2em;
+        }
+
+        div {
+            width: 250px;
+            box-shadow: 0 0 5px green;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="font_size">
+        <p>Change FontSize</p>
+        <h1>Closure H1</h1>
+        <h2>Closure H2</h2>
+
+        <a href="#" id="size-12">12</a>
+        <a href="#" id="size-14">14</a>
+        <a href="#" id="size-16">16</a>
+        <a href="#" id="size-18">18</a>
+        <a href="#" id="size-20">20</a>
+        <a href="#" id="size-22">22</a>
+    </div>
+
+    <div>
+        <p id="help">Helpful notes will appear here</p>
+        <p>E-mail: <input type="text" id="email" name="email"></p>
+        <p>Name: <input type="text" id="name" name="name"></p>
+        <p>Age: <input type="text" id="age" name="age"></p>
+    </div>
+
+    <script>
+        function makeSizer(size) {
+            return function () {
+                document.body.style.fontSize = size + "px";
+            }
+        }
+
+        /**
+        * 遍历方法实现对各个添加点击事件
+        * document.getElementsByTagName
+        * document.getElementsByClassName
+        * document.querySelectorAll,这些方法获取到的结果是个集合，并不是数组，而map,forEach这些方法只有在数组原型里面才有，所以可以先将它们转化
+        */
+        var aList = Array.from(document.getElementsByTagName("a"));
+        aList.forEach(function (node) {
+            let size = parseInt(node.text);
+            node.onclick = makeSizer(size);
+        })
+
+        // 单独一个个写
+        // var size12 = makeSizer(12);
+        // var size14 = makeSizer(14);
+        // var size16 = makeSizer(16);
+        // var size18 = makeSizer(18);
+        // var size20 = makeSizer(20);
+        // var size22 = makeSizer(22);
+
+        // document.getElementById("size-12").onclick = size12;
+        // document.getElementById("size-14").onclick = size14;
+        // document.getElementById("size-16").onclick = size16;
+        // document.getElementById("size-18").onclick = size18;
+        // document.getElementById("size-20").onclick = size20;
+        // document.getElementById("size-22").onclick = size22;
+
+
+        // 添加提示信息
+        function showHelp(help) {
+            document.getElementById('help').innerHTML = help;
+        }
+
+        function setupHelp() {
+            var helpText = [
+                { 'id': 'email', 'help': 'Your e-mail address' },
+                { 'id': 'name', 'help': 'Your full name' },
+                { 'id': 'age', 'help': 'Your age (you must be over 16)' }
+            ];
+
+            for (var i = 0; i < helpText.length; i++) {
+                // var item = helpText[i];      // 用这个，下面的闭包使用的变量变成了全局的变量，所以提示信息都一样
+                let item = helpText[i];         // 新的 let 声明，是块级作用域的，每个闭包都绑定了自己的作用域变量
+                document.getElementById(item.id).onfocus = function () {
+                    showHelp(item.help);
+                }
+            }
+        }
+
+        setupHelp();
+    </script>
+</body>
+
+</html>
