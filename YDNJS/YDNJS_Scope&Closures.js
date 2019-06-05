@@ -23,7 +23,35 @@ const { log } = console;
 // a = { b: "c" }
 // log(typeof a)
 
-// 函数作用域------------------------------------------------------------------------------------------
+// 作用域----------------------------------------------------------------------------------------
+// 编译器 引擎 作用域 三者之间相互对话
+// LHS（Left Hand Side）左手边
+// RHS 右手边 
+// 这里主要区别是：LHS 主要是对变量进行赋值操作，RHS 是取值操作
+// 处理上会有不一样，例如有无该变量的时候是否报错
+
+// 当前作用域、嵌套作用域，在当前作用域没有找到变量，会一层层向上查找所有嵌套作用域，直到全局作用域为止
+
+
+// 作用域模型：词法作用域、动态作用域--------------------------------------------------------------
+// JS 中使用的是 词法作用域  JavaScript
+// 一旦找到第一个匹配，作用域查询就停止了
+// 相同的标识符可以在不同的作用域层中被指定，这叫做 遮蔽
+
+// 不管函数是在哪里被调用，或者什么时候被调用，其词法作用域都是由其定义的位置所决定的
+
+// 绕过词法作用域的：
+// eval：动态语句，会修改当前词法作用域。
+// with：会凭空制造出一个全新的词法作用域，所有的嵌套层作用域都没有的时候，是全局的
+
+
+// 函数、块儿作用域-------------------------------------------------------------------------------
+// 函数作用域能隐藏函数内的变量
+// 避免和其他作用域有冲突  视频墙
+// 函数声明和函数表达式：以 function 开始的是声明，否则就是函数表达式
+// 函数表达式可以隐藏变量，同时又不会污染全局
+
+// 函数作用域--------------------------------------------------------------------------------------
 // 函数作用域是 JS 中最常见的作用域
 // 函数内部声明的变量和函数，对任何外围作用域都是“隐藏的”
 // function Fun(){
@@ -54,7 +82,7 @@ const { log } = console;
 //   log(globe.a);
 // })
 
-// 块儿作用域------------------------------------------------------------------------------------------
+// 块儿作用域---------------------------------------------------------------------------------------
 // 简单的块儿(这里如果用 var 外部作用域可以访问index，用let 不可以)
 // for (var index = 0; index < 10; index++) {
 //   log(index)
@@ -207,61 +235,63 @@ const { log } = console;
 // foo.identity();
 // 上面这个是返回的对象进行命名，并可以从内部修改这个模块。
 
-// var MyModules = (function Manager() {
-//   var modules = {};
-//   function define(name, deps, impl) {
-//     for(var i = 0;i < deps.length; i++){
-//       deps[i] = modules[deps[i]]
-//     }
+var MyModules = (function Manager() {
+  var modules = {};
+  function define(name, deps, impl) {
+    for(var i = 0;i < deps.length; i++){
+      deps[i] = modules[deps[i]]
+    }
 
-//     modules[name] = impl.apply(impl,deps);
-//   }
+    modules[name] = impl.apply(impl,deps);
+  }
 
-//   function get(name) {
-//     return modules[name];
-//   }
+  function get(name) {
+    return modules[name];
+  }
 
-//   return {
-//     define: define,
-//     get: get
-//   }
-// })();
+  return {
+    define: define,
+    get: get
+  }
+})();
 
-// MyModules.define('bar',[],function () {
-//   function hello(who) {
-//     return "Let me introduce " + who;
-//   }
-//   return {
-//     hello: hello
-//   };
-// });
+MyModules.define('bar',[],function () {
+  function hello(who) {
+    return "Let me introduce " + who;
+  }
+  return {
+    hello: hello
+  };
+});
 
-// MyModules.define('foo',['bar'],function (bar) {
-//   var hungry = 'hippo';
-//   function awesome() {
-//     log(bar.hello(hungry).toUpperCase());
-//   }
+MyModules.define('foo',['bar'],function (bar) {
+  var hungry = 'hippo';
+  function awesome() {
+    log(bar.hello(hungry).toUpperCase());
+  }
 
-//   return {
-//     awesome: awesome
-//   }
-// });
+  return {
+    awesome: awesome
+  }
+});
 
-// var bar = MyModules.get('bar');
-// var foo = MyModules.get('foo');
-// log(bar.hello('Jon'));
-// foo.awesome();
+var bar = MyModules.get('bar');
+var foo = MyModules.get('foo');
+log(bar.hello('Jon'));
+foo.awesome();
 // 现代的模块，模块管理器没有什么特殊的“魔法”，只是满足了模块模式的两个性质。
 
 
-function foo() {
-  log(a);
-}
 
-function bar() {
-  var a = 3;
-  foo();
-}
+// 词法作用域，和动态作用域
+// function foo() {
+//   log(a);
+// }
 
-var a = 2;
-bar();
+// function bar() {
+//   var a = 3;
+//   foo();
+// }
+
+// var a = 2;
+// bar();
