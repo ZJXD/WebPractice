@@ -53,6 +53,8 @@ const { log } = console;
 // this 绑定和函数声明的位置没有关系，而于函数调用的方式紧密连接。
 // 当一个函数被调用时，会建立一个称为执行环境的活动记录，这个记录包含函数从何处被调用的-函数如何被调用-传递了什么参数
 // 这个记录的属性之一，就是函数在执行期间将被使用的 this 引用
+
+
 // this 豁然开朗-----------------------------------------------------------------------------
 // Call-site (调用点)----------------------
 // 函数在代码中被调用的位置，有时候调用点变得不那么明确
@@ -157,3 +159,121 @@ const { log } = console;
 // 2、函数是通过 call、apply甚至是隐藏在 bind 中的硬绑定？如果是，this 就是那个明确指定的对象；
 // 3、函数是通过环境对象调用的吗？是，this 就是这个环境对象；
 // 4、否则使用默认绑定；
+
+
+// 对象-----------------------------------------------------------------------------
+// 对象：字面形式、构造形式
+
+var myObject = {};
+// myObject[true] = 'foo';
+// myObject[4] = 'bar';
+// myObject[myObject] = 'baz';
+
+// log(myObject[true]);
+// log(myObject[4]);
+// log(myObject[myObject]);
+// log(myObject.toString());
+// log(myObject['true']);
+// log(myObject['[object Object]']);
+
+// JS中：属性和函数都不属于对象，对象中只是存了标识符，标识符指向引用
+
+// 数组，也是对象，也可以添加属性，但是不建议。数组对这样的下标做了优化处理
+// var myArray = ['my',42,'true'];
+// myArray['3'] = 'array';
+// log(myArray[3]);
+
+// 复制，浅拷贝和深拷贝
+// JSON 安全的：序列化为JSON后，再解析为拥有相同解构和值的对象
+// var newObj = JSON.parse(JSON.stringify(myObject));
+
+// 属性描述符（Property Descriptors）-----------------
+// myObject.a = 2;
+// log(Object.getOwnPropertyDescriptor(myObject,'a'));
+
+// Object.defineProperty(myObject,'b',{
+//   value:'true',
+//   writable:true,
+//   enumerable:true,
+//   configurable:false
+// });
+// log(Object.getOwnPropertyDescriptor(myObject,'b'));
+
+// 可写性（Writable），控制改变属性值的能力
+// Object.defineProperty(myObject,'c',{
+//   value: 34,
+//   writable: false,
+//   enumerable:true,
+//   configurable:true
+// });
+
+// myObject.c = 56;
+// log(myObject.c);
+
+// 可配置性（Configurable），控制修改描述符定义的能力
+// 对下面的例子，当 Configurable 是 False 的时候，Writable 可以从 true 变为 false
+// myObject.a = 2;
+// myObject.a = 5;
+// log(myObject.a);
+
+// Object.defineProperty(myObject,'a',{
+//   value:90,
+//   writable:true,
+//   enumerable:true,
+//   configurable:false
+// });
+// log(myObject.a);
+// myObject.a = 67;
+// log(myObject.a);
+
+// Object.defineProperty(myObject,'a',{
+//   value:56,
+//   writable:false,
+//   enumerable:true,
+//   configurable:false
+// });
+// log(myObject.a);
+
+// Object.defineProperty(myObject,'a',{
+//   value:89,
+//   writable:false,
+//   enumerable:true,
+//   configurable:true
+// });
+// log(myObject.a);
+
+// 可枚举性（Enumerable），控制属性能否在对象-属性枚举操作中出现
+
+// 自定义默认 @@iterator
+var myObject = {
+  a:2,
+  b:3
+};
+
+Object.defineProperty(myObject,Symbol.iterator,{
+  enumerable:false,
+  writable:false,
+  configurable:true,
+  value:function () {
+    var o = this;
+    var idx = 0;
+    var ks = Object.keys(o);
+    return {
+      next: function () {
+        return {
+          value: o[ks[idx++]],
+          done: (idx  >ks.length)
+        }
+      }
+    }
+  }
+});
+
+var it = myObject[Symbol.iterator]();
+log(it.next());
+log(it.next());
+log(it.next());
+
+for (const v of myObject) {
+  log(v);
+}
