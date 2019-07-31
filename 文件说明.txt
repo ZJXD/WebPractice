@@ -1,3 +1,4 @@
+Algorighm.js：算法
 AMap3D.html：高德地图 3D 示例
 Closure.html：闭包示例
 CSSTest.html：CSS示例
