@@ -1,8 +1,8 @@
 Algorighm：算法
 AMap3D.html：高德地图 3D 示例
 Closure.html：闭包示例
-CSSTest.html：CSS示例
-CustomizeVue.html：Vue 数据双向绑定的简单示例
+CSS：CSS示例文件夹
+Vue：Vue 示例文件夹
 DataBinding.html：数据绑定示例，用JS原始方法
-test.js：JS 练习，直接用插件运行
+test.js： 《ECMAScript6 入门》（阮一峰）书中示例  ，直接用插件运行
 YDNJS：YDNJS 的练习

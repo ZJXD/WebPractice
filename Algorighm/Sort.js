@@ -407,10 +407,10 @@ const Heapify = (array, i, length) => {
   }
 }
 
-const array = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];
-console.log('原始array:', array);
-const newArr = heapSort(array);
-console.log('newArr:', newArr);
+// const array = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];
+// console.log('原始array:', array);
+// const newArr = heapSort(array);
+// console.log('newArr:', newArr);
 // #endregion
 
 
@@ -513,7 +513,7 @@ const radixSort = (array, max) => {
 // let sortArray = [];
 // console.time('数组生成时间');
 // for (let i = 0; i < 200000; i++) {
-//   sortArray.push(Math.floor(Math.random() * 100000));
+//   sortArray.push(Math.floor(Math.random() * 1000000));
 // }
 // console.timeEnd('数组生成时间');
 
