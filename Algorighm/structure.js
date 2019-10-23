@@ -4,27 +4,27 @@
  */
 
 /**
-  * Stack（栈）
-  * 特点：后进先出（last in first out）
-  * 方法：
-  *     1、push：将一个元素推入栈顶；
-  *     2、pop：移除栈顶元素，并返回该元素；
-  *     3、peek：返回栈顶元素；
-  *     4、length：返回栈中元素个数；
-  * JavaScript 中的 Array 就具有栈的特性，下面是自己实现的栈
-  */
+ * Stack（栈）
+ * 特点：后进先出（last in first out）
+ * 方法：
+ *     1、push：将一个元素推入栈顶；
+ *     2、pop：移除栈顶元素，并返回该元素；
+ *     3、peek：返回栈顶元素；
+ *     4、length：返回栈中元素个数；
+ * JavaScript 中的 Array 就具有栈的特性，下面是自己实现的栈
+ */
 class Stack {
   constructor() {
     this.count = 0;
     this.storage = {};
   }
 
-  push (value) {
+  push(value) {
     this.storage[this.count] = value;
     this.count++;
   }
 
-  pop (){
+  pop() {
     if (this.count === 0) {
       return undefined;
     }
@@ -34,11 +34,11 @@ class Stack {
     return result;
   }
 
-  peek (){
-    return this.storage[this.count-1];
+  peek() {
+    return this.storage[this.count - 1];
   }
 
-  length (){
+  length() {
     return this.count;
   }
 }
@@ -64,28 +64,28 @@ class Stack {
  *    5、size：队列元素个数
  * 这里直接用 JavaScript 的 Array 中的方法实现
  */
-class Queue{
+class Queue {
   constructor() {
     this.collection = [];
   }
 
-  print (){
+  print() {
     console.log(this.collection)
   }
 
-  enqueue (value){
+  enqueue(value) {
     this.collection.push(value)
   }
 
   // 优先队列入列，其他的相同
-  priorityEnQueue(value){
+  priorityEnQueue(value) {
     if (this.collection.isEmpty) {
       this.collection.push(value);
-    }else{
+    } else {
       let added = false;
       for (let i = 0; i < this.collection.length; i++) {
-        if (value<this.collection[i]) {
-          this.collection.splice(i,0,value);
+        if (value < this.collection[i]) {
+          this.collection.splice(i, 0, value);
           added = true;
           break;
         }
@@ -96,19 +96,19 @@ class Queue{
     }
   }
 
-  dequeue (){
+  dequeue() {
     return this.collection.shift();
   }
 
-  front (){
+  front() {
     return this.collection[0];
   }
 
-  isEmpty (){
+  isEmpty() {
     return this.collection.length === 0;
   }
 
-  size (){
+  size() {
     return this.collection.length;
   }
 }
@@ -130,8 +130,8 @@ class Node {
  * 特定：
  *      每一个节点包含：节点本身数据和下一节点指针
  */
-class LinkedList{
-  constructor(){
+class LinkedList {
+  constructor() {
     this.length = 0
     this.head = null
   }
@@ -149,14 +149,14 @@ class LinkedList{
     let node = new Node(element)
     if (this.head == null) {
       this.head = node
-    }else{
+    } else {
       let currentNode = this.head
       while (currentNode.next) {
         currentNode = currentNode.next
       }
       currentNode.next = node
     }
-    this.length ++
+    this.length++
   }
 
   // 删除指定元素
@@ -165,7 +165,7 @@ class LinkedList{
     let previousNode = null
     if (currentNode.element === element) {
       this.head = currentNode.next
-    }else{
+    } else {
       while (currentNode.element !== element) {
         previousNode = currentNode
         currentNode = currentNode.next
@@ -184,7 +184,7 @@ class LinkedList{
     let currentNode = this.head
     let index = -1
     while (currentNode) {
-      index ++
+      index++
       if (currentNode.element === element) {
         return index
       }
@@ -199,14 +199,14 @@ class LinkedList{
     let currentNode = this.head
     let count = 0
     while (count < index) {
-      count ++
+      count++
       currentNode = currentNode.next
     }
     return currentNode.element
   }
 
   // 在指定位置添加
-  addAt(index,element) {
+  addAt(index, element) {
     let node = new Node(element)
     let currentNode = this.head
     let previousNode = null
@@ -217,16 +217,16 @@ class LinkedList{
     if (index === 0) {
       node.next = currentNode
       this.head = node
-    }else{
+    } else {
       while (currentIndex < index) {
-        currentIndex ++
+        currentIndex++
         previousNode = currentNode
         currentNode = currentNode.next
       }
       previousNode.next = node
       node.next = currentNode
     }
-    this.length ++
+    this.length++
   }
 
   // 在指定位置移除
@@ -234,20 +234,20 @@ class LinkedList{
     let currentNode = this.head
     let previousNode = null
     let currentIndex = 0
-    if (index<0||index>=this.length) {
+    if (index < 0 || index >= this.length) {
       return null
     }
-    if(index === 0){
+    if (index === 0) {
       this.head = currentNode.next
-    }else{
+    } else {
       while (currentIndex < index) {
-        currentIndex ++
+        currentIndex++
         previousNode = currentNode
         currentNode = currentNode.next
       }
       previousNode.next = currentNode.next
     }
-    this.length --
+    this.length--
     return currentNode.element
   }
 }
@@ -270,15 +270,15 @@ class LinkedList{
  *      不允许出现重复元素，且是无序的
  */
 class MySet {
-  constructor(elements){
+  constructor(elements) {
     this.collection = elements ? elements : []
   }
 
-  has(element){
+  has(element) {
     return (this.collection.indexOf(element) !== -1)
   }
 
-  size(){
+  size() {
     return this.collection.length
   }
   values() {
@@ -286,7 +286,7 @@ class MySet {
   }
 
   add(element) {
-    if(!this.has(element)){
+    if (!this.has(element)) {
       this.collection.push(element)
       return true
     }
@@ -294,9 +294,9 @@ class MySet {
   }
 
   remove(element) {
-    if(this.has(element)){
+    if (this.has(element)) {
       let index = this.collection.indexOf(element)
-      this.collection.splice(index,1)
+      this.collection.splice(index, 1)
       return true
     }
     return false
@@ -307,10 +307,10 @@ class MySet {
     let unionSet = new MySet()
     let firstSet = this.values()
     let secondSet = otherSet.values()
-    firstSet.forEach(item=>{
+    firstSet.forEach(item => {
       unionSet.add(item)
     })
-    secondSet.forEach(item=>{
+    secondSet.forEach(item => {
       unionSet.add(item)
     })
     return unionSet
@@ -320,7 +320,7 @@ class MySet {
   intersection(otherSet) {
     let intersectionSet = new MySet()
     let firstSet = this.values()
-    firstSet.forEach(item=>{
+    firstSet.forEach(item => {
       if (otherSet.has(item)) {
         intersectionSet.add(item)
       }
@@ -332,7 +332,7 @@ class MySet {
   difference(otherSet) {
     let differenceSet = new MySet()
     let firstSet = this.values()
-    firstSet.forEach(item=>{
+    firstSet.forEach(item => {
       if (!otherSet.has(item)) {
         differenceSet.add(item)
       }
@@ -343,7 +343,7 @@ class MySet {
   // 是否是子集
   subset(otherSet) {
     let firstSet = this.values()
-    return firstSet.every(item=>{
+    return firstSet.every(item => {
       return otherSet.has(item)
     })
   }
@@ -363,7 +363,7 @@ class MySet {
  * @param {*} string 
  * @param {*} max 
  */
-function hash(string,max) {
+function hash(string, max) {
   let hash = 0
   for (let i = 0; i < string.length; i++) {
     hash += string.charCodeAt(i)
@@ -375,38 +375,40 @@ function hash(string,max) {
  * HashTable：存储键值对，其key是通过hash计算的，是唯一的，所以查找很快
  */
 class HashTable {
-  constructor(){
+  constructor() {
     this.storage = []
     this.storageLimt = 4
   }
 
   // 向 HashTable 中添加数据
-  add(key,value) {
-    let index = hash(key,this.storageLimt)
+  add(key, value) {
+    let index = hash(key, this.storageLimt)
     if (this.storage[index] === undefined) {
-      this.storage[index] = [[key,value]]
-    }else {
+      this.storage[index] = [
+        [key, value]
+      ]
+    } else {
       let inserted = false
-      for(let i = 0;i<this.storage[index].length;i++){
-        if(this.storage[index][i][0] === key){
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
           this.storage[index][i][1] = value
           inserted = true
         }
       }
       if (!inserted) {
-        this.storage[index].push([key,value])
+        this.storage[index].push([key, value])
       }
     }
   }
 
   // 从HashTable移除数据
-  remove(key){
-    let index = hash(key,this.storageLimt)
+  remove(key) {
+    let index = hash(key, this.storageLimt)
     // 分开处理是，当只有一个且key就是要删除的，删除整个的
-    if(this.storage[index].length === 1 && this.storage[index][0][0] === key){
+    if (this.storage[index].length === 1 && this.storage[index][0][0] === key) {
       delete this.storage[index]
-    }else {
-      for(let i = 0;i < this.storage[index].length;i++){
+    } else {
+      for (let i = 0; i < this.storage[index].length; i++) {
         if (this.storage[index][i][0] === key) {
           delete this.storage[index][i]
         }
@@ -416,11 +418,11 @@ class HashTable {
 
   // 根据key查找hash值
   lookup(key) {
-    let index = hash(key,this.storageLimt)
+    let index = hash(key, this.storageLimt)
     if (this.storage[index] === undefined) {
       return undefined
-    }else {
-      for(let i = 0;i < this.storage[index].length;i++){
+    } else {
+      for (let i = 0; i < this.storage[index].length; i++) {
         if (this.storage[index][i][0] === key) {
           return this.storage[index][i][1]
         }
@@ -444,7 +446,7 @@ class HashTable {
  * 树是一个非线性的数据结构，插入和搜索的效率很高
  */
 class TreeNode {
-  constructor(data,left = null,right = null){
+  constructor(data, left = null, right = null) {
     this.data = data
     this.left = left
     this.right = right
@@ -455,34 +457,34 @@ class TreeNode {
  * Binary Search Tree
  * 二叉查找树：每个节点最多两个节点，且左节点小于父节点，右节点大于父节点
  */
-class BTS{
-  constructor(){
-    this.root =  null
+class BTS {
+  constructor() {
+    this.root = null
   }
 
   // 插入节点，在插入过程中用到递归
   add(data) {
     const nood = this.root
-    if(nood === null){
+    if (nood === null) {
       this.root = new TreeNode(data)
       return
-    }else{
-      const searchTree = function (node){
-        if(data<node.data){
-          if(node.left === null){
+    } else {
+      const searchTree = function (node) {
+        if (data < node.data) {
+          if (node.left === null) {
             node.left = new TreeNode(data)
             return
-          }else{
+          } else {
             searchTree(node.left)
           }
-        }else if(data>node.right){
-          if(node.right === null){
+        } else if (data > node.right) {
+          if (node.right === null) {
             node.right = new TreeNode(data)
             return
-          }else{
+          } else {
             searchTree(node.right)
           }
-        }else{
+        } else {
           return null
         }
       }
@@ -512,12 +514,12 @@ class BTS{
   find(data) {
     let current = this.root
     while (current.data !== data) {
-      if(data < current.data){
+      if (data < current.data) {
         current = current.left
-      }else {
+      } else {
         current = current.right
       }
-      if(current === null){
+      if (current === null) {
         return null
       }
     }
@@ -527,13 +529,13 @@ class BTS{
   // 树中是否存在某值
   isPresent(data) {
     let current = this.root
-    while(current){
+    while (current) {
       if (current.data === data) {
         return true
       }
-      if(data<current.data){
+      if (data < current.data) {
         current = current.left
-      }else{
+      } else {
         current = current.right
       }
     }
