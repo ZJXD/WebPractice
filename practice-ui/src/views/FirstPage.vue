@@ -20,6 +20,12 @@
           <div class="pic_item">图片</div>
         </div>
       </div>
+      <div class="test_item">
+        <label>线性进度条</label>
+        <div class="line_bar">
+        </div>
+        <div class="line_bar overflow"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -103,5 +109,46 @@ export default {}
     margin: 5px;
     text-align: center;
   }
+}
+
+/* 线性渐变进度条 */
+.line_bar {
+  position: relative;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #ffba01;
+
+  &::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 85px;
+    background: repeating-linear-gradient(
+      45deg,
+      #f06a0e,
+      #f06a0e 10px,
+      transparent 11px,
+      transparent 19px,
+      #f06a0e 20px
+    );
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    animation: move 1s linear infinite;
+  }
+}
+@keyframes move {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -56px;
+  }
+}
+
+.overflow {
+  overflow: hidden;
 }
 </style>

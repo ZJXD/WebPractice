@@ -14,7 +14,7 @@ export default new Router({
       redirect: '/welcome',
       children: [
         {
-          path: '/',
+          path: '/welcome',
           name: 'welcome',
           component: Welcome,
         },

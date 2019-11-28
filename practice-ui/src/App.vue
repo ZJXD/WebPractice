@@ -13,6 +13,7 @@ export default {
 <style>
 html {
   height: 100%;
+  font-size: 16px;
 }
 
 body {
@@ -26,7 +27,7 @@ header {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -34,5 +35,14 @@ header {
   background-color: #f5f5f5;
   height: 100%;
   min-height: 768px;
+}
+
+/* 设置全局的 a 标签样式 */
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit; /* 颜色继承 */
+  text-decoration: none; /* 去掉下划线 */
 }
 </style>
