@@ -26,12 +26,94 @@
         </div>
         <div class="line_bar overflow"></div>
       </div>
+      <div class="test_item">
+        <label>箭头</label>
+        <div class="arrow_list">
+          <div class="arrow arrow-top"></div>
+          <div class="arrow arrow-right"></div>
+          <div class="arrow arrow-bottom"></div>
+          <div class="arrow arrow-left"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'FirstPage',
+  data() {
+    return {}
+  },
+  methods: {
+    /**
+     * 节流函数
+     * fn 要触发的回调
+     * delay 固定执行时间
+     * 这里用到了闭包：timer
+     */
+    throttle(fn, delay = 100) {
+      let timer = null
+      return function () {
+        if (timer) return
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+          timer = null
+        }, delay)
+      }
+    },
+
+    /**
+     * 同上，这个首次执行
+     */
+    throttle1(fn, delay = 100) {
+      let last = 0
+      return function () {
+        let curr = +new Date()
+        if (curr - last > delay) {
+          fn.apply(this, arguments)
+          last = curr
+        }
+      }
+    },
+
+    /**
+     * 防抖函数
+     * fn 回调函数
+     * delay 防抖间隔时间
+     * 也用到闭包：timer
+     */
+    debounce(fn, delay = 200) {
+      let timer = null
+      return function () {
+        timer && clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+          timer = null
+        }, delay)
+      }
+    },
+
+    /**
+     * 首次执行的实现，还有点小问题：
+     *  整个过程第一次，中间没有连续触发后，再次触发第一次不会执行
+     */
+    debocess1(fn, delay = 200) {
+      let timer = null, last = 0
+      return function () {
+        if (last <= 0) {
+          fn.apply(this.arguments)
+        }
+        timer && clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this.arguments)
+          timer = null
+        }, delay)
+        last = +new Date()
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -150,5 +232,70 @@ export default {}
 
 .overflow {
   overflow: hidden;
+}
+
+/* 箭头 */
+.arrow_list {
+  width: 200px;
+  background-color: #fff;
+  position: relative;
+
+  .arrow:before,
+  .arrow:after {
+    content: "";
+    height: 0;
+    width: 0;
+    top: 40px;
+    position: absolute;
+    border: 10px solid transparent;
+  }
+
+  .arrow-top:before {
+    border-bottom-color: #fff;
+    z-index: 2;
+    left: 10px;
+  }
+
+  .arrow-top:after {
+    border-bottom-color: #333;
+    z-index: 1;
+    left: 10px;
+    top: 38px;
+  }
+
+  .arrow-right:before {
+    border-left-color: #fff;
+    z-index: 2;
+    left: 40px;
+  }
+
+  .arrow-right:after {
+    border-left-color: #333;
+    z-index: 1;
+    left: 42px;
+  }
+
+  .arrow-bottom:before {
+    border-top-color: #fff;
+    z-index: 2;
+    left: 70px;
+    top: 38px;
+  }
+  .arrow-bottom:after {
+    border-top-color: #333;
+    z-index: 1;
+    left: 70px;
+  }
+
+  .arrow-left:before {
+    border-right-color: #fff;
+    z-index: 2;
+    left: 102px;
+  }
+  .arrow-left:after {
+    border-right-color: #333;
+    z-index: 1;
+    left: 100px;
+  }
 }
 </style>
