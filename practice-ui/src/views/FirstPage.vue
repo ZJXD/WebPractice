@@ -22,8 +22,7 @@
       </div>
       <div class="test_item">
         <label>线性进度条</label>
-        <div class="line_bar">
-        </div>
+        <div class="line_bar"></div>
         <div class="line_bar overflow"></div>
       </div>
       <div class="test_item">
@@ -54,7 +53,7 @@ export default {
      */
     throttle(fn, delay = 100) {
       let timer = null
-      return function () {
+      return function() {
         if (timer) return
         timer = setTimeout(() => {
           fn.apply(this, arguments)
@@ -68,7 +67,7 @@ export default {
      */
     throttle1(fn, delay = 100) {
       let last = 0
-      return function () {
+      return function() {
         let curr = +new Date()
         if (curr - last > delay) {
           fn.apply(this, arguments)
@@ -85,7 +84,7 @@ export default {
      */
     debounce(fn, delay = 200) {
       let timer = null
-      return function () {
+      return function() {
         timer && clearTimeout(timer)
         timer = setTimeout(() => {
           fn.apply(this, arguments)
@@ -99,8 +98,9 @@ export default {
      *  整个过程第一次，中间没有连续触发后，再次触发第一次不会执行
      */
     debocess1(fn, delay = 200) {
-      let timer = null, last = 0
-      return function () {
+      let timer = null,
+        last = 0
+      return function() {
         if (last <= 0) {
           fn.apply(this.arguments)
         }
@@ -111,8 +111,8 @@ export default {
         }, delay)
         last = +new Date()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -203,7 +203,7 @@ export default {
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     left: 0;
     top: 0;
     width: 200px;
@@ -242,7 +242,7 @@ export default {
 
   .arrow:before,
   .arrow:after {
-    content: "";
+    content: '';
     height: 0;
     width: 0;
     top: 40px;
