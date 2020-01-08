@@ -16,14 +16,19 @@ export default new Router({
         {
           path: '/welcome',
           name: 'welcome',
-          component: Welcome,
+          component: Welcome
         },
         {
           path: '/firstPage',
           name: 'firstPage',
-          component: FirstPage,
+          component: FirstPage
         },
-      ],
-    },
-  ],
+        {
+          path: '/signature',
+          name: 'signature',
+          component: () => import('../views/signature.vue')
+        }
+      ]
+    }
+  ]
 })

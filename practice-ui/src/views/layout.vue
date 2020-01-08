@@ -18,13 +18,14 @@
       <router-view />
     </el-main>
     <el-footer class="app-footer">
-      Copyright © 2019 ZHT<br />
-      Powered by Vue Element On Win10
+      Copyright © {{currentYear}} ZHT<br />
+      Powered by Vue Element On {{systemOS}}
     </el-footer>
   </el-container>
 </template>
 
 <script>
+import { getOS } from '@/utils/system'
 export default {
   name: 'FirstPage',
   data() {
@@ -35,10 +36,19 @@ export default {
       }, {
         name: '示例一',
         routerLink: '/firstPage'
+      }, {
+        name: '示例二',
+        routerLink: '/signature'
       }
       ],
-      isActiveIndex: 0
+      isActiveIndex: 0,
+      currentYear: '',
+      systemOS: ''
     }
+  },
+  created() {
+    this.currentYear = new Date().getFullYear()
+    this.systemOS = getOS()
   },
   methods: {
     changePage(index) {
