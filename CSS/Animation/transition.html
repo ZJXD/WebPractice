@@ -1,64 +1,82 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style> 
-div
-{
-width:100px;
-height:50px;
-background:red;
-color:white;
-font-weight:bold;
-transition:width 2s;
--moz-transition:width 2s; /* Firefox 4 */
--webkit-transition:width 2s; /* Safari and Chrome */
--o-transition:width 2s; /* Opera */
-}
+  <style>
+    div {
+      width: 100px;
+      height: 50px;
+      background: red;
+      color: white;
+      font-weight: bold;
+      transition: width 2s;
+      -moz-transition: width 2s;
+      /* Firefox 4 */
+      -webkit-transition: width 2s;
+      /* Safari and Chrome */
+      -o-transition: width 2s;
+      /* Opera */
+    }
 
-#div1 {transition-timing-function: linear;}
-#div2 {transition-timing-function: ease;}
-#div3 {transition-timing-function: ease-in;}
-#div4 {transition-timing-function: ease-out;}
-#div5 {transition-timing-function: ease-in-out;}
+    #div1 {
+      transition-timing-function: linear;
+      -moz-transition-timing-function: linear;
+      -webkit-transition-timing-function: linear;
+      -o-transition-timing-function: linear;
+    }
 
-/* Firefox 4: */
-#div1 {-moz-transition-timing-function: linear;}
-#div2 {-moz-transition-timing-function: ease;}
-#div3 {-moz-transition-timing-function: ease-in;}
-#div4 {-moz-transition-timing-function: ease-out;}
-#div5 {-moz-transition-timing-function: ease-in-out;}
+    #div2 {
+      transition-timing-function: ease;
+      -moz-transition-timing-function: ease;
+      -webkit-transition-timing-function: ease;
+      -o-transition-timing-function: ease;
+    }
 
-/* Safari and Chrome: */
-#div1 {-webkit-transition-timing-function: linear;}
-#div2 {-webkit-transition-timing-function: ease;}
-#div3 {-webkit-transition-timing-function: ease-in;}
-#div4 {-webkit-transition-timing-function: ease-out;}
-#div5 {-webkit-transition-timing-function: ease-in-out;}
+    #div3 {
+      transition-timing-function: ease-in;
+      -moz-transition-timing-function: ease-in;
+      -webkit-transition-timing-function: ease-in;
+      -o-transition-timing-function: ease-in;
+    }
 
-/* Opera: */
-#div1 {-o-transition-timing-function: linear;}
-#div2 {-o-transition-timing-function: ease;}
-#div3 {-o-transition-timing-function: ease-in;}
-#div4 {-o-transition-timing-function: ease-out;}
-#div5 {-o-transition-timing-function: ease-in-out;}
+    #div4 {
+      transition-timing-function: ease-out;
+      -moz-transition-timing-function: ease-out;
+      -webkit-transform-timing-function: ease-out;
+      -o-transition-timing-function: ease-out;
+    }
 
-div:hover
-{
-width:300px;
-}
-</style>
+    #div5 {
+      transition-timing-function: ease-in-out;
+      -moz-transform-timing-function: ease-in-out;
+      -webkit-transform-timing-function: ease-in-out;
+      -o-transition-timing-function: ease-in-out;
+    }
+
+    /* Firefox 4: */
+
+    /* Safari and Chrome: */
+
+    /* Opera: */
+
+    div:hover {
+      width: 300px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="div1" style="top:100px">linear</div>
-<div id="div2" style="top:150px">ease</div>
-<div id="div3" style="top:200px">ease-in</div>
-<div id="div4" style="top:250px">ease-out</div>
-<div id="div5" style="top:300px">ease-in-out</div>
+  <div id="div1" style="top:100px">linear</div>
+  <div id="div2" style="top:150px">ease</div>
+  <div id="div3" style="top:200px">ease-in</div>
+  <div id="div4" style="top:250px">ease-out</div>
+  <div id="div5" style="top:300px">ease-in-out</div>
 
-<p>请把鼠标指针移动到红色的 div 元素上，就可以看到过渡效果。</p>
+  <p>请把鼠标指针移动到红色的 div 元素上，就可以看到过渡效果。</p>
 
-<p><b>注释：</b>本例在 Internet Explorer 中无效。</p>
+  <p><b>注释：</b>本例在 Internet Explorer 中无效。</p>
 
 </body>
+
 </html>

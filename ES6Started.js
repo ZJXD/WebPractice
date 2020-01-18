@@ -2,6 +2,8 @@
  * 《ECMAScript6 入门》（阮一峰） 练习文件
  */
 
+const { log } = console
+
 // function f() {
 //     console.log('I am outside');
 // }
@@ -48,12 +50,9 @@
 //   let [first, second, third, fourth, fifth, sixth] = fibs();
 //   console.log(sixth);
 
-
 // 对象解构
 // let {sin,cos,tan} = Math;
-const {
-  log
-} = console;
+
 // log(sin(45));
 
 // const node = {
@@ -85,7 +84,6 @@ const {
 // log(b);
 // log(b === Boolean.prototype.toString);
 
-
 // 函数参数解构
 // function add([x,y]) {
 //     return x+y;
@@ -109,7 +107,6 @@ const {
 // log(a);
 // log(c);
 // #endregion
-
 
 // 字符串的扩展----------------------------------------------------------------------------------------------
 // #region
@@ -173,7 +170,6 @@ const {
 // log(tmpl(data));
 // #endregion
 
-
 // 闭包------------------------------------------------------------------------------------------------------
 // #region
 
@@ -213,6 +209,22 @@ const {
 // add10 = makeAdder(10);
 // log(add5(2));
 // log(add10(2));
+
+// 同上面的例子，只是传入的参数为定义的一个变量，并在后面更改
+// 虽然变量更改了，但是创建闭包时变量的值已经在作用域链上并没有修改
+// var globalVal = 'global'
+// var outerVal = 'outer'
+
+// function outerFunc(outerParam) {
+//   return function innerFunc(innerParam) {
+//     console.log(globalVal, outerParam, innerParam)
+//   }
+// }
+
+// x = outerFunc(outerVal)
+// globalVal = 'global-2'
+// outerVal = 'outer-2'
+// x('inner')
 
 // 实用的闭包
 // 闭包允许将函数和其所操作的某些数据（环境）相关联起来，这个和面向对象很相似。
@@ -300,7 +312,6 @@ const {
 // test.say();
 // #endregion
 
-
 // ...(扩展符或者扩展运算符)-----------------------------------------------------------------------------------
 // #region
 
@@ -321,7 +332,7 @@ const {
 // var arr1 = [0, 1, 2];
 // var arr2 = [3, 4, 5];
 // Array.prototype.push.apply(arr1, arr2);
- 
+
 // ES6 的写法
 // var arr1 = [0, 1, 2];
 // var arr2 = [3, 4, 5];
@@ -330,7 +341,7 @@ const {
 // 数组合并
 // ES5的合并数组
 // arr1.concat(arr2, arr3);
- 
+
 // ES6的合并数组
 // [...arr1, ...arr2, ...arr3]
 
@@ -360,7 +371,6 @@ const {
 // log('modules:',modules)
 // log('modeles1:',modeles1)
 // #endregion
-
 
 // Set-------------------------------------------------------------------------------------------------------
 // #region

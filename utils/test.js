@@ -1,3 +1,10 @@
+/*
+ * @Author: ZHT
+ * @Date: 2020-01-18 12:13:26
+ * @Last Modified by: ZHT
+ * @Last Modified time: 2020-01-18 12:13:53
+ */
+
 // const path = require('path')
 // console.log('path.....', path.resolve('./gps.js'))
 
@@ -78,10 +85,37 @@
 //#endregion
 
 //#region 测试字符串
-let str1 = 'abceenafghefdaknafbies'
+// console.log(y)
+// var y = 1
+// console.log(y)
 
-console.log(str1.indexOf('naf'))
-console.log(str1.lastIndexOf('naf'))
+// let str1 = 'abceenafghefdaknafbies'
 
-console.log(str1.indexOf('naf', 50))
+// console.log(str1.indexOf('naf'))
+// console.log(str1.lastIndexOf('naf'))
+
+// console.log(str1.indexOf('naf', 50))
 //#endregion
+
+function Fun() {
+  var getName = function() {
+    console.log(1)
+  }
+  return this
+}
+
+Fun.getName = function() {
+  console.log(2)
+}
+
+Fun.prototype.getName = function() {
+  console.log(3)
+}
+
+var getName = function() {
+  console.log(4)
+}
+
+console.log(new new Fun().getName())
+// Fun.getName()
+// Fun().getName()

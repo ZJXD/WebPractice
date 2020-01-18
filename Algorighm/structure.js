@@ -15,31 +15,31 @@
  */
 class Stack {
   constructor() {
-    this.count = 0;
-    this.storage = {};
+    this.count = 0
+    this.storage = {}
   }
 
   push(value) {
-    this.storage[this.count] = value;
-    this.count++;
+    this.storage[this.count] = value
+    this.count++
   }
 
   pop() {
     if (this.count === 0) {
-      return undefined;
+      return undefined
     }
-    this.count--;
-    let result = this.storage[this.count];
-    delete this.storage[this.count];
-    return result;
+    this.count--
+    let result = this.storage[this.count]
+    delete this.storage[this.count]
+    return result
   }
 
   peek() {
-    return this.storage[this.count - 1];
+    return this.storage[this.count - 1]
   }
 
   length() {
-    return this.count;
+    return this.count
   }
 }
 
@@ -52,10 +52,9 @@ class Stack {
 // console.log(s.storage);
 // console.log(s.length());
 
-
 /**
  * Queue（队列）
- * 特点：先进先出
+ * 特点：先进先出（first in first out）
  * 方法：
  *    1、enqueue：入队列
  *    2、dequeue：出队列
@@ -66,7 +65,7 @@ class Stack {
  */
 class Queue {
   constructor() {
-    this.collection = [];
+    this.collection = []
   }
 
   print() {
@@ -80,39 +79,38 @@ class Queue {
   // 优先队列入列，其他的相同
   priorityEnQueue(value) {
     if (this.collection.isEmpty) {
-      this.collection.push(value);
+      this.collection.push(value)
     } else {
-      let added = false;
+      let added = false
       for (let i = 0; i < this.collection.length; i++) {
         if (value < this.collection[i]) {
-          this.collection.splice(i, 0, value);
-          added = true;
-          break;
+          this.collection.splice(i, 0, value)
+          added = true
+          break
         }
       }
       if (!added) {
-        this.collection.push(value);
+        this.collection.push(value)
       }
     }
   }
 
   dequeue() {
-    return this.collection.shift();
+    return this.collection.shift()
   }
 
   front() {
-    return this.collection[0];
+    return this.collection[0]
   }
 
   isEmpty() {
-    return this.collection.length === 0;
+    return this.collection.length === 0
   }
 
   size() {
-    return this.collection.length;
+    return this.collection.length
   }
 }
-
 
 /**
  * 链表节点
@@ -120,8 +118,8 @@ class Queue {
  */
 class Node {
   constructor(element) {
-    this.element = element;
-    this.next = null;
+    this.element = element
+    this.next = null
   }
 }
 
@@ -264,7 +262,6 @@ class LinkedList {
 // link.removeAt(1)
 // console.log('link',link)
 
-
 /**
  * 集合：具有某种特性的对象汇总成的集体
  *      不允许出现重复元素，且是无序的
@@ -275,7 +272,7 @@ class MySet {
   }
 
   has(element) {
-    return (this.collection.indexOf(element) !== -1)
+    return this.collection.indexOf(element) !== -1
   }
 
   size() {
@@ -357,11 +354,10 @@ class MySet {
 // console.log('difference:',set1.difference(set2))
 // console.log('subset',set1.subset(set2))
 
-
 /**
  * 计算hash值
- * @param {*} string 
- * @param {*} max 
+ * @param {*} string
+ * @param {*} max
  */
 function hash(string, max) {
   let hash = 0
@@ -384,9 +380,7 @@ class HashTable {
   add(key, value) {
     let index = hash(key, this.storageLimt)
     if (this.storage[index] === undefined) {
-      this.storage[index] = [
-        [key, value]
-      ]
+      this.storage[index] = [[key, value]]
     } else {
       let inserted = false
       for (let i = 0; i < this.storage[index].length; i++) {
@@ -440,7 +434,6 @@ class HashTable {
 // hTable.add('tyfhy',897)
 // console.log(hTable.storage)
 
-
 /**
  * 树节点类
  * 树是一个非线性的数据结构，插入和搜索的效率很高
@@ -469,7 +462,7 @@ class BTS {
       this.root = new TreeNode(data)
       return
     } else {
-      const searchTree = function (node) {
+      const searchTree = function(node) {
         if (data < node.data) {
           if (node.left === null) {
             node.left = new TreeNode(data)
