@@ -1,6 +1,4 @@
-const {
-  log
-} = console
+const { log } = console
 
 /**
  * 题目：1
@@ -10,8 +8,8 @@ const {
  *      参考： https: //developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map
  */
 
-// let mapTest = ['1', '3', '10'].map(parseInt);
-// log(mapTest)
+let mapTest = ['1', '3', '10'].map(parseInt)
+console.log(mapTest)
 
 /**
  * 题目：2
@@ -26,11 +24,11 @@ function fn() {
 }
 var obj = {
   number: 2,
-  show: function (fn) {
+  show: function(fn) {
     this.number = 3
     fn()
     arguments[0]()
-  },
+  }
 }
 obj.show(fn)
 
@@ -71,9 +69,9 @@ console.log(
     name: 'zht',
     age: 28,
     family: {
-      baby: 'xiatian',
-    },
-  }),
+      baby: 'xiatian'
+    }
+  })
 )
 console.log(deepCopy([1, 2, 3, 4, 5]))
 console.log(deepCopy('zhuHT'))
@@ -105,7 +103,7 @@ class EventEmitter {
     if (this.listeners[event] instanceof Array) {
       if (this.listeners[event].length > this.maxListener) {
         throw console.error(
-          `当前监听器的最大数量是${this.maxListener}，您已经超出限制`,
+          `当前监听器的最大数量是${this.maxListener}，您已经超出限制`
         )
       }
       if (this.listeners[event].indexOf(callback) === -1) {
@@ -261,17 +259,17 @@ console.log(x, y, z)
 var num = 1
 var myObject = {
   num: 2,
-  add: function () {
-    this.num = 3;
-    (function () {
+  add: function() {
+    this.num = 3
+    ;(function() {
       console.log(this.num)
       this.num = 4
     })() // 立即执行函数，this 指向全局变量
     console.log(this.num)
   },
-  sub: function () {
+  sub: function() {
     console.log(this.num)
-  },
+  }
 }
 myObject.add()
 console.log(myObject.num)
@@ -297,11 +295,10 @@ function foo() {
 let foo1 = function bar() {
   console.log('函数表达式')
 }
-foo1 = function () {
+foo1 = function() {
   let bar = self
   console.log('函数表达式')
 }
-
 
 /**
  * 题目：13
@@ -311,7 +308,6 @@ foo1 = function () {
  *      参数：setTimeout 参数分别是：回调函数、定时间隔时间、传入回调的参数（多个），第一必须，后面都可省略
  */
 
-
 /**
  * 题目：14
  * 说明：apply：方法调用一个具有给定 this 值的函数，和一个数组（类似数组的对象）提供的参数
@@ -319,19 +315,17 @@ foo1 = function () {
  *       call：方法使用一个指定的 this 值和一个或多个参数列表，和 apply 类似，区别就是参数传入不同
  */
 
-
 /**
  * 题目：15
- * 说明： 可以参考文章： 
+ * 说明： 可以参考文章：
  * 1、 https: //coolshell.cn/articles/9666.html（浏览器的渲染原理）
  * 2、 https: //blog.csdn.net/zzzaquarius/article/details/6532299（How Browsers Work）
  * 3、 https: //coolshell.cn/articles/9749.html（JS 装载和执行）
- * 
+ *
  * 1、加载是自上而下的，边解析边渲染；
  * 2、遇到有 JS、CSS文件的需要下载的，这里阻塞当前渲染，下载完成后解析完成，对布局有影响的，重新渲染，后继续一块渲染；
  * 3、遇到 image 的，不会阻塞，会继续解析渲染，当 image 下载完加载对布局有影响的再重新渲染；
  */
-
 
 /**
  * 题目：16
@@ -347,11 +341,7 @@ let obj = {
   c: 'c',
   d: 'd'
 }
-let {
-  a,
-  b,
-  ...c
-} = obj
+let { a, b, ...c } = obj
 console.log(a, b, c)
 
 let newObj = {
@@ -360,7 +350,6 @@ let newObj = {
   ...c
 }
 console.log(newObj)
-
 
 /**
  * 题目：17

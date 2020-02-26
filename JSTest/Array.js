@@ -140,4 +140,218 @@ console.log('Array property:', Object.getOwnPropertyNames(Array.prototype))
 
 /**
  * Array 改变自身的9个方法 ------------------------------------------------------------------------（一级标题）
+ * 对于改变自身的方法，在使用的时候要注意，尽量避免在循环遍历中取改变原数组的项
  */
+
+/**
+ * pop() ---------------------------------------------------------------------------（二级标题）
+ * pop() 用于删除数组中的最后一个元素，并返回这个元素；如果是栈的话，相当于在栈顶弹出
+ */
+let arr7 = ['cat', 'dog', 'cow', 'chicken', 'mouse']
+let popItem = arr7.pop()
+console.log('arr7 poped:', arr7)
+console.log('popItem:', popItem)
+
+/**
+ * 由于设计上的巧妙，pop 可以用于类数组对象上，即“填鸭辩型”
+ * 1、length 不存在，新增length 并初始化为0；length 存在，但不是数值，length 值设置为0；length 值为0；都不删除；
+ * 2、length 值小于等于类数组对象属性数，在length 处删除；
+ * 3、length 值大于类数组对象属性数，不操作，length 值减一；
+ */
+let obj1 = {
+  0: 'cat',
+  1: 'dog',
+  2: 'cow',
+  3: 'chicken',
+  4: 'mouse',
+  length: 'aaa'
+}
+let obj1_1 = {
+  0: 'cat',
+  1: 'dog',
+  2: 'cow',
+  3: 'chicken',
+  4: 'mouse',
+  length: 0
+}
+let objPopItem = Array.prototype.pop.call(obj1_1)
+console.log('obj1 poped:', obj1_1)
+console.log('objPopItem:', objPopItem)
+//
+
+/**
+ * push() ---------------------------------------------------------------------------（二级标题）
+ * push() 用于向数组末尾添加一个或者多个项，并返回新数组长度；如果是栈的话，相当于栈顶压入
+ * 语法：array.push(element1,...,elementN)
+ */
+let arr8 = ['football', 'basketball', 'volleyball']
+let pushInt = arr8.push('golfball')
+console.log('arr8 pushed:', arr8)
+console.log('pushInt:', pushInt)
+
+// 利用 push 根据 length 插入元素，可以实现数组合并(这里使用 apply 和call 的结果不一样)
+let arr8_1 = ['red', 'blue']
+pushInt = Array.prototype.push.apply(arr8, arr8_1)
+console.log('合并后数组：', arr8)
+console.log('合并后长度：', pushInt)
+
+/**
+ * push 同样也可以应用于类数组对象上；
+ * 1、当不存在 length 或者不能转为数值的时候，会替换第一个；length 不存在时会创建；length 为0 同；
+ * 2、length 的值小于对象中属性数；相当于在 length 处插入；
+ * 3、length 的值大于等于对象中属性数，在最后添加，索引会跳跃；length 也会增加；
+ */
+// 情形-1
+let obj2 = { 0: 'football', 1: 'basketball' }
+let objPushInt = Array.prototype.push.call(obj2, 'golfball')
+console.log('obj2 pushed:', obj2)
+console.log('objPushInt:', objPushInt)
+// 情形-2
+objPushInt = Array.prototype.push.call(obj2, 'volleyball')
+console.log('obj2 pushed(lenght):', obj2)
+console.log('objPushInt:', objPushInt)
+// 情形-3
+obj2.length = 100
+objPushInt = Array.prototype.push.call(obj2, 'football')
+console.log('obj2 pushed(lenght==):', obj2)
+console.log('objPushInt:', objPushInt)
+
+/**
+ * reverse() ---------------------------------------------------------------------------（二级标题）
+ * reverse() 使数组倒置，返回对数组的引用
+ * 原数组改变
+ */
+let arr9 = [1, 2, 3, 4, 5]
+console.log('arr9:', arr9)
+let arr9_1 = arr9.reverse()
+console.log('reverse arr9:', arr9_1)
+
+/**
+ * reverse 同样也是“填鸭辩型”的受益者，可以运用于类数组对象
+ * 但是倒置元素受 length 值的影响
+ * 1、length 小于2 或者不是数值，类数组对象不变；不存在 length 时也不会创建；
+ * 2、length 大于等于2 但小于类数组对象属性长度时，只是倒置部分属性；
+ * 3、length 值较大，类数组对象的“索引”会靠近 length 值；
+ */
+// 情形-1
+let obj3 = { 0: 'a', 1: 'b', 2: 'c', length: 2 }
+console.log('obj3:', obj3)
+// 情形-2
+let obj3_1 = Array.prototype.reverse.call(obj3)
+console.log('obj3 reverse:', obj3_1)
+// 情形-3
+obj3.length = 100
+obj3_1 = Array.prototype.reverse.call(obj3)
+console.log('obj3 length=100 reverse:', obj3_1)
+
+/**
+ * shift() ----------------------------------------------------------------------------（二级标题）
+ * shift() 删除数组的第一个元素，并返回这个元素；如果是栈的话，就是栈底弹出；
+ * array.shift()
+ */
+let arr10 = [1, 2, 3, 4, 5]
+let shiftItem = arr10.shift()
+console.log('arr10 shift:', arr10)
+console.log('shiftItme:', shiftItem)
+
+/**
+ * shift 在类数组对象上的使用
+ * 1、length 不存在，初始化为0，length 不为数值，设置为0,length 值为0 ；都不删除；
+ * 2、length 值 >0 ，删除第一个；索引重新从 0 开始；
+ */
+// 情形-1
+let obj4 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', length: 'aa' }
+let objShiftItem = Array.prototype.shift.call(obj4)
+console.log('obj4 shift:', obj4)
+console.log('objShiftItem:', objShiftItem)
+// 情形-2
+obj4.length = 10
+objShiftItem = Array.prototype.shift.call(obj4)
+console.log('obj4 length=0 shift:', obj4)
+
+/**
+ * unshift() --------------------------------------------------------------------------（二级标题）
+ * unshift() 向数组头部添加元素，可添加多个；返回新数组长度；
+ * array.unshift(element1,....,elementN)
+ */
+let arr11 = [1, 2, 3, 4, 5]
+let unshiftInt = arr11.unshift(10, 12)
+console.log('arr11 unshift:', arr11, ',unshiftInt:', unshiftInt)
+// 插入数组
+arr11.unshift([100, 101])
+console.log('arr11 unshift array:', arr11)
+
+/**
+ * unshift 在类数组对象应用
+ * 1、length 不存在、不是数值、值为 0，都会把第一个替换，length 并变为1；
+ * 2、length 的值小于类数组对象属性数，会把后面的挤掉；
+ * 3、length 的值大于等于类数组对象属性数，在前面添加；
+ */
+// 情形-1
+let obj5 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd' }
+Array.prototype.unshift.call(obj5, 100)
+console.log('obj5 unshift:', obj5)
+// 情形-2
+Array.prototype.unshift.call(obj5, 101)
+console.log('obj5 length=1 unshift:', obj5)
+// 情形-3
+obj5.length = 100
+Array.prototype.unshift.call(obj5, 102)
+console.log('obj5 length>=n unshift:', obj5)
+
+/**
+ * 数组增删对比
+              Array             ArrayLike(可迭代属性长度：N)
+              length 无关       无 length、length 不是数值、length=0      0<length<N              length=N（同 Array）    length>N
+ pop          在尾部删除         不删除                                   删除 length 处项         在尾部删除              不删除
+ push         在尾部添加         替换第一个，length 变为1                  在 length 处插入         在尾部添加              在length处添加，索引跳跃
+ shift        在头部删除         不删除                                   删除第一个               在头部删除              在头部删除
+ unshift      在头部添加         替换第一个，length 变为1                  在头部添加，挤掉后面      在头部添加              在头部添加
+ */
+
+/**
+ * sort() ---------------------------------------------------------------------------（二级标题）
+ * sort 用于对数组排序，返回排序后的数组；
+ * 语法：array.sort([comparefn])
+ * 可选参数：comparefn
+ *  省略时：数组元素将按照各自转换为字符的 Unicode 位点进行排序(如：Boy 排在 apple 前，数字 25 排在 8 前)
+ */
+let arr12 = ['apple', 'Boy', 'cat', 'dog']
+console.log('arr12 sorted:', arr12.sort())
+arr12 = [4, 10, 20, 15]
+console.log('arr12 number sorted:', arr12.sort())
+
+/**
+ * comparefn 有值：
+ * 1、若 comparefn(a,b)<0，a 将排在 b 前面
+ * 2、若 comparefn(a,b)=0，a 和 b 的相对位置不变
+ * 3、若 comparefn(a,b)<0，a 和 b 的位置对调
+ */
+// 数字的comparefn 可以这么写
+function compareNum(a, b) {
+  return a - b
+}
+
+// 对于字符的，需要使用 localeCompare，排到正确顺序（本地 node 无效，浏览器下可以）
+let arr13 = ['互', '联', '网', '改', '变', '世', '界']
+let arr13_1 = arr13.sort()
+let arr13_2 = ['互', '联', '网', '改', '变', '世', '界']
+let arr13_3 = arr13_2.sort(function(a, b) {
+  return a.localeCompare(b)
+})
+console.log('arr13 sort:', arr13_1, '\nby localeCompare sort:', arr13_3)
+
+/**
+ * sort 同样也可以应用于类数组对象
+ * 当没有 length 属性时，不会对对象排序；也不会添加 length
+ */
+let obj6 = {
+  0: '互',
+  1: '联',
+  2: '网',
+  3: '改',
+  4: '变',
+  5: '世',
+  6: '界'
+}
+console.log('obj6 sort:', Array.prototype.sort.call(obj6))
