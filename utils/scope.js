@@ -2,7 +2,7 @@
  * @Author: ZHT
  * @Date: 2020-01-14 09:55:11
  * @Last Modified by: ZHT
- * @Last Modified time: 2020-01-14 10:02:45
+ * @Last Modified time: 2020-02-26 17:59:51
  */
 
 /**
@@ -15,7 +15,7 @@ function outFun() {
 
   srr2 = 'sss2'
 
-  log(srr2)
+  log(str1)
 }
 outFun()
 

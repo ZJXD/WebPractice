@@ -10,7 +10,7 @@ console.log('Array property:', Object.getOwnPropertyNames(Array))
  * 用于创建一个新的数组。
  * 同对象字面量
  */
-
+//#region Array 构造器
 // 对象字面量方式
 let arr = [1, 2]
 // 构造器方式
@@ -23,10 +23,12 @@ console.log('arr:', arr, 'arr1:', arr1)
 // 2、当只有一个且为数字的参数时，表示创建数组长度；0个或两个及以上，作为数组元素；
 arr1 = Array(4)
 console.log('array 1 参数:', arr1)
+//#endregion
 
 /**
  * ES6 新增构造函数方法 ---------------------------------------------------------------------------（一级标题）
  */
+//#region ES6 新增构造函数方法
 // 一、Array.of：用于将参数依次转化为数组的项；即使只有一个参数也是作为数组的项；若是需要数组包裹元素，推荐这个；
 let arr2 = Array.of(4, 5, 6)
 console.log('arr2 by Array.of:', arr2)
@@ -76,11 +78,12 @@ console.log(
   '0-n array:',
   Array.from({ length: 10 }, (v, i) => i)
 )
+//#endregion
 
 /**
  * Array.isArray() ------------------------------------------------------------------------------（一级标题）
  */
-
+//#region Array.idArray()
 // 用来判断一个变量是否是数组类型。JS 的弱类型机制，这个对于初学者判断变量类型很重要。
 
 /**
@@ -123,6 +126,7 @@ if (!Array.isArray) {
     return Object.prototype.toString.call(arg) === '[object Array]'
   }
 }
+//#endregion
 
 /**
  * Array 原型 ------------------------------------------------------------------------------------（一级标题）
@@ -130,19 +134,20 @@ if (!Array.isArray) {
  * 和其他构造函数一样，可以通过扩展 Array.prototype 来增加数组的方法
  * 而且 Array.prototype 本身就是一个数组
  */
-
+//#region Array 原型
 console.log('Array.prototype is Array:', Array.isArray(Array.prototype))
 console.log(
   'Array.prototype is Array:',
   Object.prototype.toString.call(Array.prototype) === '[object Array]'
 )
 console.log('Array property:', Object.getOwnPropertyNames(Array.prototype))
+//#endregion
 
 /**
  * Array 改变自身的9个方法 ------------------------------------------------------------------------（一级标题）
  * 对于改变自身的方法，在使用的时候要注意，尽量避免在循环遍历中取改变原数组的项
  */
-
+//#region Array 改变自身的9个方法
 /**
  * pop() ---------------------------------------------------------------------------（二级标题）
  * pop() 用于删除数组中的最后一个元素，并返回这个元素；如果是栈的话，相当于在栈顶弹出
@@ -355,3 +360,253 @@ let obj6 = {
   6: '界'
 }
 console.log('obj6 sort:', Array.prototype.sort.call(obj6))
+
+/**
+ * splice() ---------------------------------------------------------------------------（二级标题）
+ * splice 用于新元素替换就元素，来改变数组；要维持原数组的引用，就地删除或者新增；
+ * 语法：array.splice(start,deleteCount,[item1[,item2]....])
+ */
+
+/**
+ * 参数说明：
+ * 1、start：开始删除的索引；start 大于 length，则不删除；负值，是从 length+start 位置处删除，相加后还为负值，从0处开始删除；
+ * 2、deleteCount：删除的个数；0 不删除，但应该至少添加一个元素；大于 start 后面的元素个数，后面全部删除；
+ * 3、itemN：要添加的项；
+ * 4、返回值：删除的数组，没有删除，返回空数组；
+ */
+let arr14 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let spliceArr = arr14.splice(4, 3, 10, 11, 12, 15)
+console.log('arr14 spliced:', arr14, '\nspliceArr:', spliceArr)
+
+spliceArr = arr14.splice(-8, 1)
+console.log('arr14 spliced start=-8:', arr14, '\nspliceArr:', spliceArr)
+spliceArr = arr14.splice(-15, 1)
+console.log('arr14 spliced start=-15:', arr14, '\nspliceArr:', spliceArr)
+
+// 删除数组中的某个元素(当不存在时，把最后一个删除了，所以要判断)
+arr14.splice(arr14.indexOf(3), 1)
+console.log('arr14 delete 3:', arr14)
+
+/**
+ * splice 同样也适用于类数组对象
+ * 1、不存在length，添加length，初始化为0；length 不是数值，设置为0；length 为0 ；都不删除
+ */
+let obj7 = { 0: 'a', 1: 'b', 2: 'c', length: 1 }
+let objSpliceItem = Array.prototype.splice.call(obj7, 2, 1)
+console.log('obj7 spliced:', obj7, '\nobjSpliceItem:', objSpliceItem)
+
+/**
+ * copyWithin() ----------------------------------------------------------------------（二级标题）
+ * copyWithin 用于数组内元素的替换，替换元素和被替换元素都是数组内的；不会改变原数组长度；
+ * 语法：copyWithin(target,start,[end=this.length])
+ */
+
+/**
+ * 参数说明：
+ * 1、target：目标元素，将被替换掉元素的索引；
+ * 2、start：替换元素在数组中的起始索引；
+ * 3、end：可选，默认为数组长度；end 小于 start时，不会替换；
+ * 4、返回：返回改变后数组的引用；
+ */
+let arr15 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let copyWithinArr = arr15.copyWithin(6, 3)
+// let copyWithinArr = arr15.copyWithin(6, 3, 1)
+// let copyWithinArr = arr15.copyWithin(6, 3, 4)
+console.log('arr15 copyWinthin:', arr15, '\ncopyWithinArr:', copyWithinArr)
+
+/**
+ * copyWithin 同样也适用于类数组对象
+ * length 同样对结果有影响
+ * 1、length 不存在、不是数值，不替换，也不会添加改变 length 值；
+ */
+let obj8 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', length: 6 }
+let objCopyWithinItem = Array.prototype.copyWithin.call(obj8, 1, 3, 4)
+console.log('obj copyWithin:', obj8, '\nobjCopyWithinItem:', objCopyWithinItem)
+
+/**
+ * fill() --------------------------------------------------------------------------（二级标题）
+ * fill 用一个固定值替换数组中起始索引到结束索引，不包括结束索引，返回改变后的数组引用；不改变原数组长度；
+ * 语法：array.fill(value[,start[,end=this.length]])
+ */
+
+/**
+ * 参数：
+ * 1、value：要替换为的值；
+ * 2、start：可选，起始位置；没有传入，全部替换；
+ * 3、end：可选，结束索引，默认到最后；小于 start 不替换；
+ */
+let arr16 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// let arrFill = arr16.fill(100, 2, 5)
+let arrFill = arr16.fill(100, -20, -15)
+// let arrFill = arr16.fill(100, 4, 2)
+// let arrFill = arr16.fill(100, 4)
+console.log('arr16 filled:', arr16, '\narrFill:', arrFill)
+
+/**
+ * fill 同样也适用于类数组对象
+ * 1、length 不存在、值不是数值、值为 0 都不操作
+ * 2、length 值小于类数组对象属性数，那就替换 length 个；
+ * 3、其他同 Array；
+ */
+let obj9 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', length: 6 }
+// let objFillItem = Array.prototype.fill.call(obj9, 'aaaa', 1, 2)
+// let objFillItem = Array.prototype.fill.call(obj9, 'aaaa', 1)
+let objFillItem = Array.prototype.fill.call(obj9, 'aaaa', 4, 2)
+console.log('obj9 fill:', obj9, '\nobjFillItem:', objFillItem)
+
+//#endregion
+
+/**
+ * Array 不改变自身的9个方法 ----------------------------------------------------------------------（一级标题）
+ * 对于改变自身的方法，在使用的时候要注意，尽量避免在循环遍历中取改变原数组的项
+ */
+//#region Array 不改变自身的9个方法
+
+/**
+ * concat() ------------------------------------------------------------------------（二级标题）
+ * concat 用于连接数组、多个数组、值到当前数组尾部，并返回新的数组；原数组不变；
+ * 返回的数组中原数组中的项是--浅复制--过去的；
+ */
+let arr17 = [{ a: 1 }, 2, 3, 4]
+let arrConcat = arr17.concat(5, [6, 7, 8])
+console.log('arr17 :', arr17, '\narrConcat:', arrConcat)
+console.log('arr17[0] === arrConcat[0]:', arr17[0] === arrConcat[0])
+
+/**
+ * concat 同样也适用于类数组对象
+ * 但是其结果并不是预期的效果，可以舍弃
+ */
+let obj10 = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
+let objConcat = Array.prototype.concat.call(obj10, 'd')
+console.log('obj10 :', obj10, '\nobjConcat:', objConcat)
+
+/**
+ * join() --------------------------------------------------------------------------（二级标题）
+ * join 用指定的字符连接数组中的所有项，并返回连接后的字符串；
+ * 默认不传值，是用【,】连接
+ */
+let arr18 = ['my', 'name', 'is', 'ZHT']
+let arrJoin = arr18.join()
+// let arrJoin = arr18.join(' ')
+// let arrJoin = arr18.join('-')
+console.log('arr18:', arr18, '\narrJoin:', arrJoin)
+
+/**
+ * join 同样适用于类数组对象
+ */
+let obj11 = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
+let objJoin = Array.prototype.join.call(obj11, '+')
+console.log('obj11:', obj11, '\nobjJoin:', objJoin)
+console.log('字符串重新拼接：', Array.prototype.join.call('abcdefg'))
+
+/**
+ * slice() -------------------------------------------------------------------------（二级标题）
+ * slice 用于从原数组【浅复制】一部分项到新数组；返回这个新数组，原数组不变
+ */
+
+/**
+ * 语法：array.slice([start[,end]])
+ * 参数：
+ * 1、start：可选，开始索引；负值，表示倒数第几个开始，默认 0；
+ * 2、end：可选，结束索引；不包括该项；默认 length；
+ */
+let arr19 = [0, 1, 2, 3, 4, 5, 6, 7]
+// let arrSlice = arr19.slice(1, 5)
+let arrSlice = arr19.slice(1, -100, -50)
+console.log('arr19:', arr19, '\narrSlice:', arrSlice)
+
+// 当数组中有引用类型存在时，slice 生成的新数组是浅复制的
+// 当新数组中的值改变时，原数组也会改变
+let arr19_1 = [{ a: 100 }, 101, 102, 103]
+let arrSlice_1 = arr19_1.slice(0, 3)
+console.log('arr19_1:', arr19_1, '\narrSlice_1:', arrSlice_1)
+arrSlice_1[0].a = 200
+console.log('arr19_1:', arr19_1, '\narrSlice_1:', arrSlice_1)
+
+/**
+ * slice 在类数组中的使用(Array-like)
+ */
+function list() {
+  return Array.prototype.slice.call(arguments)
+}
+let list1 = list(1, 2, 3)
+console.log('list1:', list1)
+
+/**
+ * toString() ----------------------------------------------------------------------（二级标题）
+ * toString 用于连接数组中各个项，并返回这个字符串；
+ * 内在操作是：每个项目 toString，后使用 join 两个各个项；
+ * 所以是用【,】连接的各个项
+ */
+let arr20 = [1, 2, 3, 4, 5, 6]
+let arrToString = arr20.toString()
+console.log('arr20:', arr20, '\narrToString:', arrToString)
+
+// 对与类数组对象（Array-like）使用“填鸭辩型”也无效果，是因为 objec 中没有 join
+
+/**
+ * toLocaleString
+ * 和 toString 类似，只是在转换的时候会本地化下
+ */
+
+/**
+ * indexOf() -----------------------------------------------------------------------（二级标题）
+ * indexOf 用于从数组中查找出第一个和给定值的索引；不存在返回 -1
+ * 使用的是严格相等
+ * 语法：array.indexOf(element[,start])
+ * start 是开始查找位置，默认 0；
+ */
+let arr21 = [1, 2, 3, 4, 5, 6, 7, 8]
+let arrIndexInt = arr21.indexOf(5)
+console.log('arr21:', arr21, '\narrIndexInt:', arrIndexInt)
+
+// 找出数组中某一个值的所有出现位置
+function GetArrayAllIndex(arr, value) {
+  let indices = []
+  let idx = arr.indexOf(value)
+  while (idx !== -1) {
+    indices.push(idx)
+    idx = arr.indexOf(value, idx + 1)
+  }
+  return indices
+}
+let allIndex = GetArrayAllIndex(
+  ['a', 'b', 'c', 'd', 'e', 'a', 'g', 'a', 'a'],
+  'p'
+)
+console.log('allIndex:', allIndex)
+
+/**
+ * lastIndexOf()
+ * 是 indexOf 的逆向查找
+ * 两者开始值 start ，为负值时，加上 length 就是查找的位置
+ */
+
+/**
+ * includes() ----------------------------------------------------------------------（二级标题）
+ * includes 用于判断数组中是否存在要查找的值；有 true ，没有 false；
+ * 语法：array.includes(value[,start])
+ */
+
+let arr22 = [1, 2, 3, 4, 5, 6, 7]
+console.log('arr includes 5:', arr22.includes(5))
+
+/**
+ * 和 indexOf 有一点区别：
+ * includes 可以判断 NaN ，indexOf 不可用
+ */
+
+//#endregion
+
+/**
+ * 总结：
+ * 对于 Array 中的方法，凡是涉及到索引位置的：
+ * 1、start 默认都是 0（逆向的是 length-1）；
+ * 2、end 默认都是 length-1；
+ * 3、值为【负值】的，都会计算后再查找等【start/end + length】
+ * 4、start 计算后 < 0，和 0 一样效果；
+ * 5、start 计算后 >= length，都不会操作；
+ * 6、end 计算后 >= length，是到尾；
+ * 7、end 计算后 < start，操作无效；
+ * 8、计算后 start - end 不在 0 - length 间，不做操作；
+ */
