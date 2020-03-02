@@ -2,7 +2,7 @@
  * 作用域与闭包 （章节）
  * 定义一个打印的变量
  */
-const { log } = console;
+const { log } = console
 
 // a = 21
 // b = a * 2
@@ -27,12 +27,11 @@ const { log } = console;
 // 作用域----------------------------------------------------------------------------------------
 // 编译器 引擎 作用域 三者之间相互对话
 // LHS（Left Hand Side）左手边
-// RHS 右手边 
+// RHS 右手边
 // 这里主要区别是：LHS 主要是对变量进行赋值操作，RHS 是取值操作
 // 处理上会有不一样，例如有无该变量的时候是否报错
 
 // 当前作用域、嵌套作用域，在当前作用域没有找到变量，会一层层向上查找所有嵌套作用域，直到全局作用域为止
-
 
 // 作用域模型：词法作用域、动态作用域--------------------------------------------------------------
 // JS 中使用的是 词法作用域  JavaScript
@@ -44,7 +43,6 @@ const { log } = console;
 // 绕过词法作用域的：
 // eval：动态语句，会修改当前词法作用域。
 // with：会凭空制造出一个全新的词法作用域，所有的嵌套层作用域都没有的时候，是全局的
-
 
 // 函数、块儿作用域-------------------------------------------------------------------------------
 // 函数作用域能隐藏函数内的变量
@@ -104,7 +102,7 @@ const { log } = console;
 //   }
 // }
 // 上面虽然是有块儿，但是index并没有在块儿内的作用域，而是污染了块外
-// 在 ES6 中引入了新的关键字 let ，它的变量声明隐含的劫持了任意块儿的作用域 
+// 在 ES6 中引入了新的关键字 let ，它的变量声明隐含的劫持了任意块儿的作用域
 
 // 明确块儿，在代码中使用 {} 括起来的部分就是一个块儿，这是个明确的块儿
 // 块儿作用域另一个有用之处是关于闭包和释放内存的垃圾回收，
@@ -121,7 +119,7 @@ const { log } = console;
 // var b = 2;
 // 对于上面两个示例，如果声明变量的时候都用 let ，则会报错：ReferenceError
 
-// 这里来说下编译器：在代码的任何部分执行前，说要的声明，变量和函数都会首先被处理。
+// 这里来说下编译器：在代码的任何部分执行前，所有的声明，变量和函数都会首先被处理。
 // 对于 var a = 2; JavaScript 认为是两个语句：var a；和 a = 2；。第一个语句，声明，在编译阶段处理；第二个语句，赋值，为了执行阶段留在原处
 // 从上面的解释来看，我们所看到的代码实际上是分两部分的，一部分在编辑阶段处理，一部分在执行阶段执行。相当于过了两遍。
 
@@ -130,16 +128,15 @@ const { log } = console;
 
 // 函数声明会被提升，但是函数表达式不会提升
 
-// foo();
-// var foo = function () {
-//   log(2);
+// foo()
+// var foo = function() {
+//   console.log(2)
 // }
 // function foo() {
-//   log(1);
+//   console.log(1)
 // }
-// foo();
+// foo()
 // 上面打印出来的是 1， 这个是因为函数会首先被提升，然后才是变量。var foo 这个因为重复会被忽视。但是函数声明会覆盖前面的
-
 
 // 作用域闭包--------------------------------------------------------------------------------------------
 // 在 JavaScript 中闭包无所不在，你只是必须认出它并接纳它。
@@ -237,52 +234,50 @@ const { log } = console;
 // 上面这个是返回的对象进行命名，并可以从内部修改这个模块。
 
 var MyModules = (function Manager() {
-  var modules = {};
+  var modules = {}
   function define(name, deps, impl) {
-    for(var i = 0;i < deps.length; i++){
+    for (var i = 0; i < deps.length; i++) {
       deps[i] = modules[deps[i]]
     }
 
-    modules[name] = impl.apply(impl,deps);
+    modules[name] = impl.apply(impl, deps)
   }
 
   function get(name) {
-    return modules[name];
+    return modules[name]
   }
 
   return {
     define: define,
     get: get
   }
-})();
+})()
 
-MyModules.define('bar',[],function () {
+MyModules.define('bar', [], function() {
   function hello(who) {
-    return "Let me introduce " + who;
+    return 'Let me introduce ' + who
   }
   return {
     hello: hello
-  };
-});
+  }
+})
 
-MyModules.define('foo',['bar'],function (bar) {
-  var hungry = 'hippo';
+MyModules.define('foo', ['bar'], function(bar) {
+  var hungry = 'hippo'
   function awesome() {
-    log(bar.hello(hungry).toUpperCase());
+    log(bar.hello(hungry).toUpperCase())
   }
 
   return {
     awesome: awesome
   }
-});
+})
 
-var bar = MyModules.get('bar');
-var foo = MyModules.get('foo');
-log(bar.hello('Jon'));
-foo.awesome();
+var bar = MyModules.get('bar')
+var foo = MyModules.get('foo')
+log(bar.hello('Jon'))
+foo.awesome()
 // 现代的模块，模块管理器没有什么特殊的“魔法”，只是满足了模块模式的两个性质。
-
-
 
 // 词法作用域，和动态作用域
 // function foo() {

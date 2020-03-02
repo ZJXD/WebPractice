@@ -610,3 +610,228 @@ console.log('arr includes 5:', arr22.includes(5))
  * 7、end 计算后 < start，操作无效；
  * 8、计算后 start - end 不在 0 - length 间，不做操作；
  */
+
+/**
+ * Array 遍历的12个方法 ---------------------------------------------------------------------------（一级标题）
+ * 这些方法都用于对数组找中的项进行遍历
+ */
+
+/**
+ * forEach() -----------------------------------------------------------------------（二级标题）
+ * forEach 对数组中的每个项都执行一次传入的函数，如果操作了项，原数组改变，返回值 undefined；
+ * 对于删除的、新增的、未初始化的会跳过，不执行；
+ * 语法：array.forEach(fn[,thisArg])
+ * fn：每一次执行的函数
+ * thisArg：可选，传入的要绑定的 this 值
+ */
+
+let arr23 = [1, 2, 3, 4, 5, 6, 7]
+arr23.forEach((item, index) => {
+  console.log('第', index, '个的平方是：', item * item)
+})
+
+// 稀疏数组操作（未初始化的会跳过）
+arr23 = [1, 2, 3, , , 6, 7]
+arr23.forEach((item, index) => {
+  console.log('第', index, '个的平方是：', item * item)
+})
+
+/**
+ * every() ------------------------------------------------------------------------（二级标题）
+ * every 用于测试数组内的所有元素是否都能通过某个指定函数的测试，返回 boole 值
+ * 只有全部符合才返回 true ，否则 false
+ */
+let arr24 = [1, 2, 3, 4, 5, 6, 7, 8]
+console.log(
+  'arr24 all >0:',
+  arr24.every(item => item > 0)
+)
+
+/**
+ * some() -------------------------------------------------------------------------（二级标题）
+ * some 正好和 every 相反，只有有一个满足条件的就返回 ture ，否则返回 false
+ */
+console.log(
+  'arr24 have >5:',
+  arr24.some(item => item > 5)
+)
+
+/**
+ * filter() -----------------------------------------------------------------------（二级标题）
+ * filter 用于筛选数组找中满足给定条件的项，并返回这些项的新数组
+ */
+let arr25 = [1, 2, 3, 4, 5, 6, 7, 8]
+console.log(
+  'arr25 中大于5的项：',
+  arr25.filter(item => item > 5)
+)
+
+// 使用 filter 创建具有非0 id 的json
+var arrJson = [
+  { id: 15 },
+  { id: -1 },
+  { id: 0 },
+  { id: 3 },
+  { id: 12.2 },
+  {},
+  { id: null },
+  { id: NaN },
+  { id: 'undefined' }
+]
+function isNumber(obj) {
+  return obj !== undefined && typeof obj === 'number' && !isNaN(obj)
+}
+function filterById(item) {
+  if (isNumber(item.id) && item.id !== 0) {
+    return true
+  }
+  return false
+}
+let arrJsonNoZeroId = arrJson.filter(filterById)
+console.log('arrJsonNoZeroId :', arrJsonNoZeroId)
+
+/**
+ * map() --------------------------------------------------------------------------（二级标题）
+ * map 用于返回一个新数组，是由原数组的每一个项执行一次给定的函数返回的结果；
+ */
+let arr26 = [1, 2, 3, 4, 5, 6, 7, 8]
+let arrMap = arr26.map(item => item * 2)
+console.log('arr26 :', arr26, '\narrMap:', arrMap)
+
+/**
+ * forEach 和 map 对比 ---------------------------------------------------------
+ * 循环函数    返回值       原数组    未初始化、删除
+ * forEach    undefined    变化      跳过
+ * map        新数组        不变      跳过
+ */
+
+/**
+ * reduce() -----------------------------------------------------------------------（二级标题）
+ * reduce 接收一个函数，用于汇总数组所有的项，并返回这个值；
+ * 语法：array.reduce(callback(accumulator,currentValue[,index[,array]])[,initialValue])
+ * 参数：
+ *  1、callback：传入的汇总函数
+ *    a、accumulator：是 callback 上一次调用返回的值，或者initialValue的值
+ *    b、currentValue：当前项
+ *    c、当前项的索引
+ *    d、array 当前数组
+ * 2、initialValue：callback 第一次调用的 accumulator 值
+ */
+let arr27 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(
+  'arr27 reduce +：',
+  arr27.reduce((pre, cur) => pre + cur)
+)
+console.log(
+  'arr27 reduce + 20：',
+  arr27.reduce((pre, cur) => pre + cur, 20)
+)
+
+// 将二维数组转为一维数组
+let arr27_1 = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+  [7, 8]
+]
+let arrReduce = arr27_1.reduce(function(a, b) {
+  return a.concat(b)
+}, [])
+console.log('二维数组转一维数组：', arrReduce)
+
+// 计算每个元素出现的次数（去重也可以）
+let arr27_2 = ['abc', 'bcd', 'def', 'dgf', 'abc', 'def', 'abc']
+function getNames(names, name) {
+  if (name in names) {
+    names[name]++
+  } else {
+    names[name] = 1
+  }
+  return names
+}
+let names = arr27_2.reduce(getNames, {})
+console.log(
+  '数组元素出现次数：',
+  names,
+  '\n去重后的数组：',
+  Object.getOwnPropertyNames(names)
+)
+
+// 根据属性，对一组对象分类
+let arr27_3 = [
+  { name: 'abc', age: 20 },
+  { name: 'dbg', age: 21 },
+  { name: 'edv', age: 20 }
+]
+function groupBy(objectArr, property) {
+  return objectArr.reduce(function(acc, curItem) {
+    let key = curItem[property]
+    if (acc[key]) {
+      acc[key].push(curItem)
+    } else {
+      acc[key] = [curItem]
+    }
+    return acc
+  }, {})
+}
+console.log('对象数组分类：', groupBy(arr27_3, 'age'))
+
+/**
+ * reduceRight() ------------------------------------------------------------------（二级标题）
+ * reduceRight 接收一个函数，用于汇总数组所有的项，并返回这个值；从右往左
+ * 用法和reduce用法一致，汇总的方向不一样（这个要注意）
+ */
+
+/**
+ * find() -------------------------------------------------------------------------（二级标题）
+ * find 根据传入的函数，查找出第一个符合要求的项，并返回这个项
+ * findIndex 根据传入的函数，查找出第一个符合要求的项，并返回这个项的索引
+ */
+let arr28 = [1, 2, 3, 4, 5, 6, 7, 8]
+function getNumber(value) {
+  return value === 5
+}
+console.log(
+  'arr28 find 5:',
+  arr28.find(getNumber),
+  '\nfindIndex 5:',
+  arr28.findIndex(getNumber)
+)
+
+// 找出质数
+function isPrime(value) {
+  let start = 2
+  while (start <= Math.sqrt(value)) {
+    if (value % start++ < 1) {
+      return false
+    }
+  }
+  return value > 1
+}
+console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].find(isPrime))
+console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].filter(isPrime))
+console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].map(isPrime))
+
+/**
+ * entries() ----------------------------------------------------------------------（二级标题）
+ * array.entries() 返回一个迭代器，对象中包含数组中每个索引的键值对；
+ * array.keys() 返回一个迭代器，包含数组的索引；
+ * array.values() 返回一个迭代器，包含数组值；
+ */
+// node:8.11.4 values 不可用
+let arr29 = [1, 2, 3, 4, 5, 6, 7, 8]
+console.log(
+  'arr entries:',
+  arr29.entries().next(),
+  '\nkeys:',
+  arr29.keys().next(),
+  '\nvalues:',
+  arr29.values().next()
+)
+let itr = arr29.entries()
+let nex = itr.next()
+console.log(nex)
+while (!nex.done) {
+  nex = itr.next()
+  console.log(nex)
+}
