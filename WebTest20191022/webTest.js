@@ -28,7 +28,7 @@ var obj = {
     this.number = 3
     fn()
     arguments[0]()
-  }
+  },
 }
 obj.show(fn)
 
@@ -69,9 +69,9 @@ console.log(
     name: 'zht',
     age: 28,
     family: {
-      baby: 'xiatian'
-    }
-  })
+      baby: 'xiatian',
+    },
+  }),
 )
 console.log(deepCopy([1, 2, 3, 4, 5]))
 console.log(deepCopy('zhuHT'))
@@ -103,7 +103,7 @@ class EventEmitter {
     if (this.listeners[event] instanceof Array) {
       if (this.listeners[event].length > this.maxListener) {
         throw console.error(
-          `当前监听器的最大数量是${this.maxListener}，您已经超出限制`
+          `当前监听器的最大数量是${this.maxListener}，您已经超出限制`,
         )
       }
       if (this.listeners[event].indexOf(callback) === -1) {
@@ -269,7 +269,7 @@ var myObject = {
   },
   sub: function() {
     console.log(this.num)
-  }
+  },
 }
 myObject.add()
 console.log(myObject.num)
@@ -339,7 +339,7 @@ let obj = {
   a: 'a',
   b: 'b',
   c: 'c',
-  d: 'd'
+  d: 'd',
 }
 let { a, b, ...c } = obj
 console.log(a, b, c)
@@ -347,7 +347,7 @@ console.log(a, b, c)
 let newObj = {
   one: '1',
   two: '2',
-  ...c
+  ...c,
 }
 console.log(newObj)
 
@@ -376,3 +376,14 @@ console.log(pattern.test('https://www.cnblogs.com/jinkspeng/p/4932391.html'))
 // 限制小数位后一位
 const reg = /^[0-9]+([.]{1}[0-9]{1})?$/
 const reg1 = /^\d+(.\d)?$/
+
+// 事件循环（Event Loop）
+setTimeout(_ => console.log(4))
+async function main() {
+  console.log(1)
+  let a = await Promise.resolve(1)
+  console.log(a)
+  console.log(3)
+}
+main()
+console.log(2)

@@ -3,7 +3,7 @@
  * 参考：http://louiszhai.github.io/2017/04/28/array/
  */
 
-console.log('Array property:', Object.getOwnPropertyNames(Array))
+console.log('Array property:', Object.getOwnropertyNames(Array))
 
 /**
  * Array 构造器 --------------------------------------------------------------------------------（一级标题）
@@ -17,6 +17,9 @@ let arr = [1, 2]
 let arr1 = Array(1, 2)
 console.log(arr === arr1)
 console.log('arr:', arr, 'arr1:', arr1)
+
+let arr1_1 = Array()
+console.log(arr1_1)
 
 // 一、使用构造器
 // 1、是使用 new 还是函数调用的方式：在 ECMA 给的解释中，都是一样的；
@@ -48,7 +51,7 @@ let arr3 = Array.from(
     console.log(value, index, this, arguments.length)
     return value.repeat(3) // 必须指定返回，否则返回的是 undefined
   },
-  obj
+  obj,
 )
 
 // 不需要指定 this 时，完全可以用箭头函数，也不用返回
@@ -64,9 +67,9 @@ console.log(
   Array.from(
     new Map([
       [1, 'abc'],
-      [2, 'def']
-    ])
-  )
+      [2, 'def'],
+    ]),
+  ),
 )
 function fn() {
   return Array.from(arguments)
@@ -76,7 +79,7 @@ console.log('array from arguments:', fn(1, 2, 3))
 // 一个重要使用场景：生成一个从 0 到 n 的数组
 console.log(
   '0-n array:',
-  Array.from({ length: 10 }, (v, i) => i)
+  Array.from({ length: 10 }, (v, i) => i),
 )
 //#endregion
 
@@ -102,7 +105,7 @@ console.log('getPrototypeOf', Object.getPrototypeOf(arr5) === Array.prototype)
 // Object.prototype.toString
 console.log(
   'prototype.tostring',
-  Object.prototype.toString.apply(arr5) === '[object Array]'
+  Object.prototype.toString.apply(arr5) === '[object Array]',
 )
 
 // 对于上面判断是否是数组，有一些情况下是不行的，如下：
@@ -117,7 +120,7 @@ console.log(
   'Array.isArray: arr5:',
   Array.isArray(arr5),
   ',arr6:',
-  Array.isArray(arr6)
+  Array.isArray(arr6),
 )
 
 // 通过 Object.prototype.toString 去判断变量类型，是各大主流库的标准；下面是用该方法实现
@@ -138,7 +141,7 @@ if (!Array.isArray) {
 console.log('Array.prototype is Array:', Array.isArray(Array.prototype))
 console.log(
   'Array.prototype is Array:',
-  Object.prototype.toString.call(Array.prototype) === '[object Array]'
+  Object.prototype.toString.call(Array.prototype) === '[object Array]',
 )
 console.log('Array property:', Object.getOwnPropertyNames(Array.prototype))
 //#endregion
@@ -169,7 +172,7 @@ let obj1 = {
   2: 'cow',
   3: 'chicken',
   4: 'mouse',
-  length: 'aaa'
+  length: 'aaa',
 }
 let obj1_1 = {
   0: 'cat',
@@ -177,7 +180,7 @@ let obj1_1 = {
   2: 'cow',
   3: 'chicken',
   4: 'mouse',
-  length: 0
+  length: 0,
 }
 let objPopItem = Array.prototype.pop.call(obj1_1)
 console.log('obj1 poped:', obj1_1)
@@ -357,7 +360,7 @@ let obj6 = {
   3: '改',
   4: '变',
   5: '世',
-  6: '界'
+  6: '界',
 }
 console.log('obj6 sort:', Array.prototype.sort.call(obj6))
 
@@ -409,9 +412,9 @@ console.log('obj7 spliced:', obj7, '\nobjSpliceItem:', objSpliceItem)
  * 4、返回：返回改变后数组的引用；
  */
 let arr15 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-let copyWithinArr = arr15.copyWithin(6, 3)
+// let copyWithinArr = arr15.copyWithin(6, 3)
 // let copyWithinArr = arr15.copyWithin(6, 3, 1)
-// let copyWithinArr = arr15.copyWithin(6, 3, 4)
+let copyWithinArr = arr15.copyWithin(6, 3, 4)
 console.log('arr15 copyWinthin:', arr15, '\ncopyWithinArr:', copyWithinArr)
 
 /**
@@ -535,7 +538,7 @@ console.log('list1:', list1)
 /**
  * toString() ----------------------------------------------------------------------（二级标题）
  * toString 用于连接数组中各个项，并返回这个字符串；
- * 内在操作是：每个项目 toString，后使用 join 两个各个项；
+ * 内在操作是：每个项目 toString，后使用 join 连接各个项；
  * 所以是用【,】连接的各个项
  */
 let arr20 = [1, 2, 3, 4, 5, 6]
@@ -572,7 +575,7 @@ function GetArrayAllIndex(arr, value) {
 }
 let allIndex = GetArrayAllIndex(
   ['a', 'b', 'c', 'd', 'e', 'a', 'g', 'a', 'a'],
-  'p'
+  'p',
 )
 console.log('allIndex:', allIndex)
 
@@ -615,7 +618,7 @@ console.log('arr includes 5:', arr22.includes(5))
  * Array 遍历的12个方法 ---------------------------------------------------------------------------（一级标题）
  * 这些方法都用于对数组找中的项进行遍历
  */
-
+//#region Array 中的12个遍历方法
 /**
  * forEach() -----------------------------------------------------------------------（二级标题）
  * forEach 对数组中的每个项都执行一次传入的函数，如果操作了项，原数组改变，返回值 undefined；
@@ -644,7 +647,7 @@ arr23.forEach((item, index) => {
 let arr24 = [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(
   'arr24 all >0:',
-  arr24.every(item => item > 0)
+  arr24.every(item => item > 0),
 )
 
 /**
@@ -653,7 +656,7 @@ console.log(
  */
 console.log(
   'arr24 have >5:',
-  arr24.some(item => item > 5)
+  arr24.some(item => item > 5),
 )
 
 /**
@@ -663,7 +666,7 @@ console.log(
 let arr25 = [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(
   'arr25 中大于5的项：',
-  arr25.filter(item => item > 5)
+  arr25.filter(item => item > 5),
 )
 
 // 使用 filter 创建具有非0 id 的json
@@ -676,7 +679,7 @@ var arrJson = [
   {},
   { id: null },
   { id: NaN },
-  { id: 'undefined' }
+  { id: 'undefined' },
 ]
 function isNumber(obj) {
   return obj !== undefined && typeof obj === 'number' && !isNaN(obj)
@@ -701,8 +704,8 @@ console.log('arr26 :', arr26, '\narrMap:', arrMap)
 /**
  * forEach 和 map 对比 ---------------------------------------------------------
  * 循环函数    返回值       原数组    未初始化、删除
- * forEach    undefined    变化      跳过
- * map        新数组        不变      跳过
+ * forEach     undefined    变化      跳过
+ * map         新数组       不变      跳过
  */
 
 /**
@@ -720,11 +723,11 @@ console.log('arr26 :', arr26, '\narrMap:', arrMap)
 let arr27 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 console.log(
   'arr27 reduce +：',
-  arr27.reduce((pre, cur) => pre + cur)
+  arr27.reduce((pre, cur) => pre + cur),
 )
 console.log(
   'arr27 reduce + 20：',
-  arr27.reduce((pre, cur) => pre + cur, 20)
+  arr27.reduce((pre, cur) => pre + cur, 20),
 )
 
 // 将二维数组转为一维数组
@@ -732,7 +735,7 @@ let arr27_1 = [
   [1, 2],
   [3, 4],
   [5, 6],
-  [7, 8]
+  [7, 8],
 ]
 let arrReduce = arr27_1.reduce(function(a, b) {
   return a.concat(b)
@@ -754,14 +757,14 @@ console.log(
   '数组元素出现次数：',
   names,
   '\n去重后的数组：',
-  Object.getOwnPropertyNames(names)
+  Object.getOwnPropertyNames(names),
 )
 
 // 根据属性，对一组对象分类
 let arr27_3 = [
   { name: 'abc', age: 20 },
   { name: 'dbg', age: 21 },
-  { name: 'edv', age: 20 }
+  { name: 'edv', age: 20 },
 ]
 function groupBy(objectArr, property) {
   return objectArr.reduce(function(acc, curItem) {
@@ -795,7 +798,7 @@ console.log(
   'arr28 find 5:',
   arr28.find(getNumber),
   '\nfindIndex 5:',
-  arr28.findIndex(getNumber)
+  arr28.findIndex(getNumber),
 )
 
 // 找出质数
@@ -826,7 +829,7 @@ console.log(
   '\nkeys:',
   arr29.keys().next(),
   '\nvalues:',
-  arr29.values().next()
+  arr29.values().next(),
 )
 let itr = arr29.entries()
 let nex = itr.next()
@@ -835,3 +838,4 @@ while (!nex.done) {
   nex = itr.next()
   console.log(nex)
 }
+//#endregion
