@@ -53,7 +53,7 @@ export default {
      */
     throttle(fn, delay = 100) {
       let timer = null
-      return function() {
+      return function () {
         if (timer) return
         timer = setTimeout(() => {
           fn.apply(this, arguments)
@@ -67,7 +67,7 @@ export default {
      */
     throttle1(fn, delay = 100) {
       let last = 0
-      return function() {
+      return function () {
         let curr = +new Date()
         if (curr - last > delay) {
           fn.apply(this, arguments)
@@ -84,7 +84,7 @@ export default {
      */
     debounce(fn, delay = 200) {
       let timer = null
-      return function() {
+      return function () {
         timer && clearTimeout(timer)
         timer = setTimeout(() => {
           fn.apply(this, arguments)
@@ -100,7 +100,7 @@ export default {
     debocess1(fn, delay = 200) {
       let timer = null,
         last = 0
-      return function() {
+      return function () {
         if (last <= 0) {
           fn.apply(this.arguments)
         }
@@ -113,6 +113,16 @@ export default {
       }
     },
   },
+}
+</script>
+
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  }
 }
 </script>
 
