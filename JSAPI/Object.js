@@ -15,11 +15,11 @@ const { log } = console
 let obj1 = new Object('obj1')
 let obj2 = {
   name: 'obj2',
-  value: 123,
+  value: 123
 }
 let obj3 = Object.create({
   name: 'obj3',
-  value: 130,
+  value: 130
 })
 
 // log(obj1.name, obj2.name, obj3.name)
@@ -72,7 +72,7 @@ Object.defineProperty(person, 'legs1', {
   value: 2,
   writable: true,
   enumerable: true,
-  configurable: true,
+  configurable: true
 }) //z这种方式 除了 value 默认 undefined，其他都是默认 false
 // 存取描述符形式
 Object.defineProperty(person, 'legs2', {
@@ -83,7 +83,7 @@ Object.defineProperty(person, 'legs2', {
     return this.value
   },
   enumerable: true,
-  configurable: true,
+  configurable: true
 })
 person.legs2 = 5
 log(person.legs, person.legs1, person.legs2)
@@ -100,13 +100,13 @@ let glass = Object.defineProperties(
   {
     color: {
       value: 'transparent',
-      writable: true,
+      writable: true
     },
     fullness: {
       value: 'half',
-      writable: true,
-    },
-  },
+      writable: true
+    }
+  }
 )
 log('glass.fullness:', glass.fullness)
 
@@ -124,17 +124,17 @@ log('s prototype:', Object.getPrototypeOf(s))
 let person1 = { hi: 'hello' }
 Object.defineProperty(person1, 'name', {
   value: 'ZHT',
-  enumerable: true,
+  enumerable: true
 })
 let child = Object.create(person1, {
   prop: {
-    value: 1,
+    value: 1
   },
   childName: {
     value: 'ZHT-C',
     enumerable: true,
-    writable: true,
-  },
+    writable: true
+  }
 })
 console.log('child prototype:', Object.getPrototypeOf(child))
 console.log('child prop:', child.prop, ',child hi:', child.hi)
@@ -145,7 +145,7 @@ console.log('child prop:', child.prop, ',child hi:', child.hi)
  */
 console.log(
   'Object.toString:',
-  Object.getOwnPropertyDescriptor(Object.prototype, 'toString'),
+  Object.getOwnPropertyDescriptor(Object.prototype, 'toString')
 )
 
 /**
@@ -266,7 +266,7 @@ console.log('target values:', Object.values(target))
 let objEntries = { a: 1, b: 2, c: 3 }
 console.log(
   'objEntries descriptors:',
-  Object.getOwnPropertyDescriptors(objEntries),
+  Object.getOwnPropertyDescriptors(objEntries)
 )
 console.log('objEntries keys:', Object.keys(objEntries))
 console.log('objEntries values:', Object.values(objEntries))
@@ -274,7 +274,7 @@ console.log('objEntries entries:', Object.entries(objEntries))
 
 console.log(
   'from objEntries to Object:',
-  Object.fromEntries(Object.entries(objEntries)),
+  Object.fromEntries(Object.entries(objEntries))
 ) // 当前环境不支持，在浏览器下可以
 
 /**
@@ -287,9 +287,14 @@ console.log(
  * 是 entries 的逆操作
  */
 
+/**
+ * 上面讲的获取属性、名称等的，都是获取自身的，
+ * 要获取原型链上面的，用 for in 可以获取到。
+ * 下面是示例：
+ */
 let obj4 = {
   name: 'zht',
-  age: 29,
+  age: 29
 }
 
 let obj4_1 = Object.create(obj4, {
@@ -297,8 +302,8 @@ let obj4_1 = Object.create(obj4, {
     writable: true,
     configurable: true,
     enumerable: true,
-    value: 'ssss',
-  },
+    value: 'ssss'
+  }
 })
 console.log('names:', Object.getOwnPropertyNames(obj4_1))
 for (const key in obj4_1) {
