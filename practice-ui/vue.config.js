@@ -27,7 +27,7 @@ module.exports = {
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
       .options({
-        symbolId: 'icon-[name]',
+        symbolId: 'icon-[name]'
       })
   },
 
@@ -48,8 +48,9 @@ module.exports = {
   // #endregion
   devServer: {
     port: 8091, // 端口号配置
-  },
-  // configureWebpack: {
+    open: true
+  }
+  //  : {
   //   externals: {
   //     AMap: 'AMap', // 高德地图配置
   //     T: 'T', // 天地图

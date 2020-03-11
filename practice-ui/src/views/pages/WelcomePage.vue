@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Vue logo" src="../../assets/logo.png" />
     <h1>{{ msg }}</h1>
     <p>
       平时在看到一些好的示例、效果等都会尝试下，每每新建一个 HTML文件<br />
