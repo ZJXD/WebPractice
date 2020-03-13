@@ -35,12 +35,21 @@
         </div>
       </div>
     </div>
+    <div class="col_item">
+      <clock></clock>
+      <div class="line-gradient"></div>
+    </div>
   </div>
 </template>
 
 <script>
+import Clock from './Clock'
+
 export default {
   name: 'FirstPage',
+  components: {
+    Clock
+  },
   data() {
     return {}
   },
@@ -116,30 +125,22 @@ export default {
 }
 </script>
 
-<script>
-export default {
-  data() {
-    return {
-
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 .box_div {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 .col_item {
   display: flex;
+  padding: 10px;
 }
 
 /*每个测试单元样式*/
 .test_item {
-  height: 100px;
+  height: 120px;
   padding: 10px;
   display: flex;
   border-right: 1px solid #999;
@@ -222,9 +223,8 @@ export default {
       45deg,
       #f06a0e,
       #f06a0e 10px,
-      transparent 11px,
-      transparent 19px,
-      #f06a0e 20px
+      transparent 10px,
+      transparent 20px
     );
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -307,5 +307,21 @@ export default {
     z-index: 1;
     left: 100px;
   }
+}
+
+/* 测试渐变 */
+.line-gradient {
+  height: 200px;
+  width: 200px;
+  background: repeating-linear-gradient(
+    0deg,
+    pink 0,
+    pink 20px,
+    #bbb 20px,
+    #bbb 40px,
+    #ffba01 40px,
+    #ffba01 60px
+  );
+  // background: linear-gradient(0deg, pink 0, pink 20px, #bbb 20px, #ffba01 40px);
 }
 </style>

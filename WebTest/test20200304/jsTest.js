@@ -118,3 +118,26 @@ console.log(
   Boolean(new Boolean(false)),
   Boolean(undefined)
 )
+
+/**
+ * 题目：9
+ * 说明：100元红包，分10个，没后面一个比前面一个多
+ */
+
+function getCard() {
+  let curAllAmount = 100
+  let cardArr = []
+  for (let i = 0; i < 10; i++) {
+    if (i === 9) {
+      let ss = cardArr.reduce((a, b) => a + b, 0)
+      console.log(ss)
+      cardArr[i] = 100 - ss
+    } else {
+      cardArr[i] = Number((Math.random() * curAllAmount).toFixed(2))
+      curAllAmount = curAllAmount - cardArr[i]
+    }
+  }
+  return cardArr.sort((a, b) => a - b)
+}
+
+console.log('红包顺序：', getCard())
