@@ -6,7 +6,7 @@
 
         <!--中间导航列表-->
         <dl class="nav_list">
-          <dt v-for="(item, index) in navList" :key="index" class="nav-item" :class="isActiveIndex===index?'active':''" @click="changePage(index)">
+          <dt v-for="(item, index) in navList" :key="index" class="nav-item" :class="activeMenu===item.routerLink?'active':''" @click="changePage(item.routerLink)">
             <router-link :to="item.routerLink">
               {{ item.name }}
             </router-link>
@@ -29,6 +29,7 @@ import { getOS } from '@/utils/system'
 export default {
   name: 'FirstPage',
   data() {
+    const activeMenu = this.$route.matched[1].path
     return {
       navList: [{
         name: '首页',
@@ -41,7 +42,7 @@ export default {
         routerLink: '/signature'
       }
       ],
-      isActiveIndex: 0,
+      activeMenu: activeMenu,
       currentYear: '',
       systemOS: ''
     }
@@ -51,8 +52,8 @@ export default {
     this.systemOS = getOS()
   },
   methods: {
-    changePage(index) {
-      this.isActiveIndex = index
+    changePage(name) {
+      this.activeMenu = name
     }
   }
 }

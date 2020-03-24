@@ -47,7 +47,7 @@ module.exports = {
   // }
   // #endregion
   devServer: {
-    port: 8091, // 端口号配置
+    port: 9001, // 端口号配置
     open: true
   }
   //  : {
