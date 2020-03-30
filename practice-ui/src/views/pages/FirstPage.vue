@@ -36,19 +36,31 @@
       </div>
     </div>
     <div class="col_item">
-      <clock></clock>
-      <div class="line-gradient"></div>
+      <div class="test_item">
+        <label>时钟</label>
+        <clock></clock>
+      </div>
+      <div class="test_item">
+        <label>线性渐变</label>
+        <div class="line-gradient"></div>
+      </div>
+      <div class="test_item">
+        <label>canvas 文字粒子</label>
+        <canvasText></canvasText>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Clock from './Clock'
+import canvasText from '../../components/canvas-text/index'
 
 export default {
   name: 'FirstPage',
   components: {
-    Clock
+    Clock,
+    canvasText
   },
   data() {
     return {}
@@ -313,6 +325,7 @@ export default {
 .line-gradient {
   height: 200px;
   width: 200px;
+  // 根据给出的颜色进行重复显示
   background: repeating-linear-gradient(
     0deg,
     pink 0,
@@ -322,6 +335,7 @@ export default {
     #ffba01 40px,
     #ffba01 60px
   );
+  // 给出的每一个点颜色进行渐变，如果两个点颜色一样，不渐变
   // background: linear-gradient(0deg, pink 0, pink 20px, #bbb 20px, #ffba01 40px);
 }
 </style>

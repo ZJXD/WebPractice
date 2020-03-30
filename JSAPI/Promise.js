@@ -37,3 +37,12 @@ p.then(
     console.log('失败的回调，', reason)
   },
 )
+
+// 调用顺序
+let pro1 = new Promise((resolve, reject) => {
+  console.log('Promise 函数体')
+  resolve(console.log('resolve 中的'))
+}).then(res => {
+  console.log('then 中的')
+})
+console.log('Promise 外面的')

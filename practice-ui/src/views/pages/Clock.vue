@@ -1,4 +1,5 @@
 <template>
+  <!-- 时钟组件 -->
   <div class="clock-page">
     <div class="clock">
       <span>12</span>
