@@ -16,6 +16,11 @@ Vue三要素
 // 4、都有用虚拟 DOM（Virtual DOM）
 // 参考：http://caibaojian.com/vue-vs-react.html
 
+// 虚拟 DOM
+// 这样的一个概念：改变真实的DOM远不改变一个 JavaScript 对象的花销大的多。
+// Virtual DOM 是一个映射真实 DOM 的 JS 对象，如果需要改变任何元素的状态，那么先在 Virtual DOM 上改变
+//
+
 // 响应式：2.x 的 definedProperty 的弊端，为什么在 3.x 用了 proxy--------------------------------------
 // 1、definedProperty 只能劫持对象的属性，对于属性也是对象的，需要深度遍历；Proxy 可以深度劫持对象，并返回新的对象；
 // 2、2.x 中不能监测数组的变化，Proxy 还可以代理数组，
@@ -37,7 +42,7 @@ Vue.directive('focus', {
   inserted: function(el) {
     // 聚焦元素
     el.focus()
-  }
+  },
 })
 
 // 在组件中注册，添加 direcitves 选项
@@ -46,12 +51,12 @@ var vue = {
     focus: {
       inserted: function(el) {
         el.focus()
-      }
-    }
-  }
+      },
+    },
+  },
 }
 
-// 使用的钩子函数，以及左右
+// 使用的钩子函数，以及作用
 // bind：只调用一次，指令第一次绑定到该元素时调用。在这里可以进行一次性的初始化操作
 // inserted：被绑定节点插入父节点时调用（仅保证父节点存在，不能保证插入文档）
 // update：所在组件的 VNode 更新时调用，但是可能发生在子 VNode 更新前。指令的值可能发生改变，也可能没有。
@@ -88,7 +93,7 @@ export default {
   // 数据存放的地方，（单一状态数，唯一数据源）
   state: {
     name: 'zht',
-    address: 'xihu'
+    address: 'xihu',
   },
   // 获取数据，对应可以用：this.$store.getName()
   getters: {
@@ -98,7 +103,7 @@ export default {
     },
     getAddress() {
       return state.address
-    }
+    },
   },
   // 修改数据，这里面的都是同步的事务，有两个同时调用时，得到的是一样的，这样不理想，对应的是：this.$store.commit('SET_NAME','dl')
   mutations: {
@@ -107,7 +112,7 @@ export default {
     },
     SET_ADDRESS: (state, address) => {
       state.address = address
-    }
+    },
   },
   // 包含任意异步操作，这里面的方法是用来异步触发 mutations 中的方法，对应的是：this.$store.dispatch('updateName','dl')
   actions: {
@@ -116,8 +121,8 @@ export default {
     },
     changeAddress({ commit }, params) {
       commit('SET_ADDRESS', params)
-    }
-  }
+    },
+  },
 }
 
 // 遇到的难点
