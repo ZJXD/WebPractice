@@ -141,3 +141,44 @@ function getCard() {
 }
 
 console.log('红包顺序：', getCard())
+
+/**
+ * 题目：10
+ * 说明：函数的使用和作用域等问题
+ * 参考自：https://mp.weixin.qq.com/s/TCvzgRRst_QSoM-vdX1JJg
+ */
+function Foo() {
+  // 这个没有带声明类型，这里会覆盖外层的 getName
+  getName = function() {
+    console.log(1)
+  }
+  return this
+}
+
+// 静态方法，和这个同样赋值的是静态属性
+Foo.getName = function() {
+  console.log(2)
+}
+// 共有方法，同理共有属性
+Foo.prototype.getName = function() {
+  console.log(3)
+}
+var getName = function() {
+  console.log(4)
+}
+function getName() {
+  console.log(5)
+}
+
+// 以下的输出结果
+Foo.getName()
+getName()
+// 这一句在 node 下报错，浏览器下可以执行，执行这一句会覆盖 getName
+// Foo().getName()
+getName()
+// 根据优先级，可以写为： new (Foo.getName)()
+new Foo.getName()
+// 同上，可写为： (new Foo()).getName()
+new Foo().getName()
+// 同上，可写为： new ((new Foo()).getName)()
+new new Foo().getName()

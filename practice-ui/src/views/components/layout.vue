@@ -38,8 +38,11 @@ export default {
         name: '示例一',
         routerLink: '/firstPage'
       }, {
-        name: '示例二',
+        name: '电子签名',
         routerLink: '/signature'
+      }, {
+        name: '动画',
+        routerLink: '/animation'
       }
       ],
       activeMenu: activeMenu,

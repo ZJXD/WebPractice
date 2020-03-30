@@ -31,25 +31,24 @@ module.exports = {
       })
   },
 
-  // #region 开发环境代理
-  // devServer: {
-  //   open: true,
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://localhost:3000',
-  //       ws: true,
-  //       changeOrigin: true,
-  //       pathRequires: {
-  //         '^/api': ''
-  //       }
-  //     }
-  //   }
-  // }
-  // #endregion
+  // #region 开发环境配置
   devServer: {
     port: 9001, // 端口号配置
     open: true
+    // 代理配置
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:3000',
+    //     ws: true,
+    //     changeOrigin: true,
+    //     pathRequires: {
+    //       '^/api': ''
+    //     }
+    //   }
+    // }
   }
+  // #endregion
+
   //  : {
   //   externals: {
   //     AMap: 'AMap', // 高德地图配置

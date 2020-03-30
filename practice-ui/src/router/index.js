@@ -27,6 +27,11 @@ export default new Router({
           path: '/signature',
           name: 'signature',
           component: () => import('../views/pages/signature.vue')
+        },
+        {
+          path: '/animation',
+          name: 'animation',
+          component: () => import('../views/pages/Animation.vue')
         }
       ]
     }
