@@ -8,10 +8,30 @@
   <body>
     <script src="./lib/Promise.js"></script>
     <script>
-      new Promise((resolve, reject) => {
-        resolve(1) // value
-        reject(2) // reason
+      let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(1) // value
+          // 表明执行完 resolve 后，回调函数是异步执行的
+          console.log('resolve() 执行完成后')
+          // reject(2) // reason
+        }, 100)
       })
+      p.then(
+        value => {
+          console.log('onResolved1():', value)
+        },
+        reason => {
+          console.log('onRejected1():', reason)
+        },
+      )
+      p.then(
+        value => {
+          console.log('onResolved2():', value)
+        },
+        reason => {
+          console.log('onRejected2():', reason)
+        },
+      )
     </script>
   </body>
 </html>

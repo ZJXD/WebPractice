@@ -9,28 +9,29 @@
    * @param {Function} excutor 执行器函数
    */
   function Promise(excutor) {
-    this.status = 'pending' // status 属性，初始值 pending
-    this.data = undefined // promise 属性 data，用于存储结果数据
-    this.callbacks = [] // 每个元素的结构：{onResolved(){},onRejected(){}}
+    const self = this
+    self.status = 'pending' // status 属性，初始值 pending
+    self.data = undefined // promise 属性 data，用于存储结果数据
+    self.callbacks = [] // 每个元素的结构：{onResolved(){},onRejected(){}}
 
     // 成功回调
     function resolve(value) {
       // 当状态不是 pending 时，结束
-      if (this.status !== 'pending') {
+      if (self.status !== 'pending') {
         return
       }
 
       // 改变状态
-      this.status = 'resolved'
+      self.status = 'resolved'
 
       // 存储 value
-      this.data = value
+      self.data = value
 
       // 如果 callbacks 中有回调函数，立即异步执行成功（onResolved）回调
-      if (this.callbacks.length > 0) {
+      if (self.callbacks.length > 0) {
         // 简单的模拟异步执行
         setTimeout(() => {
-          this.callbacks.forEach(callbacksObj => {
+          self.callbacks.forEach(callbacksObj => {
             callbacksObj.onResolved(value)
           })
         }, 0)
@@ -40,21 +41,21 @@
     // 失败回调
     function reject(reason) {
       // 当状态不是 pending 时，结束
-      if (this.status !== 'pending') {
+      if (self.status !== 'pending') {
         return
       }
 
       // 改变状态
-      this.status = 'rejected'
+      self.status = 'rejected'
 
       // 存储 reason
-      this.data = reason
+      self.data = reason
 
       // 如果 callbacks 中有回调函数，立即异步执行失败（onRejected）回调
-      if (this.callbacks.length > 0) {
+      if (self.callbacks.length > 0) {
         // 简单的模拟异步执行
         setTimeout(() => {
-          this.callbacks.forEach(callbacksObj => {
+          self.callbacks.forEach(callbacksObj => {
             callbacksObj.onRejected(reason)
           })
         }, 0)
@@ -74,7 +75,11 @@
    * 指定成功和失败的回调
    * 返回一个新的 promise 对象
    */
-  Promise.prototype.then = function(onResolved, onRejected) {}
+  Promise.prototype.then = function(onResolved, onRejected) {
+    const self = this
+    // 假设现在是 pending 状态，把回调函数存入 callbaks
+    self.callbacks.push({ onResolved, onRejected })
+  }
 
   /**
    * Promise 原型上的 then 方法
