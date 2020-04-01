@@ -4,25 +4,29 @@
  */
 
 ;(function(window) {
+  // 定义常量
+  const PENDING = 'pending'
+  const RESOLVED = 'resolved'
+  const REJECTED = 'rejected'
   /**
    * Promise 构造函数
    * @param {Function} excutor 执行器函数
    */
   function Promise(excutor) {
     const self = this
-    self.status = 'pending' // status 属性，初始值 pending
+    self.status = PENDING // status 属性，初始值 pending
     self.data = undefined // promise 属性 data，用于存储结果数据
     self.callbacks = [] // 每个元素的结构：{onResolved(){},onRejected(){}}
 
     // 成功回调
     function resolve(value) {
       // 当状态不是 pending 时，结束
-      if (self.status !== 'pending') {
+      if (self.status !== PENDING) {
         return
       }
 
       // 改变状态
-      self.status = 'resolved'
+      self.status = RESOLVED
 
       // 存储 value
       self.data = value
@@ -41,12 +45,12 @@
     // 失败回调
     function reject(reason) {
       // 当状态不是 pending 时，结束
-      if (self.status !== 'pending') {
+      if (self.status !== PENDING) {
         return
       }
 
       // 改变状态
-      self.status = 'rejected'
+      self.status = REJECTED
 
       // 存储 reason
       self.data = reason
@@ -77,9 +81,74 @@
    */
   Promise.prototype.then = function(onResolved, onRejected) {
     const self = this
-    // 假设现在是 pending 状态，把回调函数存入 callbaks
-    self.callbacks.push({ onResolved, onRejected })
+
+    // 返回一个新的 promise
+    return new Promise((resolve, reject) => {
+      if (self.status === PENDING) {
+        setTimeout(() => {
+          // 假设现在是 pending 状态，把回调函数存入 callbaks
+          self.callbacks.push({ onResolved, onRejected })
+        }, 0)
+      } else if (self.status === RESOLVED) {
+        setTimeout(() => {
+          /**
+           * 1. 执行出现异常，return 的 promise 就会失败，返回 error
+           * 2. 执行的结果不是 promise，return 的 promise 就会成功，返回这个结果
+           * 3. 执行的结果是 promise，return 的 promise 结果就是这个 promise 的结果
+           */
+          try {
+            const result = onResolved(self.data)
+            if (result instanceof Promise) {
+              // 对应 3
+              // 写法 1
+              // result.then(
+              //   value => resolve(value),
+              //   reason => reject(reason),
+              // )
+              // 写法 2 （这个简写可以看下面 注释①）
+              result.then(resolve, reject)
+            } else {
+              // 对应 2
+              resolve(result)
+            }
+          } catch (error) {
+            // 对应 1
+            reject(error)
+          }
+        }, 0)
+      } else {
+        setTimeout(() => {
+          /**
+           * 1. 执行出现异常，return 的 promise 就会失败，返回 error
+           * 2. 执行的结果不是 promise，return 的 promise 就会成功，返回这个结果
+           * 3. 执行的结果是 promise，return 的 promise 结果就是这个 promise 的结果
+           */
+          try {
+            const result = onRejected(self.data)
+            if (result instanceof Promise) {
+              // 对应 3
+              result.then(resolve, reject)
+            } else {
+              // 对应 2
+              resolve(result)
+            }
+          } catch (error) {
+            // 对应 1
+            reject(error)
+          }
+        }, 0)
+      }
+    })
   }
+
+  /**
+   * 注释①
+   */
+  // let fn = function(event) {}
+  // div.onClick = function(event) {
+  //   fn(event)
+  // }
+  // div.onClick = fn
 
   /**
    * Promise 原型上的 then 方法
