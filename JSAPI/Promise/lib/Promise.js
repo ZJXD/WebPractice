@@ -80,62 +80,69 @@
    * 返回一个新的 promise 对象
    */
   Promise.prototype.then = function(onResolved, onRejected) {
+    // 指定默认的成功回调
+    onResolved = typeof onResolved === 'function' ? onResolved : value => value
+    // 指定默认的失败回调（实现异常穿透的关键步骤）
+    onRejected =
+      typeof onRejected === 'function'
+        ? onRejected
+        : reason => {
+            throw reason
+          }
+
     const self = this
 
     // 返回一个新的 promise
     return new Promise((resolve, reject) => {
+      // 执行指定的回调函数，对下面的不同情形中，相同的操作进行封装
+      function handle(callback) {
+        /**
+         * 1. 执行出现异常，return 的 promise 就会失败，返回 error
+         * 2. 执行的结果不是 promise，return 的 promise 就会成功，返回这个结果
+         * 3. 执行的结果是 promise，return 的 promise 结果就是这个 promise 的结果
+         */
+        try {
+          const result = callback(self.data)
+          if (result instanceof Promise) {
+            // 对应 3
+            // 写法 1
+            // result.then(
+            //   value => resolve(value),
+            //   reason => reject(reason),
+            // )
+            // 写法 2 （这个简写可以看下面 注释①）
+            result.then(resolve, reject)
+          } else {
+            // 对应 2
+            resolve(result)
+          }
+        } catch (error) {
+          // 对应 1
+          reject(error)
+        }
+      }
+
+      // 现在是 pending 状态，把回调函数存入 callbaks
+      // 这里也要返回新的 promise，所以进行处理
+      // 因为是 pending 状态，所以要执行和构造函数中一样的操作
       if (self.status === PENDING) {
         setTimeout(() => {
-          // 假设现在是 pending 状态，把回调函数存入 callbaks
-          self.callbacks.push({ onResolved, onRejected })
+          self.callbacks.push({
+            onResolved(value) {
+              handle(onResolved)
+            },
+            onRejected(reson) {
+              handle(onRejected)
+            },
+          })
         }, 0)
       } else if (self.status === RESOLVED) {
         setTimeout(() => {
-          /**
-           * 1. 执行出现异常，return 的 promise 就会失败，返回 error
-           * 2. 执行的结果不是 promise，return 的 promise 就会成功，返回这个结果
-           * 3. 执行的结果是 promise，return 的 promise 结果就是这个 promise 的结果
-           */
-          try {
-            const result = onResolved(self.data)
-            if (result instanceof Promise) {
-              // 对应 3
-              // 写法 1
-              // result.then(
-              //   value => resolve(value),
-              //   reason => reject(reason),
-              // )
-              // 写法 2 （这个简写可以看下面 注释①）
-              result.then(resolve, reject)
-            } else {
-              // 对应 2
-              resolve(result)
-            }
-          } catch (error) {
-            // 对应 1
-            reject(error)
-          }
+          handle(onResolved)
         }, 0)
       } else {
         setTimeout(() => {
-          /**
-           * 1. 执行出现异常，return 的 promise 就会失败，返回 error
-           * 2. 执行的结果不是 promise，return 的 promise 就会成功，返回这个结果
-           * 3. 执行的结果是 promise，return 的 promise 结果就是这个 promise 的结果
-           */
-          try {
-            const result = onRejected(self.data)
-            if (result instanceof Promise) {
-              // 对应 3
-              result.then(resolve, reject)
-            } else {
-              // 对应 2
-              resolve(result)
-            }
-          } catch (error) {
-            // 对应 1
-            reject(error)
-          }
+          handle(onRejected)
         }, 0)
       }
     })
@@ -155,7 +162,10 @@
    * 指定失败的回调
    * 返回一个新的 promise 对象
    */
-  Promise.prototype.catch = function(onRejected) {}
+  Promise.prototype.catch = function(onRejected) {
+    // 调用上面的，即使是成功的，也会继续传下去
+    return this.then(undefined, onRejected)
+  }
 
   // 下面的为 Promise 上面的静态方法
 
