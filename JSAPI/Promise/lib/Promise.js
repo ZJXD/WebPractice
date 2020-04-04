@@ -198,14 +198,76 @@
    * 返回一个新的 promise
    * 全部执行成功，返回成功，否则失败
    */
-  Promise.all = function(promises) {}
+  Promise.all = function(promises) {
+    // 成功时返回的结果数组
+    const values = Array(promises.length)
+    // 成功执行的计数器
+    let resolvedCount = 0
+    return new Promise((resolve, reject) => {
+      promises.forEach((p, index) => {
+        // 当 p 不是 promise 时，直接返回
+
+        // 对应方法 1（这个更直观，但是不够技术）
+        // if (p instanceof Promise) {
+        //   p.then(
+        //     value => {
+        //       values[index] = value
+        //       resolvedCount++
+        //       if (resolvedCount === promises.length) {
+        //         resolve(values)
+        //       }
+        //     },
+        //     reason => {
+        //       reject(reason)
+        //     },
+        //   )
+        // } else {
+        //   values[index] = p
+        //   resolvedCount++
+        //   if (resolvedCount === promises.length) {
+        //     resolve(values)
+        //   }
+        // }
+
+        // 方法 2（更技术）
+        Promise.resolve(p).then(
+          value => {
+            values[index] = value
+            resolvedCount++
+            if (resolvedCount === promises.length) {
+              resolve(values)
+            }
+          },
+          reason => {
+            reject(reason)
+          },
+        )
+      })
+      // 不能放在这里，因为上面的 p.then  是异步的，要在 p.then 里面判断
+      // resolve(values)
+    })
+  }
 
   /**
    * Promise 函数对象上的 race 方法
    * 返回一个新的 promise
    * 其结果由第一个执行完成的 promise 决定
    */
-  Promise.race = function(promises) {}
+  Promise.race = function(promises) {
+    return new Promise((resolve, reject) => {
+      promises.forEach(p => {
+        // 方法 1
+        // if (p instanceof Promise) {
+        //   p.then(resolve, reject)
+        // } else {
+        //   resolve(p)
+        // }
+
+        // 方法 2
+        Promise.resolve(p).then(resolve, reject)
+      })
+    })
+  }
 
   // 对外暴露 Promise 函数
   window.Promise = Promise
