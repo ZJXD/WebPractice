@@ -94,7 +94,8 @@
 
     // 返回一个新的 promise
     return new Promise((resolve, reject) => {
-      // 执行指定的回调函数，对下面的不同情形中，相同的操作进行封装
+      // 1. 执行指定的回调函数，对下面的不同情形中，相同的操作进行封装
+      // 2. 返回新的 promise 的结果
       function handle(callback) {
         /**
          * 1. 执行出现异常，return 的 promise 就会失败，返回 error
@@ -125,17 +126,16 @@
       // 现在是 pending 状态，把回调函数存入 callbaks
       // 这里也要返回新的 promise，所以进行处理
       // 因为是 pending 状态，所以要执行和构造函数中一样的操作
+      // 这里不需要 setTimeout 是因为在 执行器函数里面已经有了
       if (self.status === PENDING) {
-        setTimeout(() => {
-          self.callbacks.push({
-            onResolved(value) {
-              handle(onResolved)
-            },
-            onRejected(reson) {
-              handle(onRejected)
-            },
-          })
-        }, 0)
+        self.callbacks.push({
+          onResolved(value) {
+            handle(onResolved)
+          },
+          onRejected(reson) {
+            handle(onRejected)
+          },
+        })
       } else if (self.status === RESOLVED) {
         setTimeout(() => {
           handle(onResolved)
@@ -173,13 +173,25 @@
    * Promise 函数对象上的 resolve 方法
    * 返回一个成功值为 value 的 promise（成功）
    */
-  Promise.resolve = function(value) {}
+  Promise.resolve = function(value) {
+    return new Promise((resolve, reject) => {
+      if (value instanceof Promise) {
+        value.then(resolve, reject)
+      } else {
+        resolve(value)
+      }
+    })
+  }
 
   /**
    * Promise 函数对象上的 reject 方法
    * 返回一个失败值为 reason 的 promise（失败）
    */
-  Promise.reject = function(reason) {}
+  Promise.reject = function(reason) {
+    return new Promise((resolve, reject) => {
+      reject(reason)
+    })
+  }
 
   /**
    * Promise 函数对象上的 all 方法
