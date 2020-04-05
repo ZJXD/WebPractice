@@ -3,7 +3,7 @@
  * 使用的是 ES5 的 IIFE（立即执行函数）构建模块
  */
 
-;(function(window) {
+;(function (window) {
   // 定义常量
   const PENDING = 'pending'
   const RESOLVED = 'resolved'
@@ -35,7 +35,7 @@
       if (self.callbacks.length > 0) {
         // 简单的模拟异步执行
         setTimeout(() => {
-          self.callbacks.forEach(callbacksObj => {
+          self.callbacks.forEach((callbacksObj) => {
             callbacksObj.onResolved(value)
           })
         }, 0)
@@ -59,7 +59,7 @@
       if (self.callbacks.length > 0) {
         // 简单的模拟异步执行
         setTimeout(() => {
-          self.callbacks.forEach(callbacksObj => {
+          self.callbacks.forEach((callbacksObj) => {
             callbacksObj.onRejected(reason)
           })
         }, 0)
@@ -79,14 +79,15 @@
    * 指定成功和失败的回调
    * 返回一个新的 promise 对象
    */
-  Promise.prototype.then = function(onResolved, onRejected) {
+  Promise.prototype.then = function (onResolved, onRejected) {
     // 指定默认的成功回调
-    onResolved = typeof onResolved === 'function' ? onResolved : value => value
+    onResolved =
+      typeof onResolved === 'function' ? onResolved : (value) => value
     // 指定默认的失败回调（实现异常穿透的关键步骤）
     onRejected =
       typeof onRejected === 'function'
         ? onRejected
-        : reason => {
+        : (reason) => {
             throw reason
           }
 
@@ -162,7 +163,7 @@
    * 指定失败的回调
    * 返回一个新的 promise 对象
    */
-  Promise.prototype.catch = function(onRejected) {
+  Promise.prototype.catch = function (onRejected) {
     // 调用上面的，即使是成功的，也会继续传下去
     return this.then(undefined, onRejected)
   }
@@ -173,7 +174,7 @@
    * Promise 函数对象上的 resolve 方法
    * 返回一个成功值为 value 的 promise（成功）
    */
-  Promise.resolve = function(value) {
+  Promise.resolve = function (value) {
     return new Promise((resolve, reject) => {
       if (value instanceof Promise) {
         value.then(resolve, reject)
@@ -187,7 +188,7 @@
    * Promise 函数对象上的 reject 方法
    * 返回一个失败值为 reason 的 promise（失败）
    */
-  Promise.reject = function(reason) {
+  Promise.reject = function (reason) {
     return new Promise((resolve, reject) => {
       reject(reason)
     })
@@ -198,7 +199,7 @@
    * 返回一个新的 promise
    * 全部执行成功，返回成功，否则失败
    */
-  Promise.all = function(promises) {
+  Promise.all = function (promises) {
     // 成功时返回的结果数组
     const values = Array(promises.length)
     // 成功执行的计数器
@@ -231,14 +232,14 @@
 
         // 方法 2（更技术）
         Promise.resolve(p).then(
-          value => {
+          (value) => {
             values[index] = value
             resolvedCount++
             if (resolvedCount === promises.length) {
               resolve(values)
             }
           },
-          reason => {
+          (reason) => {
             reject(reason)
           },
         )
@@ -253,9 +254,9 @@
    * 返回一个新的 promise
    * 其结果由第一个执行完成的 promise 决定
    */
-  Promise.race = function(promises) {
+  Promise.race = function (promises) {
     return new Promise((resolve, reject) => {
-      promises.forEach(p => {
+      promises.forEach((p) => {
         // 方法 1
         // if (p instanceof Promise) {
         //   p.then(resolve, reject)
@@ -266,6 +267,28 @@
         // 方法 2
         Promise.resolve(p).then(resolve, reject)
       })
+    })
+  }
+
+  // 延迟执行 resolve
+  Promise.resolveDelay = function (value, time) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (value instanceof Promise) {
+          value.then(resolve, reject)
+        } else {
+          resolve(value)
+        }
+      }, time)
+    })
+  }
+
+  // 延迟执行 reject
+  Promise.rejectDelay = function (reason, time) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(reason)
+      }, time)
     })
   }
 
