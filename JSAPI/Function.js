@@ -117,3 +117,38 @@ sh.next(5)
 sh.next(5)
 
 //#endregion
+
+/**
+ * bind() --------------------------------------------------------------------------
+ */
+// bind(thisArg[,arg1...]) 函数可以改变当前函数的 this 指向，指向的是第一个参数
+
+// 参数 thisArg，要绑定的 this
+// 1、有传入，这个传入的值就是要绑定的 this
+// 2、new 的时候，忽略该值，函数原函数的 this
+// 3、如果参数列表为空，执行作用域的 this 视为新函数的 thisArg
+
+// 下面是对 bind 后的函数进行 new，绑定的 this 被忽略（对应上面的 2）
+let obj1 = {
+  name: 'zht',
+  age: 25
+}
+
+function Person(name) {
+  this.name = name
+  console.log(this.age)
+}
+
+let per = Person.bind(obj1)
+let obj2 = new per('WWWW')
+console.log(obj2, typeof obj2, obj2.__proto__)
+
+//
+let name = 'zht'
+function Person() {
+  // this.name = 'WWW'
+  console.log(this.name)
+}
+let p = Person.bind()
+Person()
+p()
