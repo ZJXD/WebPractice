@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <style>
+    /* CSS 实现颜色动态变化 */
+    .title {
+      color: black;
+      animation: title-color 6s ease 1s infinite;
+    }
+
+    @keyframes title-color {
+      0% {
+        color: #8A2BE2;
+      }
+
+      20% {
+        color: #DEB887;
+      }
+
+      40% {
+        color: #7FFF00;
+      }
+
+      60% {
+        color: #008B8B;
+      }
+
+      80% {
+        color: #FF1493;
+      }
+
+      100% {
+        color: black;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<h1 class="title" id="character" >此女子温柔美丽.此女子矫情可爱.此女子妩媚无比.</h1>
-<script type="text/javascript">
-    var i=0;
-    setInterval('changeColor()',500);
-        function changeColor(){
-            var div=document.getElementById('character'); //获得div元素
-            var colorArr=['#8A2BE2','#DEB887','#7FFF00','#008B8B','#FF1493']; //建立颜色库
-            if(i==colorArr.length){ 
-                    i=0;
-                }else{
-                    div.style.color=colorArr[i++%colorArr.length]; //循环颜色
-                }
-            }
-</script>
+  <h1 class="title" id="character">此女子温柔美丽.此女子矫情可爱.此女子妩媚无比.</h1>
+  <script type="text/javascript">
+    // JS 实现颜色动态变化
+    // setInterval('changeColor()', 500);
+    // var i = 0;
+    // var colorArr = ['#8A2BE2', '#DEB887', '#7FFF00', '#008B8B', '#FF1493']; //建立颜色库
+    // function changeColor() {
+    //   var div = document.getElementById('character'); //获得元素
+    //   if (i == colorArr.length) {
+    //     i = 0;
+    //   } else {
+    //     div.style.color = colorArr[i++ % colorArr.length]; //循环颜色
+    //   }
+    // }
+  </script>
 </body>
+
 </html>

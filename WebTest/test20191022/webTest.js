@@ -24,7 +24,7 @@ function fn() {
 }
 var obj = {
   number: 2,
-  show: function(fn) {
+  show: function (fn) {
     this.number = 3
     fn()
     arguments[0]()
@@ -34,7 +34,7 @@ obj.show(fn)
 
 /**
  * 题目：3 padding-top %
- * 说明：padding - top 在使用 % 时， 其值的意义是： 定义基于父元素宽度的百分比上内边距（父元素的宽度）
+ * 说明：padding - top 在使用 % 时， 其值的意义是： 定义基于父元素宽度的百分比计算内边距（父元素的宽度）
  * 拓展：对于 padding 来说，在使用 % 时都是相对 父元素的宽度
  */
 
@@ -50,9 +50,9 @@ function deepCopy(obj) {
     return obj
   } else {
     let temp = Array.isArray(obj) ? [] : {}
-    Object.keys(obj).forEach(item => {
+    Object.keys(obj).forEach((item) => {
+      // 使用 object.keys 这个判断可以去掉
       if (obj.hasOwnProperty(item)) {
-        // 使用 object.keys 这个判断可以去掉
         if (typeof obj[item] === 'object' && obj[item] !== null) {
           temp[item] = deepCopy(obj[item])
         } else {
@@ -71,7 +71,7 @@ console.log(
     family: {
       baby: 'xiatian',
     },
-  }),
+  })
 )
 console.log(deepCopy([1, 2, 3, 4, 5]))
 console.log(deepCopy('zhuHT'))
@@ -103,7 +103,7 @@ class EventEmitter {
     if (this.listeners[event] instanceof Array) {
       if (this.listeners[event].length > this.maxListener) {
         throw console.error(
-          `当前监听器的最大数量是${this.maxListener}，您已经超出限制`,
+          `当前监听器的最大数量是${this.maxListener}，您已经超出限制`
         )
       }
       if (this.listeners[event].indexOf(callback) === -1) {
@@ -123,7 +123,7 @@ class EventEmitter {
   emit(event) {
     let args = Array.prototype.slice.call(arguments)
     args.shift()
-    this.listeners[event].forEach(cb => {
+    this.listeners[event].forEach((cb) => {
       cb.apply(null, args)
     })
   }
@@ -259,15 +259,15 @@ console.log(x, y, z)
 var num = 1
 var myObject = {
   num: 2,
-  add: function() {
+  add: function () {
     this.num = 3
-    ;(function() {
+    ;(function () {
       console.log(this.num)
       this.num = 4
     })() // 立即执行函数，this 指向全局变量
     console.log(this.num)
   },
-  sub: function() {
+  sub: function () {
     console.log(this.num)
   },
 }
@@ -295,7 +295,7 @@ function foo() {
 let foo1 = function bar() {
   console.log('函数表达式')
 }
-foo1 = function() {
+foo1 = function () {
   let bar = self
   console.log('函数表达式')
 }
@@ -378,7 +378,7 @@ const reg = /^[0-9]+([.]{1}[0-9]{1})?$/
 const reg1 = /^\d+(.\d)?$/
 
 // 事件循环（Event Loop）
-setTimeout(_ => console.log(4))
+setTimeout((_) => console.log(4))
 async function main() {
   console.log(1)
   let a = await Promise.resolve(1)

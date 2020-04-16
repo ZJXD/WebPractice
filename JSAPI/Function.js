@@ -14,7 +14,7 @@ function add(x, y) {
 console.log(add(3, 4))
 
 // 函数表达式
-let add = function(x, y) {
+let add = function (x, y) {
   return x + y
 }
 console.log(add(4, 5))
@@ -82,7 +82,7 @@ console.log(v())
 console.log(v())
 
 // 箭头函数使用递归
-let fact = x => (x == 0 ? 1 : x * fact(x - 1))
+let fact = (x) => (x == 0 ? 1 : x * fact(x - 1))
 console.log(fact(5))
 
 //#endregion
@@ -131,7 +131,7 @@ sh.next(5)
 // 下面是对 bind 后的函数进行 new，绑定的 this 被忽略（对应上面的 2）
 let obj1 = {
   name: 'zht',
-  age: 25
+  age: 25,
 }
 
 function Person(name) {
@@ -152,3 +152,80 @@ function Person() {
 let p = Person.bind()
 Person()
 p()
+
+/**
+ * call() --------------------------------------------------------------------------
+ */
+
+/**
+ * 1、call 第一个参数是 this 指向的对象
+ * 2、如果第一参数没有实现，默认指向 window/global
+ * 3、后面的参数是要执行函数的参数
+ */
+
+// 手写一个 call 的实现
+Function.prototype.call = function () {
+  let [thisArg, ...args] = arguments
+  if (!thisArg) {
+    thisArg = typeof window === 'undefined' ? global : window
+  }
+  // this 的指向是当前函数
+  thisArg.func = this
+  // 执行函数
+  let results = thisArg.func(args)
+  // thisArg 上面并没有 func 所以要移除
+  delete thisArg.func
+  return results
+}
+
+/**
+ * apply() -------------------------------------------------------------------------
+ */
+
+/**
+ * 1、apply 第一个参数是 this 指向的对象
+ * 2、如果第一参数没有实现，默认指向 window/global
+ * 3、后面的参数是要执行函数的参数的数组，用的时候要解构
+ */
+
+// 手写一个 apply 的实现
+Function.prototype.apply = function (thisArg, rest) {
+  let results
+  if (!thisArg) {
+    thisArg = typeof window === 'undefined' ? global : window
+  }
+  // this 的指向是当前函数
+  thisArg.func = this
+  // 执行函数
+  if (!rest) {
+    results = thisArg.func()
+  } else {
+    results = thisArg.func(...rest)
+  }
+  // thisArg 上面并没有 func 所以要移除
+  delete thisArg.func
+  return results
+}
+
+/**
+ * 柯里化函数 -----------------------------------------------------------------------
+ */
+
+/**
+ * 特点：
+ * 1、把接受多个参数的函数变换为接受一个单一参数的函数
+ */
+
+const curry = (fn, ...args) =>
+  args.length < fn.length
+    ? (...arguments) => curry(fn, ...args, ...arguments)
+    : fn(...args)
+
+function sunFun(a, b, c) {
+  return a + b + c
+}
+console.log(sunFun.length)
+let sun = curry(sunFun)
+console.log(sun(2)(3)(4))
+console.log(sun(2, 3, 4))
+console.log(sun(2)(3, 4))

@@ -43,6 +43,7 @@
       <div class="test_item">
         <label>线性渐变</label>
         <div class="line-gradient"></div>
+        <div class="radial-gradient"></div>
       </div>
       <div class="test_item">
         <label>canvas 文字粒子</label>
@@ -337,5 +338,17 @@ export default {
   );
   // 给出的每一个点颜色进行渐变，如果两个点颜色一样，不渐变
   // background: linear-gradient(0deg, pink 0, pink 20px, #bbb 20px, #ffba01 40px);
+}
+
+/* 径向渐变 */
+.radial-gradient {
+  height: 200px;
+  width: 200px;
+  margin-left: 20px;
+  background: radial-gradient(
+    rgba(234, 95, 74, 0.1) 0%,
+    rgba(234, 95, 74, 0.4) 50%,
+    rgba(234, 95, 74, 0.8) 100%
+  );
 }
 </style>

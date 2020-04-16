@@ -50,7 +50,10 @@ ul li:hover::before {
 ul li a {
   position: relative;
   display: inline-block;
-  padding: 6px 15px;
+  /* padding: 6px 15px; */
+  padding: 20px 40px;
+  margin-bottom: 20px;
+  font-size: 20px;
   text-decoration: none;
   background-color: #2196f3;
   color: #fff;
@@ -61,9 +64,9 @@ ul li a {
   z-index: 1;
 }
 
-ul:hover li a {
-  /* opacity: 0; */
-}
+/* ul:hover li a {
+  opacity: 0;
+} */
 
 ul li a:hover {
   transform: scale(1.4);
@@ -76,7 +79,7 @@ ul li a::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100px;
+  left: -140px;
   width: 80%;
   height: 100%;
   background: linear-gradient(
@@ -89,6 +92,6 @@ ul li a::before {
 }
 
 ul li a:hover::before {
-  left: calc(100% + 100px);
+  left: calc(100% + 30px);
   transition-delay: 0.2s;
 }
