@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音乐播放器</title>
+  <link rel="stylesheet" href="./AudioPlayer.css">
+</head>
+
+<body>
+  <div>
+    <div class="cotent">
+      <img src="../images/1.png" alt="播放器" width="256" height="256">
+      <div id="player" class="player-box">
+        <div class="box-in">
+          <div class="box-in-in"></div>
+        </div>
+        <div class="box-icon" onclick="onIconClick()"></div>
+      </div>
+    </div>
+    <audio id="audio" src="https://demo.xiaohuochai.site/myocean.mp3" controls></audio>
+  </div>
+  <script>
+    let audio = document.getElementById('audio')
+    let player = document.getElementById('player')
+    let iconBox = document.getElementsByClassName('box-icon')[0]
+    let boxInIn = document.getElementsByClassName('box-in-in')[0]
+    let hidden = player.getElementsByClassName('box-in')[0];
+    let enter = false
+
+    // 是否播放
+    let playing = false
+    // 歌曲加载完毕
+    let loading = false
+
+    // 歌曲加载完成时
+    audio.oncanplaythrough = function () {
+      loading = true
+      iconBox.style.backgroundImage = 'url(../images/player2.png)'
+    }
+    // 歌曲播放时
+    audio.ontimeupdate = function () {
+      boxInIn.style.transform = 'rotate(' + audio.currentTime / audio.duration * 360 + 'deg)'
+      if ((audio.currentTime / audio.duration) <= 0.5) {
+        hidden.style.cssText = 'overflow:hidden;background:transparent';
+      } else {
+        hidden.style.cssText =
+          'overflow:visible;background:black url("../images/music.png") 128px 0;background-size:200% 100%;';
+      }
+      // if (!enter) {
+      //   iconBox.innerHTML = Math.floor(audio.currentTime / audio.duration * 100) + '%';
+      // }
+    }
+
+    // 播放、暂停点击事件
+    function onIconClick() {
+      playing = !playing
+      if (playing) {
+        audio.play()
+        iconBox.style.backgroundImage = 'url(../images/stop.png)'
+      } else {
+        audio.pause()
+        iconBox.style.backgroundImage = 'url(../images/player2.png)'
+      }
+    }
+    iconBox.onmouseover = function () {
+      if (playing) {
+        enter = true
+      }
+    }
+    iconBox.onmouseout = function () {
+      if (playing) {
+        enter = false
+      }
+    }
+  </script>
+</body>
+
+</html>

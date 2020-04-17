@@ -47,7 +47,7 @@ console.log('arr2 by Array.of:', arr2)
 let obj = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
 let arr3 = Array.from(
   obj,
-  function(value, index) {
+  function (value, index) {
     console.log(value, index, this, arguments.length)
     return value.repeat(3) // 必须指定返回，否则返回的是 undefined
   },
@@ -55,7 +55,7 @@ let arr3 = Array.from(
 )
 
 // 不需要指定 this 时，完全可以用箭头函数，也不用返回
-let arr4 = Array.from(obj, value => value.repeat(3))
+let arr4 = Array.from(obj, (value) => value.repeat(3))
 console.log('arr3 by Array.from:', arr3)
 console.log('arr4 by Array.from:', arr4)
 
@@ -67,7 +67,7 @@ console.log(
   Array.from(
     new Map([
       [1, 'abc'],
-      [2, 'def']
+      [2, 'def'],
     ])
   )
 )
@@ -125,7 +125,7 @@ console.log(
 
 // 通过 Object.prototype.toString 去判断变量类型，是各大主流库的标准；下面是用该方法实现
 if (!Array.isArray) {
-  Array.isArray = function(arg) {
+  Array.isArray = function (arg) {
     return Object.prototype.toString.call(arg) === '[object Array]'
   }
 }
@@ -172,7 +172,7 @@ let obj1 = {
   2: 'cow',
   3: 'chicken',
   4: 'mouse',
-  length: 'aaa'
+  length: 'aaa',
 }
 let obj1_1 = {
   0: 'cat',
@@ -180,7 +180,7 @@ let obj1_1 = {
   2: 'cow',
   3: 'chicken',
   4: 'mouse',
-  length: 0
+  length: 0,
 }
 let objPopItem = Array.prototype.pop.call(obj1_1)
 console.log('obj1 poped:', obj1_1)
@@ -344,7 +344,7 @@ function compareNum(a, b) {
 let arr13 = ['互', '联', '网', '改', '变', '世', '界']
 let arr13_1 = arr13.sort()
 let arr13_2 = ['互', '联', '网', '改', '变', '世', '界']
-let arr13_3 = arr13_2.sort(function(a, b) {
+let arr13_3 = arr13_2.sort(function (a, b) {
   return a.localeCompare(b)
 })
 console.log('arr13 sort:', arr13_1, '\nby localeCompare sort:', arr13_3)
@@ -360,7 +360,7 @@ let obj6 = {
   3: '改',
   4: '变',
   5: '世',
-  6: '界'
+  6: '界',
 }
 console.log('obj6 sort:', Array.prototype.sort.call(obj6))
 
@@ -657,7 +657,7 @@ arr23.forEach((item, index) => {
 let arr24 = [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(
   'arr24 all >0:',
-  arr24.every(item => item > 0)
+  arr24.every((item) => item > 0)
 )
 
 /**
@@ -666,8 +666,16 @@ console.log(
  */
 console.log(
   'arr24 have >5:',
-  arr24.some(item => item > 5)
+  arr24.some((item) => item > 5)
 )
+
+const intersection = (list, ...args) => {
+  console.log(args)
+  return list.filter((item) => args.some((list) => list.includes(item)))
+}
+
+console.log(intersection([2, 1], [2, 3], [1, 4, 6])) // [2]
+console.log(intersection([1, 2], [3, 4])) // []
 
 /**
  * filter() -----------------------------------------------------------------------（二级标题）
@@ -676,7 +684,7 @@ console.log(
 let arr25 = [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(
   'arr25 中大于5的项：',
-  arr25.filter(item => item > 5)
+  arr25.filter((item) => item > 5)
 )
 
 // 使用 filter 创建具有非0 id 的json
@@ -689,7 +697,7 @@ var arrJson = [
   {},
   { id: null },
   { id: NaN },
-  { id: 'undefined' }
+  { id: 'undefined' },
 ]
 function isNumber(obj) {
   return obj !== undefined && typeof obj === 'number' && !isNaN(obj)
@@ -708,7 +716,7 @@ console.log('arrJsonNoZeroId :', arrJsonNoZeroId)
  * map 用于返回一个新数组，是由原数组的每一个项执行一次给定的函数返回的结果；
  */
 let arr26 = [1, 2, 3, 4, 5, 6, 7, 8]
-let arrMap = arr26.map(item => item * 2)
+let arrMap = arr26.map((item) => item * 2)
 console.log('arr26 :', arr26, '\narrMap:', arrMap)
 
 /**
@@ -745,9 +753,9 @@ let arr27_1 = [
   [1, 2],
   [3, 4],
   [5, 6],
-  [7, 8]
+  [7, 8],
 ]
-let arrReduce = arr27_1.reduce(function(a, b) {
+let arrReduce = arr27_1.reduce(function (a, b) {
   return a.concat(b)
 }, [])
 console.log('二维数组转一维数组：', arrReduce)
@@ -774,10 +782,10 @@ console.log(
 let arr27_3 = [
   { name: 'abc', age: 20 },
   { name: 'dbg', age: 21 },
-  { name: 'edv', age: 20 }
+  { name: 'edv', age: 20 },
 ]
 function groupBy(objectArr, property) {
-  return objectArr.reduce(function(acc, curItem) {
+  return objectArr.reduce(function (acc, curItem) {
     let key = curItem[property]
     if (acc[key]) {
       acc[key].push(curItem)
