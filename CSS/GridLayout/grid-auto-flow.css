@@ -1,3 +1,12 @@
+/*
+  参考自：https://www.zhangxinxu.com/wordpress/2020/01/css-grid-auto-flow/
+  grid-auto-flow：指定网关元素排列顺序
+    取值：[row | column] || dense
+      row：沿行方向流布局
+      column： 沿列方向流布局
+      dense：密集的意思，例如：当第一个不是从左上角开始的，设置了 dense 就会占据这个空缺
+*/
+
 * {
   box-sizing: border-box;
 }
@@ -13,7 +22,7 @@ body {
   border: 1px dashed rgb(211, 191, 231);
 } */
 
-.grid-item+.grid-item {
+.grid-item + .grid-item {
   border-top: 0;
 }
 
@@ -23,7 +32,7 @@ body {
   /* 默认的是 row ，用这个可以排列*/
   /* grid-template: auto /1fr 1fr; */
   grid-auto-flow: column;
-  grid-template: 1fr 1fr /auto;
+  grid-template: 1fr 1fr / auto;
   width: 600px;
   line-height: 80px;
 }

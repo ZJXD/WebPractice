@@ -1,0 +1,159 @@
+/*
+  box-shadow 用法：
+    1. 语法：box-shadow: h-shadow v-shadow blur spread color inset;
+    2. 各个值解析：
+      a. 水平方向阴影值
+      b. 垂直方向阴影值
+      c. 阴影模糊值
+      d. 
+      e. 阴影颜色值
+      f. 是否是内边框（加上是内边框）
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: '微软雅黑', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #2ce194;
+}
+
+.container {
+  width: 80vw;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.container .box {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: 40px 30px;
+  background-color: #fff;
+  font-family: consolas;
+  font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.container .box.shadow1 {
+  box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+}
+
+.container .box.shadow2::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 10%;
+  width: 90%;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform-origin: left;
+  transform: skewY(5deg);
+  z-index: -1;
+  filter: blur(5px);
+}
+.container .box.shadow3::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform-origin: right;
+  transform: skewY(-8deg);
+  z-index: -1;
+  filter: blur(8px);
+}
+.container .box.shadow3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform-origin: left;
+  transform: skewY(8deg);
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.container .box.shadow4::before {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 5%;
+  width: 90%;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  filter: blur(10px);
+}
+
+.container .box.shadow5::before {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  filter: blur(10px);
+}
+
+.container .box.shadow6 {
+  background-color: #2ce194;
+  border-radius: 15px;
+  box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
+    15px 15px 15px rgba(0, 0, 0, 0.1);
+}
+
+.container .box.shadow7 {
+  background-color: #2ce194;
+  border-radius: 15px;
+  box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
+    15px 15px 15px rgba(0, 0, 0, 0.1),
+    inset -5px -5px 5px rgba(255, 255, 255, 0.2),
+    inset 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* box-shadow 和 drop-shadow 的区别 */
+.container .box.shadow8 {
+  border: 10px dashed #beceed;
+  background-color: transparent;
+  /* box-shadow: 5px 5px 10px black; */
+  filter: drop-shadow(5px 5px 10px black);
+}
+
+.container .box.shadow9 {
+  box-shadow: 10px 10px 10px black;
+}
+
+.container .box.shadow10 {
+  filter: drop-shadow(10px 10px 10px black);
+}
+
+.container .cor {
+  position: absolute;
+  left: -40px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border: 20px solid transparent;
+  border-right-color: #fff;
+}
