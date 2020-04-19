@@ -1,0 +1,69 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: '微软雅黑', sans-serif;
+}
+
+/* body {
+  height: 2000px;
+} */
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container #bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff url('../images/heart.svg');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  mix-blend-mode: screen;
+  animation: svg-ani 10s 1s infinite linear;
+}
+
+@keyframes svg-ani {
+  0% {
+    background-size: 100px;
+  }
+
+  20% {
+    background-size: 700px;
+  }
+
+  40% {
+    background-size: 1300px;
+  }
+
+  50% {
+    background-size: 1600px;
+  }
+
+  60% {
+    background-size: 1300px;
+  }
+
+  80% {
+    background-size: 700px;
+  }
+
+  100% {
+    background-size: 100px;
+  }
+}
