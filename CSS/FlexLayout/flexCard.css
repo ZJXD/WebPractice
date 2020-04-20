@@ -1,0 +1,73 @@
+/*
+  flex 响应式布局
+  参考：https: //mp.weixin.qq.com/s/DS62kzE1ZFcarmHET4KVzg
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: '微软雅黑', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  min-height: 100vh;
+  background-color: #33d1a0;
+}
+
+.container {
+  width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.container .box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 320px;
+  height: 520px;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #121c27;
+}
+
+.container .box .quto {
+  max-width: 48px;
+}
+
+.container .box p {
+  color: #fff;
+  padding: 20px 0;
+}
+
+.container .box .user {
+  max-width: 96px;
+}
+
+.container .box h3 {
+  color: #33d1a0;
+}
+
+@media (max-width:1140px) {
+  .container {
+    justify-content: center;
+  }
+}
+
+@media (max-width:768px) {
+  .container .box {
+    width: 100%;
+    height: auto;
+    padding: 30px 20px;
+  }
+}

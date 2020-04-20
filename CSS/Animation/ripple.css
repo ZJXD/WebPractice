@@ -1,0 +1,64 @@
+/*
+  涟漪特效：
+    参考：https: //www.bilibili.com/video/BV1V741117Gm/
+*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: '微软雅黑', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #111;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .box {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.container .box span {
+  position: absolute;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  animation: span-ani 5s linear infinite;
+  animation-delay: calc(0.5s*var(--i));
+}
+
+.container .box:nth-child(2) span {
+  border: none;
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+@keyframes span-ani {
+  0% {
+    width: 0;
+    height: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
