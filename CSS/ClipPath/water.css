@@ -1,0 +1,59 @@
+/*
+  clip-path：裁剪
+    在线生成裁剪路径：https: //bennettfeely.com/clippy/
+    语法：
+      1. clip-source：clip-path:url(resources.svg)
+      2. geometry-box: 使用对应的参考盒作为引用框
+      3. basic-shape: 基础图形，有：inset、circle、polygon、path
+      4. global value: 全局属性
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: '微软雅黑', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+}
+
+.container {
+  position: relative;
+}
+
+.container h2 {
+  position: absolute;
+  /* color: #fff; */
+  font-size: 8em;
+  transform: translate(-50%, -50%)
+}
+
+.container h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #03a9f4;
+}
+
+.container h2:nth-child(2) {
+  color: #03a9f4;
+  animation: water-ani 2s linear infinite;
+}
+
+@keyframes water-ani {
+  0% {
+    clip-path: polygon(0 45%, 11% 60%, 28% 70%, 47% 72%, 62% 71%, 79% 66%, 91% 58%, 100% 44%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0 80%, 14% 79%, 29% 75%, 44% 72%, 61% 66%, 72% 64%, 86% 58%, 100% 53%, 100% 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 45%, 11% 60%, 28% 70%, 47% 72%, 62% 71%, 79% 66%, 91% 58%, 100% 44%, 100% 100%, 0% 100%);
+  }
+}

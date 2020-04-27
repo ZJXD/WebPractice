@@ -3,11 +3,13 @@
     1. 语法：box-shadow: h-shadow v-shadow blur spread color inset;
     2. 各个值解析：
       a. 水平方向阴影值
-      b. 垂直方向阴影值
+      b. 垂直方向阴影值（这两个值可以不设置，设置下面两个值，那么就是四周都有阴影）
       c. 阴影模糊值
-      d. 
+      d. 阴影传播值
       e. 阴影颜色值
       f. 是否是内边框（加上是内边框）
+    
+      在线调节值：https: //www.cssmatic.com/box-shadow
 */
 
 * {
@@ -66,6 +68,7 @@ body {
   z-index: -1;
   filter: blur(5px);
 }
+
 .container .box.shadow3::before {
   content: '';
   position: absolute;
@@ -79,6 +82,7 @@ body {
   z-index: -1;
   filter: blur(8px);
 }
+
 .container .box.shadow3::after {
   content: '';
   position: absolute;

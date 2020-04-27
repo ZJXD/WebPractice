@@ -1,6 +1,14 @@
 /*
   涟漪特效：
     参考：https: //www.bilibili.com/video/BV1V741117Gm/
+    语法：name duration timing-function delay iteration-count direction fill-mode
+      1. name：定义的动画名
+      2. duration：动画耗时，带单位（s、ms）
+      3. timing-function：动画的速度曲线（参考 transition 速度.html）
+      4. delay：延迟执行时间
+      5. iterantion-count：执行次数，infinite 无限循环
+      6. dirction：动画是否轮流反向播放（alternate）
+      7. fiil-mode：填充样式
 */
 * {
   padding: 0;

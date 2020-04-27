@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
 <head>
+  <meta charset="utf-8">
+  <title>Transition 过渡效果</title>
   <style>
     div {
-      width: 100px;
+      width: 200px;
       height: 50px;
-      background: red;
+      line-height: 50px;
+      background: #9055b3;
       color: white;
       font-weight: bold;
       transition: width 2s;
-      -moz-transition: width 2s;
       /* Firefox 4 */
-      -webkit-transition: width 2s;
+      -moz-transition: width 2s;
       /* Safari and Chrome */
-      -o-transition: width 2s;
+      -webkit-transition: width 2s;
       /* Opera */
+      -o-transition: width 2s;
     }
 
     #div1 {
@@ -60,20 +63,26 @@
     /* Opera: */
 
     div:hover {
-      width: 300px;
+      width: 600px;
     }
   </style>
 </head>
 
 <body>
 
-  <div id="div1" style="top:100px">linear</div>
-  <div id="div2" style="top:150px">ease</div>
-  <div id="div3" style="top:200px">ease-in</div>
-  <div id="div4" style="top:250px">ease-out</div>
-  <div id="div5" style="top:300px">ease-in-out</div>
+  <div id="div1" style="top:100px">linear(匀速)</div>
+  <div id="div2" style="top:150px">ease(慢-快-慢)</div>
+  <div id="div3" style="top:200px">ease-in(慢开始)</div>
+  <div id="div4" style="top:250px">ease-out(慢结束)</div>
+  <div id="div5" style="top:300px">ease-in-out(慢开始结束)</div>
 
   <p>请把鼠标指针移动到红色的 div 元素上，就可以看到过渡效果。</p>
+
+  <p>对于 ease 和 ease-in-out 效果一样只是中间的快是有差别的。原因在于这些都是 cubic-bezier 函数控制</p>
+
+  <p>cubic-bezier 函数：四个参数 (x1,y1,x2,y2)，是两个点的坐标，具体可参考<a href="https://www.jianshu.com/p/d999f090d333"
+      target="_blank">实用的 CSS —
+      贝塞尔曲线(cubic-bezier)</a></p>
 
   <p><b>注释：</b>本例在 Internet Explorer 中无效。</p>
 
