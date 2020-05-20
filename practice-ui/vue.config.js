@@ -5,6 +5,15 @@ function resolve(dir) {
 }
 
 module.exports = {
+// css 配置
+  css:{
+    loaderOptions:{
+      postcss:{
+        plugins:[require('tailwindcss'),require('autoprefixer')]
+      }
+    }
+  },
+
   chainWebpack: config => {
     // 为src下文件配别名，不使用相对路径
     config.resolve.alias

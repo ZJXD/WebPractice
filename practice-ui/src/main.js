@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router/index'
 import './plugins/element.js'
 import 'assets/styles/index.scss'
+// Tailwind
+// import 'tailwindcss/tailwind.css'
+import 'tailwindcss/components.css'
+import 'tailwindcss/utilities.css'
 
 Vue.config.productionTip = false
 

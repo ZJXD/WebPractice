@@ -158,7 +158,7 @@
     // div.onClick = fn
 
     /**
-     * Promise 原型上的 then 方法
+     * Promise 原型上的 catch 方法
      * 指定失败的回调
      * 返回一个新的 promise 对象
      */
