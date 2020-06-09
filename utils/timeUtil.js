@@ -1,5 +1,6 @@
 /**
  * 时间操作实用方法
+ *  参考自：https://mp.weixin.qq.com/s/MhNgO4ZJBx8dFLrYBD9VtA （常用的 JavaScript 工具函数）
  */
 
 // 格式化时间
@@ -38,7 +39,7 @@ export function parseTime(time, cFormat) {
   return time_str
 }
 
-// 格式化时间，并给出简要说明
+// 给出简要说明或者格式化时间
 export function formatTime(time, option) {
   time = +time * 1000
   const d = new Date(time)
@@ -88,4 +89,10 @@ export function isSameWeek(timeStampA, timeStampB) {
   var old_count = parseInt(A / oneDayTime)
   var now_other = parseInt(B / oneDayTime)
   return parseInt((old_count + 4) / 7) === parseInt((now_other + 4) / 7)
+}
+
+const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+// 获取星期几
+export function getWeek(date) {
+  return week[date.getDay()]
 }
