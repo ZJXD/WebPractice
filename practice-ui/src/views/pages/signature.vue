@@ -3,12 +3,15 @@
     <h2>电子签名</h2>
     <div class="canvas-box" ref="canvasHW">
       <el-button @click="overwrite" size="mini">重绘</el-button>
+      <a class="full-screen" @click="fullscreen"><i class="iconfont">&#xe62b;</i></a>
       <canvas @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" ref="canvasF" @mousedown="mouseDown" @mousemove="mouseMove" @mouseup="mouseUp"></canvas>
     </div>
   </div>
 </template>
 
 <script>
+import FullScreen from '../../utils/FullScreen'
+
 export default {
   data() {
     return {
@@ -35,6 +38,29 @@ export default {
     this.canvasTxt = canvas.getContext("2d");
     this.canvasTxt.strokeStyle = this.color;
     this.canvasTxt.lineWidth = this.linewidth;
+
+    // 全屏数据初始化
+    this.fullElement = new FullScreen(() => {
+      // console.log('不支持全屏功能')
+      this.$message.warning('不支持全屏功能')
+    })
+    this.fullElement.screenError(e => {
+      // console.log('进去全屏失败:', e)
+      this.$message.error('全屏出现异常：',e)
+    })
+    // 全屏请求必须在事件处理函数中调用，否则将会被拒绝。
+    const obj = {
+      enter: e => {
+        // 如果退出全屏 退出的还是全屏状态，将会触发进入全屏的回调，这种情况比较少 注意一下
+      this.$message.error('进入全屏',e)
+      },
+      quit: e => {
+        this.fullState = false
+        // 通常不会出现嵌套的情况
+      this.$message.error('退出全屏：',e)
+      }
+    }
+    this.fullElement.screenChange(obj.enter, obj.quit)
   },
   methods: {
     // PC设备事件
@@ -161,6 +187,22 @@ export default {
       );
       this.points = [];
       this.isDraw = false; //签名标记
+    },
+
+    // 全屏
+    fullscreen() {
+      if (!this.fullElement) {
+        // console.log('fullscreen对象不存在')
+        return false
+      }
+      this.fullState = !this.fullState
+      if (this.fullState) {
+        this.fullElement.Fullscreen(
+          '.signature-page .canvas-box'
+        )
+      } else {
+        this.fullElement.exitFullscreen()
+      }
     }
   }
 }
@@ -184,6 +226,12 @@ export default {
       // width: 100%;
       // height: 100%;
       background-color: #aaa;
+    }
+
+    .full-screen {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
     }
   }
 }

@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'iconfont';
+  /* project id 1893300 */
+  src: url('//at.alicdn.com/t/font_1893300_x2avclsdq9.eot');
+  src: url('//at.alicdn.com/t/font_1893300_x2avclsdq9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.svg#iconfont') format('svg');
+}
+
+// 数组样式
+@font-face {
+  font-family: 'numberfont';
+  src: url('../font/DS-DIGIB.ttf');
+}
+
+.iconfont {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 3px;
+  font-family: 'iconfont' !important;
+  font-size: 1em;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.numberfont {
+  font-family: 'numberfont' !important;
+}
