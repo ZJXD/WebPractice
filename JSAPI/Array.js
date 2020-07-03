@@ -737,6 +737,8 @@ console.log('arr26 :', arr26, '\narrMap:', arrMap)
  *    c、当前项的索引
  *    d、array 当前数组
  * 2、initialValue：callback 第一次调用的 accumulator 值
+ *    a、未传值时，数组的第一个为该值，上面的回调函数会执行 length-1 次
+ *    b、传值，会执行 length 次
  */
 let arr27 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 console.log(
@@ -856,4 +858,27 @@ while (!nex.done) {
   nex = itr.next()
   console.log(nex)
 }
+//#endregion
+
+//#region Array 使用技巧 -------------------------------------------------------------------------（一级标题）
+
+/**
+ * 数组去重 ---------------------------------------------------（二级标题）
+ */
+let arr30 = [1,2,3,4,3,2,1,'ab','ac','ab','aw','ac']
+
+// 方法 1（使用 Set）
+const setArr = [... new Set(arr30)]
+
+// 方法 2（循环遍历）
+function dedupArray(arr){
+  let tempArr = []
+  arr.forEach(a => {
+     if(!tempArr.includes(a)){
+       tempArr.push(a)
+     }
+  })
+  return tempArr
+}
+
 //#endregion

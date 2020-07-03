@@ -287,6 +287,10 @@ console.log(
  * 是 entries 的逆操作
  */
 
+ let arr = [['cow','牛牛111'],['pig','佩奇']]
+ let objFromEntries = Object.fromEntries(arr)
+ console.log('objFromEntries:',objFromEntries)
+
 /**
  * 上面讲的获取属性、名称等的，都是获取自身的，
  * 要获取原型链上面的，用 for in 可以获取到。

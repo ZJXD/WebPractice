@@ -10,4 +10,5 @@
 4、Prototype.js 原型练习  
 5、Function.js 函数练习  
 6、Promise Promise 练习、手写  
-7、scope 作用域练习
+7、scope 作用域练习  
+8、String 字符练习
