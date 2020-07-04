@@ -32,6 +32,11 @@ export default new Router({
           path: '/animation',
           name: 'animation',
           component: () => import('../views/pages/Animation.vue')
+        },
+        {
+          path: '/bookpre',
+          name: 'bookpre',
+          component: () => import('../views/pages/BookPreview.vue')
         }
       ]
     }

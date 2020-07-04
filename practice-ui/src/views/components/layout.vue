@@ -43,6 +43,9 @@ export default {
       }, {
         name: '动画',
         routerLink: '/animation'
+      }, {
+        name: 'Book',
+        routerLink: '/bookpre'
       }
       ],
       activeMenu: activeMenu,
@@ -53,6 +56,11 @@ export default {
   created() {
     this.currentYear = new Date().getFullYear()
     this.systemOS = getOS()
+  },
+  watch:{
+    $route(){
+      this.activeMenu = this.$route.matched[1].path
+    }
   },
   methods: {
     changePage(name) {
