@@ -1,25 +1,23 @@
 <template>
   <el-container>
-    <el-header>
-      <div class="app-header">
-        <h2 class="title">前端问题集锦</h2>
+    <el-header class="app-header">
+      <h2 class="title">前端集锦</h2>
 
-        <!--中间导航列表-->
-        <dl class="nav_list">
-          <dt v-for="(item, index) in navList" :key="index" class="nav-item" :class="activeMenu===item.routerLink?'active':''" @click="changePage(item.routerLink)">
-            <router-link :to="item.routerLink">
-              {{ item.name }}
-            </router-link>
-          </dt>
-        </dl>
-      </div>
+      <!--中间导航列表-->
+      <dl class="nav_list">
+        <dt v-for="(item, index) in navList" :key="index" class="nav-item" :class="activeMenu===item.routerLink?'active':''" @click="changePage(item.routerLink)">
+          <router-link :to="item.routerLink">
+            {{ item.name }}
+          </router-link>
+        </dt>
+      </dl>
     </el-header>
-    <el-main>
+    <el-main class="app-main">
       <router-view />
     </el-main>
     <el-footer class="app-footer">
-      Copyright © {{currentYear}} ZHT<br />
-      Powered by Vue Element On {{systemOS}}
+      <span>Copyright © {{currentYear}} ZHT</span>
+      <span>Powered by Vue Element On {{systemOS}}</span>
     </el-footer>
   </el-container>
 </template>
@@ -79,6 +77,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #333;
 
   .title {
     font-size: 2rem;
@@ -115,10 +114,18 @@ export default {
   }
 }
 
+.app-main {
+  background-color: #fff;
+}
+
 .app-footer {
-  position: absolute;
-  width: 100%;
-  line-height: 25px;
-  bottom: 0;
+  height: 40px !important;
+  line-height: 40px;
+  font-size: 12px;
+  color: #888;
+
+  span {
+    margin-right: 20px;
+  }
 }
 </style>

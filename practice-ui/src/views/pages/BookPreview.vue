@@ -1,20 +1,21 @@
 <template>
   <div class="book-page">
-    <figure class="book-box" v-for="book in books" :key="book.id">
+    <figure class="book-box" v-for="book in books" :key="book.id" :class="{'open':openBookId===book.id}">
       <div class="perspective">
         <div class="book" data-book="book-1">
           <div class="cover">
-            <div class="front" :style="{backgroundImage:'url('+book.img+')'}"></div>
+            <div class="front" :style="{background:'linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url('+book.img+')'}"></div>
             <div class="inner inner-left"></div>
           </div>
+          <div class="inner inner-right"></div>
         </div>
       </div>
-      <div class="buttons"><a href="#">Look inside</a><a href="#">Details</a></div>
+      <div class="buttons"><a>Look inside</a><a @click="onDetailClick(book.id)">Details</a></div>
       <figcaption>
         <h2>{{book.name}} <span>{{book.author}}</span></h2>
       </figcaption>
       <div class="details">
-        <span class="close-details"></span>
+        <span class="close-details" @click="onCloseClick">&#10005;</span>
         <ul>
           <li>{{book.detail}}</li>
           <li>{{book.press}}</li>
@@ -54,7 +55,7 @@ export default {
         },
         {
           id:3,
-          name:'Lemon Rainbow',
+          name:'Structure and Space',
           author:'Christa Hausmann',
           press:'Graham Press',
           time:'12.09.2010',
@@ -64,7 +65,7 @@ export default {
         },
         {
           id:4,
-          name:'Structure and Space',
+          name:'The Rock Enigma',
           author:'CAROL WINTER',
           press:'Graham Press',
           time:'12.09.2010',
@@ -74,7 +75,7 @@ export default {
         },
         {
           id:5,
-          name:'The Rock Enigma',
+          name:'An Introduction to Neural Science',
           author:'WALTER C. HAMILTON',
           press:'Graham Press',
           time:'12.09.2010',
@@ -84,7 +85,7 @@ export default {
         },
         {
           id:6,
-          name:'An Introduction to Neural Science',
+          name:'Life in Transit',
           author:'SIMON ABRAMOVICH',
           press:'Graham Press',
           time:'12.09.2010',
@@ -94,7 +95,7 @@ export default {
         },
         {
           id:7,
-          name:'Life in Transit',
+          name:'Architecture',
           author:'MARINA DOKOVA',
           press:'Graham Press',
           time:'12.09.2010',
@@ -104,7 +105,7 @@ export default {
         },
         {
           id:8,
-          name:'Architecture',
+          name:'Lemon Rainbow',
           author:'RYAN COOPER',
           press:'Graham Press',
           time:'12.09.2010',
@@ -122,7 +123,16 @@ export default {
           img:'./image/book/cover9.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         }
-      ]
+      ],
+      openBookId: null
+    }
+  },
+  methods:{
+    onDetailClick(id){
+      this.openBookId = id
+    },
+    onCloseClick(){
+      this.openBookId = null
     }
   }
 }
@@ -153,6 +163,19 @@ export default {
       content: '';
       opacity: 0;
       transition: opacity 0.3s, visibility 0s 0.3s;
+    }
+    &::after {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 0;
+      background: rgba(51, 51, 51, 0.1);
+      content: '';
+      opacity: 0;
+      transition: opacity 0.3s, height 0s 0.3s;
+      backface-visibility: hidden;
     }
 
     .perspective {
@@ -188,20 +211,31 @@ export default {
         visibility: hidden;
         width: 20px;
         height: 100%;
-        background: #000;
         content: '';
-        -webkit-transform: translateX(-100%) rotateY(-90deg);
         transform: translateX(-100%) rotateY(-90deg);
-        -webkit-transform-origin: 100% 50%;
         transform-origin: 100% 50%;
-        -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(0, 0, 0, 0.01) 1%,
+          rgba(0, 0, 0, 0.1) 50%,
+          transparent 100%
+        );
       }
 
       .front {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.1) 0%,
+          rgba(211, 211, 211, 0.1) 5%,
+          rgba(255, 255, 255, 0.15) 5%,
+          rgba(255, 255, 255, 0.1) 9%,
+          rgba(0, 0, 0, 0.01) 100%
+        );
       }
 
       .inner {
@@ -209,6 +243,10 @@ export default {
         border-width: 3px;
         border-style: solid;
         background-color: #fff;
+
+        &.inner-left {
+          border-left: none;
+        }
       }
     }
 
@@ -241,6 +279,7 @@ export default {
       top: 100%;
       padding: 0 2em;
       text-align: center;
+      z-index: 5;
       h2 {
         margin: 1em 0 0 0;
         font-weight: 300;
@@ -276,6 +315,9 @@ export default {
       top: 0;
       width: 100%;
       visibility: hidden;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0s 0.3s;
 
       ul {
         margin: 0;
@@ -286,6 +328,9 @@ export default {
         li {
           margin: 0 0 10px;
           font-weight: 300;
+          opacity: 0;
+          transition: transform 0.3s, opacity 0.3s;
+          transform: translateX(100%);
 
           &:not(:first-child) {
             font-weight: 700;
@@ -313,37 +358,54 @@ export default {
       position: absolute;
       top: 10px;
       right: 10px;
-      visibility: hidden;
       width: 20px;
       height: 20px;
-      font-size: 0;
+      font-size: 20px;
       opacity: 0.6;
       cursor: pointer;
 
       &:hover {
         opacity: 1;
       }
+    }
+  }
 
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 1px;
-        height: 100%;
-        background: #333;
-        content: '';
-        transform: rotate(45deg);
-      }
+  .open {
+    &::before {
+      visibility: visible;
+      opacity: 1;
+      z-index: 2;
+      transition: opacity 0.3s, visibility 0s;
+    }
+    &::after {
+      height: 100%;
+      opacity: 1;
+      z-index: 1;
+      transition: opacity 0.3s;
+    }
 
-      &::before {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 1px;
-        height: 100%;
-        background: #333;
-        content: '';
-        transform: rotate(-45deg);
+    .perspective {
+      visibility: hidden;
+    }
+    .details {
+      visibility: visible;
+      opacity: 1;
+
+      ul li {
+        opacity: 1;
+        transform: translateX(0);
+        &:first-child {
+          transition-delay: 0.1s;
+        }
+        &:nth-child(2) {
+          transition-delay: 0.15s;
+        }
+        &:nth-child(3) {
+          transition-delay: 0.2s;
+        }
+        &:nth-child(4) {
+          transition-delay: 0.25s;
+        }
       }
     }
   }
