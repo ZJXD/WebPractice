@@ -3,7 +3,7 @@
     <figure class="book-box" v-for="book in books" :key="book.id" :class="{'open':openBookId===book.id}">
       <div class="perspective">
         <div class="book" data-book="book-1">
-          <div class="cover">
+          <div class="cover" :img-text="book.img1">
             <div class="front" :style="{background:'linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url('+book.img+')'}"></div>
             <div class="inner inner-left"></div>
           </div>
@@ -41,7 +41,8 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          img:'./image/book/cover1.svg'
+          img:'./image/book/cover1.svg',
+          img1:'./image/book/spine1.svg',
         },
         {
           id:2,
@@ -51,6 +52,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover2.svg',
+          img1:'./image/book/spine2.svg',
           detail:'Understanding the life of a worm can be enlightening to anybody. Dive into the micro cosmos of a creeping and burrowing invertebrate and learn how a limbless little creature reaches happiness.'
         },
         {
@@ -61,6 +63,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover3.svg',
+          img1:'./image/book/spine3.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
@@ -71,6 +74,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover4.svg',
+          img1:'./image/book/spine4.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
@@ -81,6 +85,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover5.svg',
+          img1:'./image/book/spine5.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
@@ -91,6 +96,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover6.svg',
+          img1:'./image/book/spine6.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
@@ -101,6 +107,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover7.svg',
+          img1:'./image/book/spine7.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
@@ -111,6 +118,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover8.svg',
+          img1:'./image/book/spine8.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
@@ -121,6 +129,7 @@ export default {
           time:'12.09.2010',
           total:'397 pages',
           img:'./image/book/cover9.svg',
+          img1:'./image/book/spine9.svg',
           detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         }
       ],
@@ -211,6 +220,14 @@ export default {
         visibility: hidden;
         width: 20px;
         height: 100%;
+        // background: linear-gradient(
+        //     to right,
+        //     transparent 0%,
+        //     rgba(0, 0, 0, 0.01) 1%,
+        //     rgba(0, 0, 0, 0.1) 50%,
+        //     transparent 100%
+        //   ),
+        //   url(attr('img-text'));
         content: '';
         transform: translateX(-100%) rotateY(-90deg);
         transform-origin: 100% 50%;

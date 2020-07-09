@@ -2,6 +2,19 @@
  * 原型
  */
 
+ // 内置数据类型的原型 ------------------------------------------------------------------
+console.log('Object 原型：',Object.prototype)
+console.log(Object.getPrototypeOf(null)) // 这样报错，下面可以
+console.log('null 原型：',Object.prototype.toString.call(null))
+console.log('null 原型：',typeof null)
+// 同理 undefined 原型
+console.log('undefined 原型：',Object.prototype.toString.call(undefined))
+console.log('undefined 原型：',typeof undefined)
+// Number
+console.log('Number 原型：',Object.getPrototypeOf(Number))
+console.log('Number 原型：',Object.prototype.toString.call(Number))
+console.log('Number 原型：',typeof Number)
+
 // class 是一种语法糖，和 function 效果一样（下面的例子可以看出来）-------------------------
 function Person(name, age) {
   this.name = name
