@@ -3,7 +3,7 @@
  */
 
  // 内置数据类型的原型 ------------------------------------------------------------------
-console.log('Object 原型：',Object.prototype)
+console.log('Object 原型：',typeof Object.prototype)
 console.log(Object.getPrototypeOf(null)) // 这样报错，下面可以
 console.log('null 原型：',Object.prototype.toString.call(null))
 console.log('null 原型：',typeof null)
