@@ -77,7 +77,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #2e3444;
 
   .title {
     font-size: 2rem;
