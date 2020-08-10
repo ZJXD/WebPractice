@@ -20,8 +20,10 @@ export default {
   },
   watch:{
     options:{
-      handle(newVal){
+      handler(newVal){
+        if (newVal) {
         this.setOptions(newVal)
+        }
       },
       immediate:true,
       deep:true
@@ -37,7 +39,7 @@ export default {
   methods:{
     setOptions(options){
       if(options&& this.chart){
-        this.chart.setOptions(options)
+        this.chart.setOption(options)
         this.chart.resize()
       }
     }

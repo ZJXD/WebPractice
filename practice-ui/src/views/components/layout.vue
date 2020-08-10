@@ -44,6 +44,9 @@ export default {
       }, {
         name: 'Book',
         routerLink: '/bookpre'
+      },{
+        name:'Fang',
+        routerLink:'/fang'
       }
       ],
       activeMenu: activeMenu,

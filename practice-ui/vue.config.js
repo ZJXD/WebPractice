@@ -60,7 +60,8 @@ module.exports = {
   // #region 开发环境配置
   devServer: {
     port: 9001, // 端口号配置
-    open: true
+    open: true,
+    hot:true
     // 代理配置
     // proxy: {
     //   '/api': {

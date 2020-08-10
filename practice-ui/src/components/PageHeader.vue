@@ -1,7 +1,7 @@
 <template>
   <div class="app-navbar">
     <!-- logo -->
-    <h2 class="logo">WebSocket 推送管理系统</h2>
+    <h2 class="logo">管理系统</h2>
   </div>
 </template>
 
