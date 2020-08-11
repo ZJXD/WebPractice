@@ -18,7 +18,7 @@ const AVG_OPTION = {
         trigger: 'axis'
     },
     legend: {
-        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        data: ['七贤郡', '劝学里', '大溪谷', '未来城', '和光尘樾','融信澜天','和昌府']
     },
     grid: {
         left: '3%',
@@ -74,19 +74,16 @@ export default {
         const communityData = {
           name:community.name,
           type:'line',
-          stack:'均价',
           data:[]
         }
         const communityCountData = {
           name:community.name,
           type:'line',
-          stack:'二手房套数',
           data:[]
         }
         const communityZuData = {
           name:community.name,
           type:'line',
-          stack:'出租套数',
           data:[]
         }
         tempDatas.map(item=>{
@@ -96,6 +93,10 @@ export default {
             communityCountData.data.push(d.fang_count)
             communityZuData.data.push(d.zu_cunt)
             d.avg_price <min && (min = d.avg_price)
+          }else{
+            communityData.data.push(null)
+            communityCountData.data.push(null)
+            communityZuData.data.push(null)
           }
         })
 

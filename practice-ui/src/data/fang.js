@@ -6,24 +6,38 @@ const FANG_LIST = {
     house_count:2058,
     // 建筑面积 ㎡
     area: 495000
-  }, {
+  }, 
+  {
     id: 2,
-    name: "劝学里"
-  }, {
+    name: "劝学里",
+    house_count:929,
+    area: 133495.5
+  }, 
+  {
     id: 3,
     name: "大溪谷"
-  }, {
-    id: 4,
-    name: "未来城"
-  }, {
-    id: 5,
-    name: "和光尘樾"
-  }, {
+  }, 
+  // {
+  //   id: 4,
+  //   name: "未来城",
+  //   house_count:5290,
+  //   area: 192536
+  // }, 
+  // {
+  //   id: 5,
+  //   name: "和光尘樾"
+  // }, 
+  {
     id: 6,
-    name: "融信澜天"
-  }, {
+    name: "融信澜天",
+    house_count:540,
+    area: 248791
+  }, 
+  {
     id: 7,
-    name: "和昌府"
+    name: "和昌府",
+    house_count:856,
+    area: 124659
   }],
   data: [
     {
@@ -120,11 +134,58 @@ const FANG_LIST = {
     {
     time: "2020-7-27",
     data: [
-      {
+    {
       communityId: 1,
       avg_price: 26558,
       fang_count: 115,
       zu_cunt:58
+    }
+  ]
+  },
+    {
+    time: "2020-8-11",
+    data: [
+    {
+      communityId: 1,
+      avg_price: 26337,
+      fang_count: 91,
+      zu_cunt:56
+    },
+    {
+      communityId: 2,
+      avg_price: 27140,
+      fang_count: 47,
+      zu_cunt:50
+    },
+    {
+      communityId: 3,
+      avg_price: 25164,
+      fang_count: 5,
+      zu_cunt:0
+    },
+    {
+      communityId: 4,
+      avg_price: 32175,
+      fang_count: 130,
+      zu_cunt:63
+    },
+    {
+      communityId: 5,
+      avg_price: 22637,
+      fang_count: 13,
+      zu_cunt:0
+    },
+    {
+      communityId: 6,
+      avg_price: 28200,
+      fang_count: 95,
+      zu_cunt:92
+    },
+    {
+      communityId: 7,
+      avg_price: 29381,
+      fang_count: 58,
+      zu_cunt:65
     }
   ]
   }

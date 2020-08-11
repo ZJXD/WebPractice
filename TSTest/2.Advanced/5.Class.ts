@@ -73,3 +73,39 @@ class Cat extends Animal {
     return 'Meow, ' + super.sayHi() // 调用父类方法
   }
 }
+
+// TS 类的用法 -------------------------------------------------------------
+/**
+ * 修饰符
+ *    1、public：修饰的属性或方法是公有的，可以在任何地方被访问
+ *       默认所有的属性和方法都是 public
+ *    2、private：修饰的属性或方法的私有的，不能再类外访问
+ *    3、protected：修饰的属性或方法是受保护的，只能类内部、子类访问
+ *
+ *    4、readonly：只读属性，属性声明或索引签名或构造函数中
+ */
+
+/**
+ * 抽象类
+ *     1、抽象类不能被实例化
+ *     2、抽象类中的抽象方法必须被子类实现
+ */
+
+abstract class AnimalAbs {
+  public name: string
+  public constructor(name: string) {
+    this.name = name
+  }
+  public abstract sayHi(): void
+}
+
+// 不能实例化
+// let cat1 = new Animal1('cat')
+class Cat1 extends AnimalAbs {
+  public sayHi(): void {
+    console.log('Meow, My name is ' + this.name)
+  }
+}
+
+let cat2: Cat1 = new Cat1('Tom')
+cat2.sayHi()
