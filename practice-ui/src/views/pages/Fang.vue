@@ -3,6 +3,9 @@
     <AppEchart :options="avgOption" class="avg-echart echart" />
     <AppEchart :options="esfOption" class="esf-echart echart" />
     <AppEchart :options="zuOption" class="zu-echart echart" />
+    <div class="detail">
+      *说明：每月1号、11号、21号更新数据
+    </div>
   </div>
 </template>
 
@@ -114,14 +117,14 @@ export default {
       this.avgOption = tempAvgOption
 
       const tempEsdOption = JSON.parse(JSON.stringify(AVG_OPTION))
-      tempEsdOption.title.text = '二手房折线图'
+      tempEsdOption.title.text = '二手房数量折线图'
       tempEsdOption.xAxis.data = timeList
       tempEsdOption.series = esfSeriesDatas
       tempEsdOption.yAxis.min = 0
       this.esfOption = tempEsdOption
 
       const tempZuOption = JSON.parse(JSON.stringify(AVG_OPTION))
-      tempZuOption.title.text = '出租房折线图'
+      tempZuOption.title.text = '出租房数量折线图'
       tempZuOption.xAxis.data = timeList
       tempZuOption.series = zuSeriesDatas
       tempZuOption.yAxis.min = 0
@@ -141,6 +144,10 @@ export default {
   .echart {
     width: 45%;
     height: 40%;
+  }
+
+  .detail {
+    color: #aaa;
   }
 }
 </style>
