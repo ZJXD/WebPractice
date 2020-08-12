@@ -7,6 +7,8 @@ import { Footer } from 'element-ui'
 import { Button } from 'element-ui'
 import { Input } from 'element-ui'
 import { Message } from 'element-ui'
+import { Select } from 'element-ui'
+import { Option } from 'element-ui'
 
 Vue.use(Container)
 Vue.use(Header)
@@ -14,5 +16,7 @@ Vue.use(Main)
 Vue.use(Footer)
 Vue.use(Button)
 Vue.use(Input)
+Vue.use(Select)
+Vue.use(Option)
 
 Vue.prototype.$message = Message
