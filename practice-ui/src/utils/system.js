@@ -10,20 +10,20 @@ export function getOS() {
   var sUserAgent = navigator.userAgent.toLowerCase()
 
   var isWin =
-    navigator.platform == 'Win32' ||
-    navigator.platform == 'Win64' ||
-    navigator.platform == 'wow64'
+    navigator.platform === 'Win32' ||
+    navigator.platform === 'Win64' ||
+    navigator.platform === 'wow64'
 
   var isMac =
-    navigator.platform == 'Mac68K' ||
-    navigator.platform == 'MacPPC' ||
-    navigator.platform == 'Macintosh' ||
-    navigator.platform == 'MacIntel'
+    navigator.platform === 'Mac68K' ||
+    navigator.platform === 'MacPPC' ||
+    navigator.platform === 'Macintosh' ||
+    navigator.platform === 'MacIntel'
   if (isMac) return 'Mac'
-  var isUnix = navigator.platform == 'X11' && !isWin && !isMac
+  var isUnix = navigator.platform === 'X11' && !isWin && !isMac
   if (isUnix) return 'Unix'
   var isLinux = String(navigator.platform).indexOf('Linux') > -1
-  var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) == 'android'
+  var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) === 'android'
   if (isLinux) {
     if (bIsAndroid) return 'Android'
     else return 'Linux'
@@ -82,24 +82,24 @@ export function getDigits() {
 export function getBrowser() {
   var rMsie = /(msie\s|trident\/7)([\w.]+)/
   var rTrident = /(trident)\/([\w.]+)/
-  var rEdge = /(chrome)\/([\w.]+)/ //IE
+  var rEdge = /(chrome)\/([\w.]+)/ // IE
 
-  var rFirefox = /(firefox)\/([\w.]+)/ //火狐
-  var rOpera = /(opera).+version\/([\w.]+)/ //旧Opera
-  var rNewOpera = /(opr)\/(.+)/ //新Opera 基于谷歌
-  var rChrome = /(chrome)\/([\w.]+)/ //谷歌
-  var rUC = /(chrome)\/([\w.]+)/ //UC
-  var rMaxthon = /(chrome)\/([\w.]+)/ //遨游
-  var r2345 = /(chrome)\/([\w.]+)/ //2345
-  var rQQ = /(chrome)\/([\w.]+)/ //QQ
-  //var rMetasr =  /(metasr)\/([\w.]+)/;//搜狗
+  var rFirefox = /(firefox)\/([\w.]+)/ // 火狐
+  var rOpera = /(opera).+version\/([\w.]+)/ // 旧Opera
+  var rNewOpera = /(opr)\/(.+)/ // 新Opera 基于谷歌
+  var rChrome = /(chrome)\/([\w.]+)/ // 谷歌
+  var rUC = /(chrome)\/([\w.]+)/ // UC
+  var rMaxthon = /(chrome)\/([\w.]+)/ // 遨游
+  var r2345 = /(chrome)\/([\w.]+)/ // 2345
+  var rQQ = /(chrome)\/([\w.]+)/ // QQ
+  // var rMetasr =  /(metasr)\/([\w.]+)/;//搜狗
   var rSafari = /version\/([\w.]+).*(safari)/
 
   var ua = navigator.userAgent.toLowerCase()
 
   var matchBS, matchBS2
 
-  //IE 低版
+  // IE 低版
   matchBS = rMsie.exec(ua)
   if (matchBS != null) {
     matchBS2 = rTrident.exec(ua)
@@ -108,7 +108,7 @@ export function getBrowser() {
         case '4.0':
           return {
             browser: 'Microsoft IE',
-            version: 'IE: 8' //内核版本号
+            version: 'IE: 8' // 内核版本号
           }
         case '5.0':
           return {
@@ -138,7 +138,7 @@ export function getBrowser() {
       }
     }
   }
-  //IE最新版
+  // IE最新版
   matchBS = rEdge.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -146,7 +146,7 @@ export function getBrowser() {
       version: 'Chrome/' + matchBS[2] || '0'
     }
   }
-  //UC浏览器
+  // UC浏览器
   matchBS = rUC.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -154,7 +154,7 @@ export function getBrowser() {
       version: 'Chrome/' + matchBS[2] || '0'
     }
   }
-  //火狐浏览器
+  // 火狐浏览器
   matchBS = rFirefox.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -162,7 +162,7 @@ export function getBrowser() {
       version: 'Firefox/' + matchBS[2] || '0'
     }
   }
-  //Oper浏览器
+  // Oper浏览器
   matchBS = rOpera.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -170,7 +170,7 @@ export function getBrowser() {
       version: 'Chrome/' + matchBS[2] || '0'
     }
   }
-  //遨游
+  // 遨游
   matchBS = rMaxthon.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -178,7 +178,7 @@ export function getBrowser() {
       version: 'Chrome/' + matchBS[2] || '0'
     }
   }
-  //2345浏览器
+  // 2345浏览器
   matchBS = r2345.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -186,7 +186,7 @@ export function getBrowser() {
       version: 'Chrome/ ' + matchBS[2] || '0'
     }
   }
-  //QQ浏览器
+  // QQ浏览器
   matchBS = rQQ.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     return {
@@ -194,7 +194,7 @@ export function getBrowser() {
       version: 'Chrome/' + matchBS[2] || '0'
     }
   }
-  //Safari（苹果）浏览器
+  // Safari（苹果）浏览器
   matchBS = rSafari.exec(ua)
   if (
     matchBS != null &&
@@ -207,7 +207,7 @@ export function getBrowser() {
       version: 'Safari/' + matchBS[1] || '0'
     }
   }
-  //谷歌浏览器
+  // 谷歌浏览器
   matchBS = rChrome.exec(ua)
   if (matchBS != null && !window.attachEvent) {
     matchBS2 = rNewOpera.exec(ua)
