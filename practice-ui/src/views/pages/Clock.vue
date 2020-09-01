@@ -7,13 +7,13 @@
       <span>6</span>
       <span>9</span>
       <div class="hour">
-        <div class="hr" :style="{transform:'rotateZ('+hrTrans+'deg)'}"></div>
+        <div class="hr" :style="{transform:'rotateZ('+hrTrans+'deg)'}" />
       </div>
       <div class="min">
-        <div class="mn" :style="{transform:'rotateZ('+mnTrans+'deg)'}"></div>
+        <div class="mn" :style="{transform:'rotateZ('+mnTrans+'deg)'}" />
       </div>
       <div class="sec">
-        <div class="sc" :style="{transform:'rotateZ('+scTrans+'deg)'}"></div>
+        <div class="sc" :style="{transform:'rotateZ('+scTrans+'deg)'}" />
       </div>
     </div>
   </div>
@@ -30,12 +30,6 @@ export default {
       timer: null
     }
   },
-  created() {
-    this.timer && clearInterval(this.timer)
-    this.timer = setInterval(() => {
-      this.curTime = new Date()
-    }, 1000);
-  },
   computed: {
     hrTrans() {
       return (this.curTime.getHours() + this.curTime.getMinutes() / 60) * 30
@@ -46,6 +40,12 @@ export default {
     scTrans() {
       return this.curTime.getSeconds() * DEG
     }
+  },
+  created() {
+    this.timer && clearInterval(this.timer)
+    this.timer = setInterval(() => {
+      this.curTime = new Date()
+    }, 1000)
   },
   beforDestroy() {
     this.timer && clearInterval(this.timer)

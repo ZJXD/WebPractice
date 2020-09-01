@@ -1,7 +1,9 @@
 <template>
   <el-container>
     <el-header class="app-header">
-      <h2 class="title">前端集锦</h2>
+      <h2 class="title">
+        前端集锦
+      </h2>
 
       <!--中间导航列表-->
       <dl class="nav_list">
@@ -16,8 +18,8 @@
       <router-view />
     </el-main>
     <el-footer class="app-footer">
-      <span>Copyright © {{currentYear}} ZHT</span>
-      <span>Powered by Vue Element On {{systemOS}}</span>
+      <span>Copyright © {{ currentYear }} ZHT</span>
+      <span>Powered by Vue Element On {{ systemOS }}</span>
     </el-footer>
   </el-container>
 </template>
@@ -44,9 +46,9 @@ export default {
       }, {
         name: 'Book',
         routerLink: '/bookpre'
-      },{
-        name:'Fang',
-        routerLink:'/fang'
+      }, {
+        name: 'Fang',
+        routerLink: '/fang'
       }
       ],
       activeMenu: activeMenu,
@@ -54,14 +56,14 @@ export default {
       systemOS: ''
     }
   },
+  watch: {
+    $route() {
+      this.activeMenu = this.$route.matched[1].path
+    }
+  },
   created() {
     this.currentYear = new Date().getFullYear()
     this.systemOS = getOS()
-  },
-  watch:{
-    $route(){
-      this.activeMenu = this.$route.matched[1].path
-    }
   },
   methods: {
     changePage(name) {

@@ -39,9 +39,9 @@ export default new Router({
           component: () => import('../views/pages/BookPreview.vue')
         },
         {
-          path:'/fang',
-          name:'fang',
-          component:()=>import('../views/pages/Fang.vue')
+          path: '/fang',
+          name: 'fang',
+          component: () => import('../views/pages/Fang.vue')
         }
       ]
     }

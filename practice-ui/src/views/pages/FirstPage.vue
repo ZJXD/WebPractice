@@ -3,7 +3,7 @@
     <div class="col_item">
       <div class="test_item">
         <label>扇形示例</label>
-        <div class="sector"></div>
+        <div class="sector" />
       </div>
       <div class="test_item">
         <label>事件捕获</label>
@@ -15,39 +15,45 @@
       <div class="test_item">
         <label>图片排列</label>
         <div class="pic_test">
-          <div class="pic_item">图片</div>
-          <div class="pic_item">图片</div>
-          <div class="pic_item">图片</div>
+          <div class="pic_item">
+            图片
+          </div>
+          <div class="pic_item">
+            图片
+          </div>
+          <div class="pic_item">
+            图片
+          </div>
         </div>
       </div>
       <div class="test_item">
         <label>线性进度条</label>
-        <div class="line_bar"></div>
-        <div class="line_bar overflow"></div>
+        <div class="line_bar" />
+        <div class="line_bar overflow" />
       </div>
       <div class="test_item">
         <label>箭头</label>
         <div class="arrow_list">
-          <div class="arrow arrow-top"></div>
-          <div class="arrow arrow-right"></div>
-          <div class="arrow arrow-bottom"></div>
-          <div class="arrow arrow-left"></div>
+          <div class="arrow arrow-top" />
+          <div class="arrow arrow-right" />
+          <div class="arrow arrow-bottom" />
+          <div class="arrow arrow-left" />
         </div>
       </div>
     </div>
     <div class="col_item">
       <div class="test_item">
         <label>时钟</label>
-        <clock></clock>
+        <clock />
       </div>
       <div class="test_item">
         <label>线性渐变</label>
-        <div class="line-gradient"></div>
-        <div class="radial-gradient"></div>
+        <div class="line-gradient" />
+        <div class="radial-gradient" />
       </div>
       <div class="test_item">
         <label>canvas 文字粒子</label>
-        <canvasText></canvasText>
+        <canvasText />
       </div>
     </div>
   </div>
@@ -75,7 +81,7 @@ export default {
      */
     throttle(fn, delay = 100) {
       let timer = null
-      return function () {
+      return function() {
         if (timer) return
         timer = setTimeout(() => {
           fn.apply(this, arguments)
@@ -89,8 +95,8 @@ export default {
      */
     throttle1(fn, delay = 100) {
       let last = 0
-      return function () {
-        let curr = +new Date()
+      return function() {
+        const curr = +new Date()
         if (curr - last > delay) {
           fn.apply(this, arguments)
           last = curr
@@ -106,7 +112,7 @@ export default {
      */
     debounce(fn, delay = 200) {
       let timer = null
-      return function () {
+      return function() {
         timer && clearTimeout(timer)
         timer = setTimeout(() => {
           fn.apply(this, arguments)
@@ -120,9 +126,9 @@ export default {
      *  整个过程第一次，中间没有连续触发后，再次触发第一次不会执行
      */
     debocess1(fn, delay = 200) {
-      let timer = null,
-        last = 0
-      return function () {
+      let timer = null
+      let last = 0
+      return function() {
         if (last <= 0) {
           fn.apply(this.arguments)
         }
@@ -133,8 +139,8 @@ export default {
         }, delay)
         last = +new Date()
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

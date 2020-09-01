@@ -1,26 +1,28 @@
 <template>
   <div class="book-page">
-    <figure class="book-box" v-for="book in books" :key="book.id" :class="{'open':openBookId===book.id}">
+    <figure v-for="book in books" :key="book.id" class="book-box" :class="{'open':openBookId===book.id}">
       <div class="perspective">
         <div class="book" data-book="book-1">
           <div class="cover" :img-text="book.img1">
-            <div class="front" :style="{background:'linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url('+book.img+')'}"></div>
-            <div class="inner inner-left"></div>
+            <div class="front" :style="{background:'linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url('+book.img+')'}" />
+            <div class="inner inner-left" />
           </div>
-          <div class="inner inner-right"></div>
+          <div class="inner inner-right" />
         </div>
       </div>
-      <div class="buttons"><a>Look inside</a><a @click="onDetailClick(book.id)">Details</a></div>
+      <div class="buttons">
+        <a>Look inside</a><a @click="onDetailClick(book.id)">Details</a>
+      </div>
       <figcaption>
-        <h2>{{book.name}} <span>{{book.author}}</span></h2>
+        <h2>{{ book.name }} <span>{{ book.author }}</span></h2>
       </figcaption>
       <div class="details">
         <span class="close-details" @click="onCloseClick">&#10005;</span>
         <ul>
-          <li>{{book.detail}}</li>
-          <li>{{book.press}}</li>
-          <li>{{book.time}}</li>
-          <li>{{book.total}}</li>
+          <li>{{ book.detail }}</li>
+          <li>{{ book.press }}</li>
+          <li>{{ book.time }}</li>
+          <li>{{ book.total }}</li>
         </ul>
       </div>
     </figure>
@@ -30,117 +32,117 @@
 <script>
 
 export default {
-  data(){
-    return{
-      books:[
+  data() {
+    return {
+      books: [
         {
-          id:1,
-          name:'9 Lives',
-          author:'Andrew Hudson',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          img:'./image/book/cover1.svg',
-          img1:'./image/book/spine1.svg',
+          id: 1,
+          name: '9 Lives',
+          author: 'Andrew Hudson',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          img: './image/book/cover1.svg',
+          img1: './image/book/spine1.svg'
         },
         {
-          id:2,
-          name:'Life of a worm',
-          author:'Will Flores',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover2.svg',
-          img1:'./image/book/spine2.svg',
-          detail:'Understanding the life of a worm can be enlightening to anybody. Dive into the micro cosmos of a creeping and burrowing invertebrate and learn how a limbless little creature reaches happiness.'
+          id: 2,
+          name: 'Life of a worm',
+          author: 'Will Flores',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover2.svg',
+          img1: './image/book/spine2.svg',
+          detail: 'Understanding the life of a worm can be enlightening to anybody. Dive into the micro cosmos of a creeping and burrowing invertebrate and learn how a limbless little creature reaches happiness.'
         },
         {
-          id:3,
-          name:'Structure and Space',
-          author:'Christa Hausmann',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover3.svg',
-          img1:'./image/book/spine3.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 3,
+          name: 'Structure and Space',
+          author: 'Christa Hausmann',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover3.svg',
+          img1: './image/book/spine3.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          id:4,
-          name:'The Rock Enigma',
-          author:'CAROL WINTER',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover4.svg',
-          img1:'./image/book/spine4.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 4,
+          name: 'The Rock Enigma',
+          author: 'CAROL WINTER',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover4.svg',
+          img1: './image/book/spine4.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          id:5,
-          name:'An Introduction to Neural Science',
-          author:'WALTER C. HAMILTON',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover5.svg',
-          img1:'./image/book/spine5.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 5,
+          name: 'An Introduction to Neural Science',
+          author: 'WALTER C. HAMILTON',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover5.svg',
+          img1: './image/book/spine5.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          id:6,
-          name:'Life in Transit',
-          author:'SIMON ABRAMOVICH',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover6.svg',
-          img1:'./image/book/spine6.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 6,
+          name: 'Life in Transit',
+          author: 'SIMON ABRAMOVICH',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover6.svg',
+          img1: './image/book/spine6.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          id:7,
-          name:'Architecture',
-          author:'MARINA DOKOVA',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover7.svg',
-          img1:'./image/book/spine7.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 7,
+          name: 'Architecture',
+          author: 'MARINA DOKOVA',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover7.svg',
+          img1: './image/book/spine7.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          id:8,
-          name:'Lemon Rainbow',
-          author:'RYAN COOPER',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover8.svg',
-          img1:'./image/book/spine8.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 8,
+          name: 'Lemon Rainbow',
+          author: 'RYAN COOPER',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover8.svg',
+          img1: './image/book/spine8.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
-          id:9,
-          name:'Digital Nomads',
-          author:'KENNY GARCIA',
-          press:'Graham Press',
-          time:'12.09.2010',
-          total:'397 pages',
-          img:'./image/book/cover9.svg',
-          img1:'./image/book/spine9.svg',
-          detail:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          id: 9,
+          name: 'Digital Nomads',
+          author: 'KENNY GARCIA',
+          press: 'Graham Press',
+          time: '12.09.2010',
+          total: '397 pages',
+          img: './image/book/cover9.svg',
+          img1: './image/book/spine9.svg',
+          detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         }
       ],
       openBookId: null
     }
   },
-  methods:{
-    onDetailClick(id){
+  methods: {
+    onDetailClick(id) {
       this.openBookId = id
     },
-    onCloseClick(){
+    onCloseClick() {
       this.openBookId = null
     }
   }

@@ -1,8 +1,12 @@
 <template>
   <div class="animation-page">
-    <div class="transform-box"></div>
-    <div class="transition-box">CSS3 过渡</div>
-    <div class="animation-box">CSS3 动画</div>
+    <div class="transform-box" />
+    <div class="transition-box">
+      CSS3 过渡
+    </div>
+    <div class="animation-box">
+      CSS3 动画
+    </div>
   </div>
 </template>
 

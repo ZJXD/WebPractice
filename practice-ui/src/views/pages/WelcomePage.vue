@@ -1,10 +1,12 @@
 <template>
   <div class="hello">
-    <img alt="Vue logo" src="../../assets/logo.png" />
-    <h1 class="text-red-600">{{ msg }}</h1>
+    <img alt="Vue logo" src="../../assets/logo.png">
+    <h1 class="text-red-600">
+      {{ msg }}
+    </h1>
     <p>
-      平时在看到一些好的示例、效果等都会尝试下，每每新建一个 HTML文件<br />
-      久而久之文件越来越多也越难维护<br />
+      平时在看到一些好的示例、效果等都会尝试下，每每新建一个 HTML文件<br>
+      久而久之文件越来越多也越难维护<br>
       顺其自然就看到了这个
     </p>
     <h3>走一波小示例</h3>
@@ -60,16 +62,16 @@ export default {
       routerList: [
         {
           name: 'FirstPage',
-          routerLink: '/firstPage',
-        },
-      ],
+          routerLink: '/firstPage'
+        }
+      ]
     }
   },
   methods: {
     toFirstPage() {
       this.$router.push(this.routerList[0].routerLink)
-    },
-  },
+    }
+  }
 }
 </script>
 

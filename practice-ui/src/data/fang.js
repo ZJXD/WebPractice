@@ -284,6 +284,53 @@ const FANG_LIST = {
           zu_cunt: 57
         }
       ]
+    },
+    {
+      time: '2020-9-1',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 26109,
+          fang_count: 98,
+          zu_cunt: 83
+        },
+        {
+          communityId: 2,
+          avg_price: 27042,
+          fang_count: 67,
+          zu_cunt: 39
+        },
+        {
+          communityId: 3,
+          avg_price: 24850,
+          fang_count: 5,
+          zu_cunt: 0
+        },
+        {
+          communityId: 4,
+          avg_price: 33057,
+          fang_count: 96,
+          zu_cunt: 41
+        },
+        {
+          communityId: 5,
+          avg_price: 19452,
+          fang_count: 19,
+          zu_cunt: 0
+        },
+        {
+          communityId: 6,
+          avg_price: 28303,
+          fang_count: 107,
+          zu_cunt: 100
+        },
+        {
+          communityId: 7,
+          avg_price: 29682,
+          fang_count: 78,
+          zu_cunt: 46
+        }
+      ]
     }
   ],
   // 链家数据
@@ -362,6 +409,47 @@ const FANG_LIST = {
           communityId: 6,
           avg_price: 29927,
           fang_count: 100
+        },
+        {
+          communityId: 7,
+          avg_price: 29272,
+          fang_count: 41
+        }
+      ]
+    },
+    {
+      time: '2020-9-1',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 25327,
+          fang_count: 103
+          // zu_cunt:56
+        },
+        {
+          communityId: 2,
+          avg_price: 25679,
+          fang_count: 62
+        },
+        {
+          communityId: 3,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 4,
+          avg_price: 32509,
+          fang_count: 34
+        },
+        {
+          communityId: 5,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 6,
+          avg_price: 29927,
+          fang_count: 99
         },
         {
           communityId: 7,

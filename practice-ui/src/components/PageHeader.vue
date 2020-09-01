@@ -1,7 +1,9 @@
 <template>
   <div class="app-navbar">
     <!-- logo -->
-    <h2 class="logo">管理系统</h2>
+    <h2 class="logo">
+      管理系统
+    </h2>
   </div>
 </template>
 
@@ -10,14 +12,14 @@ export default {
   components: {},
   data() {
     return {
-      username: localStorage.username ? localStorage.username : '',
+      username: localStorage.username ? localStorage.username : ''
     }
   },
   methods: {
     logout() {
       this.$store.dispatch('user/FedLogOut')
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -57,12 +57,12 @@ const threeBezier = (t, p1, p2, cp1, cp2) => {
   const [cp1X, cp1Y] = cp1
   const [cp2X, cp2Y] = cp2
 
-  let x =
+  const x =
     startX * Math.pow(1 - t, 3) +
     3 * cp1X * t * Math.pow(1 - t, 2) +
     3 * cp2X * Math.pow(t, 2) * (1 - t) +
     endX * Math.pow(t, 3)
-  let y =
+  const y =
     startY * Math.pow(1 - t, 3) +
     3 * cp1Y * Math.pow(1 - t, 2) * t +
     3 * cp2Y * (1 - t) * Math.pow(t, 2) +

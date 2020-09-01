@@ -1,7 +1,7 @@
 <template>
   <!-- canvas 文字粒子动画 -->
   <div class="canvas-text-page">
-    <canvas id="canvas-main"></canvas>
+    <canvas id="canvas-main" />
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
     getFontInfo(ctx) {
       // 这里获取的 imageData 是一个 Uint8ClampedArray，用于查看初始像素数组
       // 每个像素用4个1 bytes 代表（RGBA），所以下面变量每次加 4
-      let imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT).data
+      const imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT).data
       const particles = []
       for (let x = 0; x < WIDTH; x += 4) {
         for (let y = 0; y < HEIGHT; y += 4) {
@@ -76,7 +76,7 @@ export default {
         }
       }
       return particles
-    },
+    }
   }
 }
 </script>

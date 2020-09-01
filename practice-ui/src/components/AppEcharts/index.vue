@@ -1,44 +1,44 @@
 <template>
-  <div class="app-echarts" ref="echart"></div>
+  <div ref="echart" class="app-echarts" />
 </template>
 
 <script>
 import echarts from 'echarts'
 
 export default {
-  name:'appEcharts',
-  props:{
-    options:{
-      type:Object,
-      defaule:()=>{}
+  name: 'AppEcharts',
+  props: {
+    options: {
+      type: Object,
+      default: () => {}
     }
   },
-  data(){
-    return{
+  data() {
+    return {
       chart: null
     }
   },
-  watch:{
-    options:{
-      handler(newVal){
+  watch: {
+    options: {
+      handler(newVal) {
         if (newVal) {
-        this.setOptions(newVal)
+          this.setOptions(newVal)
         }
       },
-      immediate:true,
-      deep:true
+      immediate: true,
+      deep: true
     }
   },
-  mounted(){
+  mounted() {
     this.chart = echarts.init(this.$refs.echart)
     this.setOptions(this.options)
-    window.onresize = ()=>{
+    window.onresize = () => {
       this.chart && this.chart.resize()
     }
   },
-  methods:{
-    setOptions(options){
-      if(options&& this.chart){
+  methods: {
+    setOptions(options) {
+      if (options && this.chart) {
         this.chart.setOption(options)
         this.chart.resize()
       }
