@@ -331,6 +331,53 @@ const FANG_LIST = {
           zu_cunt: 46
         }
       ]
+    },
+    {
+      time: '2020-9-11',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 26092,
+          fang_count: 85,
+          zu_cunt: 96
+        },
+        {
+          communityId: 2,
+          avg_price: 27142,
+          fang_count: 67,
+          zu_cunt: 37
+        },
+        {
+          communityId: 3,
+          avg_price: 24570,
+          fang_count: 6,
+          zu_cunt: 0
+        },
+        {
+          communityId: 4,
+          avg_price: 33137,
+          fang_count: 147,
+          zu_cunt: 49
+        },
+        {
+          communityId: 5,
+          avg_price: 19342,
+          fang_count: 25,
+          zu_cunt: 0
+        },
+        {
+          communityId: 6,
+          avg_price: 28237,
+          fang_count: 181,
+          zu_cunt: 96
+        },
+        {
+          communityId: 7,
+          avg_price: 29833,
+          fang_count: 97,
+          zu_cunt: 53
+        }
+      ]
     }
   ],
   // 链家数据
@@ -454,6 +501,47 @@ const FANG_LIST = {
         {
           communityId: 7,
           avg_price: 29272,
+          fang_count: 41
+        }
+      ]
+    },
+    {
+      time: '2020-9-11',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 25615,
+          fang_count: 103
+          // zu_cunt:56
+        },
+        {
+          communityId: 2,
+          avg_price: 25747,
+          fang_count: 60
+        },
+        {
+          communityId: 3,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 4,
+          avg_price: 32757,
+          fang_count: 35
+        },
+        {
+          communityId: 5,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 6,
+          avg_price: 30250,
+          fang_count: 98
+        },
+        {
+          communityId: 7,
+          avg_price: 29484,
           fang_count: 41
         }
       ]
