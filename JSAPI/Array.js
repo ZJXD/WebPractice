@@ -366,7 +366,7 @@ console.log('obj6 sort:', Array.prototype.sort.call(obj6))
 
 /**
  * splice() ---------------------------------------------------------------------------（二级标题）
- * splice 用于新元素替换就元素，来改变数组；要维持原数组的引用，就地删除或者新增；
+ * splice 用于新元素替换旧元素，来改变数组；要维持原数组的引用，就地删除或者新增；
  * 语法：array.splice(start,deleteCount,[item1[,item2]....])
  */
 

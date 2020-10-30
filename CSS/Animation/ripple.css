@@ -49,6 +49,11 @@ body {
   animation-delay: calc(0.5s*var(--i));
 }
 
+/* .container .box:nth-child(1) span {
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+} */
+
 .container .box:nth-child(2) span {
   border: none;
   background-color: rgba(0, 255, 0, 0.2);

@@ -30,7 +30,7 @@
 $('#foo')
 jQuery('#foo')
 
-// 上面两个在 js 中没有问题，但是在 ts 中会报错，应该 ts 不知道 jQuery 是什么
+// 上面两个在 js 中没有问题，但是在 ts 中会报错，因为 ts 不知道 jQuery 是什么
 // 所以需要声明，有了下面的声明就不会报错（可以注释看看）
 declare var jQuery: (selector: string) => any
 declare var $: (selector: string) => any
