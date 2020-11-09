@@ -1,5 +1,5 @@
 <template>
-  <div class="fang-page">
+  <div class="fang-page p20">
     <AppEchart :options="avgOption" class="avg-echart echart" />
     <AppEchart :options="esfOption" class="esf-echart echart" />
     <AppEchart :options="zuOption" class="zu-echart echart" />

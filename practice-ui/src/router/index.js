@@ -24,9 +24,9 @@ export default new Router({
           component: FirstPage
         },
         {
-          path: '/signature',
-          name: 'signature',
-          component: () => import('../views/pages/signature.vue')
+          path: '/canvas',
+          name: 'canvas',
+          component: () => import('../views/pages/Canvas/index.vue')
         },
         {
           path: '/animation',

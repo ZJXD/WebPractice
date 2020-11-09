@@ -1,5 +1,5 @@
 <template>
-  <div class="box_div">
+  <div class="box_div p20">
     <div class="col_item">
       <div class="test_item">
         <label>扇形示例</label>

@@ -1,13 +1,11 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 1893300 */
-  src: url('//at.alicdn.com/t/font_1893300_x2avclsdq9.eot');
-  src: url('//at.alicdn.com/t/font_1893300_x2avclsdq9.eot?#iefix')
+  src: url('../font/iconfont.eot');
+  src: url('../font/iconfont.eot?#iefix')
       format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1893300_x2avclsdq9.svg#iconfont') format('svg');
+    url('../font//iconfont.woff') format('woff'),
+    url('../font//iconfont.ttf') format('truetype')
 }
 
 // 数组样式

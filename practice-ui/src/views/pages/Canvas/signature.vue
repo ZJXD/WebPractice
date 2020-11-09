@@ -1,6 +1,5 @@
 <template>
   <div class="signature-page">
-    <h2>电子签名</h2>
     <div ref="canvasHW" class="canvas-box">
       <el-button size="mini" @click="overwrite">
         重绘
@@ -12,7 +11,7 @@
 </template>
 
 <script>
-import FullScreen from '../../utils/FullScreen'
+import FullScreen from '@/utils/FullScreen'
 
 export default {
   data() {
@@ -212,7 +211,7 @@ export default {
 
 <style lang="scss" scoped>
 .signature-page {
-  h2 {
+  h3 {
     text-align: center;
   }
 

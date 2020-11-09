@@ -1,5 +1,5 @@
 <template>
-  <div class="animation-page">
+  <div class="animation-page p20">
     <div class="transform-box" />
     <div class="transition-box">
       CSS3 过渡

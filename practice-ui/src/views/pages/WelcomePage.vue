@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello p20">
     <img alt="Vue logo" src="../../assets/logo.png">
     <h1 class="text-red-600">
       {{ msg }}

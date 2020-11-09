@@ -7,10 +7,8 @@
 
       <!--中间导航列表-->
       <dl class="nav_list">
-        <dt v-for="(item, index) in navList" :key="index" class="nav-item" :class="activeMenu===item.routerLink?'active':''" @click="changePage(item.routerLink)">
-          <router-link :to="item.routerLink">
-            {{ item.name }}
-          </router-link>
+        <dt v-for="item in navList" :key="item.id" class="nav-item" :class="activeMenu===item.routerLink?'active':''" @click="changePage(item.routerLink)">
+          {{ item.name }}
         </dt>
       </dl>
     </el-header>
@@ -32,21 +30,27 @@ export default {
     const activeMenu = this.$route.matched[1].path
     return {
       navList: [{
+        id: 1,
         name: '首页',
         routerLink: '/welcome'
       }, {
+        id: 2,
         name: '示例一',
         routerLink: '/firstPage'
       }, {
-        name: '电子签名',
-        routerLink: '/signature'
+        id: 3,
+        name: 'Canvas',
+        routerLink: '/canvas'
       }, {
+        id: 4,
         name: '动画',
         routerLink: '/animation'
       }, {
+        id: 5,
         name: 'Book',
         routerLink: '/bookpre'
       }, {
+        id: 6,
         name: 'Fang',
         routerLink: '/fang'
       }
@@ -66,8 +70,9 @@ export default {
     this.systemOS = getOS()
   },
   methods: {
-    changePage(name) {
-      this.activeMenu = name
+    changePage(path) {
+      this.activeMenu = path
+      this.$router.push(path)
     }
   }
 }
@@ -98,7 +103,10 @@ export default {
     color: rgb(48, 128, 254);
     .nav-item {
       width: 135px;
+      height: 40px;
+      line-height: 40px;
       overflow: hidden;
+      cursor: pointer;
       &.active {
         font-size: 1.5rem;
         font-weight: bold;
@@ -120,6 +128,7 @@ export default {
 }
 
 .app-main {
+  padding: 0;
   background-color: #fff;
 }
 
