@@ -16,14 +16,18 @@ export class Crood {
 
 // 流星类
 export class ShootingStar {
-  constructor(startPoint = new Crood(), endPoint = new Crood(), size = 1, speed = 200, onDistory = null) {
+  constructor(startPoint = new Crood(), endPoint = new Crood(), size = 1, speed = 200, onDistory = null, distance = 0) {
     this.startPoint = startPoint
     this.endPoint = endPoint
     this.size = size
     this.speed = speed
+    this.distance = distance
 
     // 飞行时间
-    this.dur = Math.sqrt(Math.pow(this.endPoint.x - this.startPoint.x, 2) + Math.pow(this.endPoint.y - this.startPoint.y, 2)) * 1000 / this.speed
+    if (this.distance <= 0) {
+      this.distance = Math.sqrt(Math.pow(this.endPoint.x - this.startPoint.x, 2) + Math.pow(this.endPoint.y - this.startPoint.y, 2))
+    }
+    this.dur = this.distance * 1000 / this.speed
     this.passTime = 0
     this.prePoint = this.startPoint.copy()
     this.nowPoint = this.startPoint.copy()
@@ -72,12 +76,12 @@ export class MeteorShower {
 
   createStar() {
     const angle = Math.PI / 3
-    const distance = Math.random() * 800
+    const distance = Math.random() * 600
     const startPoint = new Crood(Math.random() * this.cvs.width | 0, Math.random() * 100 | 0)
     const endPoint = new Crood(startPoint.x + distance * Math.cos(angle), startPoint.y + distance * Math.sin(angle))
     const size = Math.random() * 2
     const speed = Math.random() * 400 + 100
-    const star = new ShootingStar(startPoint, endPoint, size, speed, () => { this.remove(star) })
+    const star = new ShootingStar(startPoint, endPoint, size, speed, () => { this.remove(star) }, distance)
     return star
   }
 
@@ -86,7 +90,7 @@ export class MeteorShower {
   }
 
   update(delay) {
-    if (!this.stop && this.starts.length < 20) {
+    if (!this.stop && this.starts.length < 40) {
       this.starts.push(this.createStar())
     }
     this.starts.map(star => star.draw(this.ctx, delay))
@@ -97,8 +101,10 @@ export class MeteorShower {
     this.tick()
   }
 
-  stop() {
+  stopStarts() {
     this.stop = true
+    // 释放 GPU 资源占用(否则GPU一直在，不会释放)
+    this.starts.map(star => star.distory())
   }
 
   tick() {
@@ -121,7 +127,8 @@ export class MeteorShower {
       this.frame = requestAnimationFrame(_tick)
 
       this.ctx.save()
-      this.ctx.fillStyle = 'rgba(0,0,0,0.2)'
+      this.ctx.fillStyle = 'rgba(0,0,0,0.6)'
+      this.ctx.globalCompositeOperation = 'destination-in'
       this.ctx.fillRect(0, 0, this.cvs.width, this.cvs.height)
       this.ctx.restore()
 

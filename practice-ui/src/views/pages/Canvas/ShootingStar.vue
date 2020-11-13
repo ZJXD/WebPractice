@@ -1,6 +1,6 @@
 <template>
-  <div class="star-page">
-    <canvas ref="canvasEle" class="canvas-box" width="2000" height="1400" />
+  <div ref="canvasBox" class="star-page">
+    <canvas ref="canvasEle" class="canvas-box" />
   </div>
 </template>
 
@@ -19,13 +19,22 @@ export default {
   },
   mounted() {
     const canvas = this.$refs.canvasEle
+    // 这里设置的是 canvas 元素属性的 width 和 height
+    // 如果不设置，默认 300*150 ，这里可能会和 CSS 设置的 width、height 不一致，这样就会变形
+    canvas.height = this.$refs.canvasBox.offsetHeight
+    canvas.width = this.$refs.canvasBox.offsetWidth
+
     this.canvasTxt = canvas.getContext('2d')
     this.stars = new MeteorShower(canvas, this.canvasTxt)
     this.stars.start()
+
     // this.star = new ShootingStar(new Crood(10, 10), new Crood(400, 400), 0.5, 200, () => {
     //   cancelAnimationFrame(this.frame)
     // })
     // this.tick()
+  },
+  beforeDestroy() {
+    this.stars && this.stars.stopStarts()
   },
   methods: {
     tick() {
@@ -53,6 +62,10 @@ export default {
 .star-page {
   width: 100%;
   height: calc(100% - 61px);
+  background: url('../../../assets/images/nightSky1.jpg');
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: 100% 100%;
 
   .canvas-box {
     width: 100%;

@@ -18,14 +18,16 @@
 <script>
 import Signature from './signature'
 import ShootingStar from './ShootingStar'
+import BasicGraphic from './BasicGraphic'
 
 export default {
-  components: { Signature, ShootingStar },
+  components: { Signature, ShootingStar, BasicGraphic },
   data() {
     return {
       menuList: [
         { id: 1, code: '1', name: '电子签名', icon: '&#xe6ca;', component: 'Signature' },
-        { id: 2, code: '2', name: '流星雨', icon: '&#xe62c;', component: 'ShootingStar' }
+        { id: 2, code: '2', name: '流星雨', icon: '&#xe62c;', component: 'ShootingStar' },
+        { id: 3, code: '3', name: '基础图形', icon: '&#xe67b;', component: 'BasicGraphic' }
       ],
       activeIndex: '1',
       curComponents: 'Signature'
