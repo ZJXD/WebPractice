@@ -43,6 +43,8 @@ export class ShootingStar {
       this.startPoint.y + (this.endPoint.y - this.startPoint.y) * percent
     )
 
+    // 呼应注释：1
+    ctx.globalCompositeOperation = 'source-over'
     // canvas 样式
     ctx.strokeStyle = '#fff'
     ctx.lineCap = 'round'
@@ -126,11 +128,13 @@ export class MeteorShower {
       this.lastTime = now
       this.frame = requestAnimationFrame(_tick)
 
-      this.ctx.save()
+      // this.ctx.save()
       this.ctx.fillStyle = 'rgba(0,0,0,0.6)'
       this.ctx.globalCompositeOperation = 'destination-in'
       this.ctx.fillRect(0, 0, this.cvs.width, this.cvs.height)
-      this.ctx.restore()
+      // 为的是清除上面的设置，globalCompositeOperation 特别是这个，恢复默认，否则无法正常显示
+      // 当这个注释后，见“呼应注释：1”，这个代码相同效果
+      // this.ctx.restore()
 
       this.update(delay)
     }

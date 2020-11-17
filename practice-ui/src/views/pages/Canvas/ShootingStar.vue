@@ -1,5 +1,5 @@
 <template>
-  <div ref="canvasBox" class="star-page">
+  <div ref="canvasPar" class="star-page">
     <canvas ref="canvasEle" class="canvas-box" />
   </div>
 </template>
@@ -21,8 +21,8 @@ export default {
     const canvas = this.$refs.canvasEle
     // 这里设置的是 canvas 元素属性的 width 和 height
     // 如果不设置，默认 300*150 ，这里可能会和 CSS 设置的 width、height 不一致，这样就会变形
-    canvas.height = this.$refs.canvasBox.offsetHeight
-    canvas.width = this.$refs.canvasBox.offsetWidth
+    canvas.height = this.$refs.canvasPar.offsetHeight
+    canvas.width = this.$refs.canvasPar.offsetWidth
 
     this.canvasTxt = canvas.getContext('2d')
     this.stars = new MeteorShower(canvas, this.canvasTxt)

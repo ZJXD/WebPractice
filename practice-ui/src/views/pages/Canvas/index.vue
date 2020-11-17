@@ -19,15 +19,19 @@
 import Signature from './signature'
 import ShootingStar from './ShootingStar'
 import BasicGraphic from './BasicGraphic'
+import SunAnimation from './SunAnimation'
+import Panorama from './Panorama'
 
 export default {
-  components: { Signature, ShootingStar, BasicGraphic },
+  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama },
   data() {
     return {
       menuList: [
         { id: 1, code: '1', name: '电子签名', icon: '&#xe6ca;', component: 'Signature' },
         { id: 2, code: '2', name: '流星雨', icon: '&#xe62c;', component: 'ShootingStar' },
-        { id: 3, code: '3', name: '基础图形', icon: '&#xe67b;', component: 'BasicGraphic' }
+        { id: 3, code: '3', name: '基础图形', icon: '&#xe67b;', component: 'BasicGraphic' },
+        { id: 4, code: '4', name: '太阳系', icon: '&#xe66f;', component: 'SunAnimation' },
+        { id: 5, code: '5', name: '全景图', icon: '&#xe60c;', component: 'Panorama' }
       ],
       activeIndex: '1',
       curComponents: 'Signature'

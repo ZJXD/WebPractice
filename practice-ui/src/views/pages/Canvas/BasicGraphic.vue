@@ -1,5 +1,5 @@
 <template>
-  <div ref="canvasBox" class="graphic-page">
+  <div ref="canvasPar" class="graphic-page">
     <canvas ref="canvasEle" class="canvas-box" />
   </div>
 </template>
@@ -14,8 +14,8 @@ export default {
   },
   mounted() {
     const canvas = this.$refs.canvasEle
-    canvas.width = this.$refs.canvasBox.offsetWidth
-    canvas.height = this.$refs.canvasBox.offsetHeight
+    canvas.width = this.$refs.canvasPar.offsetWidth
+    canvas.height = this.$refs.canvasPar.offsetHeight
     this.canvasTxt = canvas.getContext('2d')
     this.canvasTxt.font = '18px Georgia'
     this.drawArc()
