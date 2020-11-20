@@ -6,10 +6,13 @@ function resolve(dir) {
 
 module.exports = {
 // css 配置
-  css:{
-    loaderOptions:{
-      postcss:{
-        plugins:[require('tailwindcss'),require('autoprefixer')]
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [require('tailwindcss'), require('autoprefixer'), require('postcss-pxtorem')({
+          rootValue: 16,
+          propList: ['*']
+        })]
       }
     }
   },
@@ -41,14 +44,14 @@ module.exports = {
     //   })
 
     // 方法2
-    config.module.rules.delete("svg"); //重点:删除默认配置中处理svg,
-    //const svgRule = config.module.rule('svg')
-    //svgRule.uses.clear()
+    config.module.rules.delete('svg') // 重点:删除默认配置中处理svg,
+    // const svgRule = config.module.rule('svg')
+    // svgRule.uses.clear()
     config.module
       .rule('svg-sprite-loader')
       .test(/\.svg$/)
       .include
-      .add(resolve('src/assets/image/book')) //处理svg目录
+      .add(resolve('src/assets/image/book')) // 处理svg目录
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
@@ -61,7 +64,7 @@ module.exports = {
   devServer: {
     port: 9001, // 端口号配置
     open: true,
-    hot:true
+    hot: true
     // 代理配置
     // proxy: {
     //   '/api': {

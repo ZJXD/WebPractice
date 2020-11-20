@@ -32,9 +32,9 @@ export default {
   mounted() {
     this.chart = echarts.init(this.$refs.echart)
     this.setOptions(this.options)
-    window.onresize = () => {
+    window.resizeCallbackList.push(() => {
       this.chart && this.chart.resize()
-    }
+    })
   },
   methods: {
     setOptions(options) {

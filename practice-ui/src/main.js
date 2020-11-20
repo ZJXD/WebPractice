@@ -7,6 +7,7 @@ import 'assets/styles/index.scss'
 // import 'tailwindcss/tailwind.css'
 import 'tailwindcss/components.css'
 import 'tailwindcss/utilities.css'
+// import './utils/rem.js'
 
 Vue.config.productionTip = false
 

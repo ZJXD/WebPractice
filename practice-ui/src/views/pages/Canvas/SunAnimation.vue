@@ -27,6 +27,7 @@ export default {
     canvas.width = this.$refs.canvasPar.offsetWidth
     canvas.height = this.$refs.canvasPar.offsetHeight
     this.canvasTxt = canvas.getContext('2d')
+    this.canvasTxt.translate(canvas.width / 2 - 150, canvas.height / 2 - 150)
 
     this.frame = requestAnimationFrame(this.drawSun)
   },
@@ -80,7 +81,7 @@ export default {
   .canvas-box {
     width: 100%;
     height: 100%;
-    background-color: #888;
+    // background-color: #888;
   }
 }
 </style>

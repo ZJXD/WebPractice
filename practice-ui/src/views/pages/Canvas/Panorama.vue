@@ -93,7 +93,7 @@ export default {
   .canvas-box {
     width: 100%;
     height: 100%;
-    background-color: #888;
+    // background-color: #888;
   }
 }
 </style>

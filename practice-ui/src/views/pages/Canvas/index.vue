@@ -21,9 +21,13 @@ import ShootingStar from './ShootingStar'
 import BasicGraphic from './BasicGraphic'
 import SunAnimation from './SunAnimation'
 import Panorama from './Panorama'
+import BillAnimation from './BillAnimation'
+
+// WebGL
+import StardWebGL from './WebGL/StardWebGL'
 
 export default {
-  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama },
+  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama, BillAnimation, StardWebGL },
   data() {
     return {
       menuList: [
@@ -31,7 +35,9 @@ export default {
         { id: 2, code: '2', name: '流星雨', icon: '&#xe62c;', component: 'ShootingStar' },
         { id: 3, code: '3', name: '基础图形', icon: '&#xe67b;', component: 'BasicGraphic' },
         { id: 4, code: '4', name: '太阳系', icon: '&#xe66f;', component: 'SunAnimation' },
-        { id: 5, code: '5', name: '全景图', icon: '&#xe60c;', component: 'Panorama' }
+        { id: 5, code: '5', name: '全景图', icon: '&#xe60c;', component: 'Panorama' },
+        { id: 6, code: '6', name: '弹球', icon: '', component: 'BillAnimation' },
+        { id: 7, code: '7', name: 'WebGL 开始', icon: '', component: 'StardWebGL' }
       ],
       activeIndex: '1',
       curComponents: 'Signature'
