@@ -3,18 +3,37 @@
     <AppEchart :options="avgOption" class="avg-echart echart" />
     <AppEchart :options="esfOption" class="esf-echart echart" />
     <AppEchart :options="zuOption" class="zu-echart echart" />
-    <div class="detail">
-      *说明：每月1号、11号、21号更新数据
+    <div class="detail-box echart">
+      <div class="remark">
+        *说明：每月1号、11号、21号更新数据
+        <el-select v-model="selectedCode" size="small" @change="dataFromChange">
+          <el-option v-for="item in dataFromList" :key="item.id" :label="item.name" :value="item.code" />
+        </el-select>
+      </div>
+      <div class="log-box">
+        <div v-for="item in logDetail" :key="item.id" class="log-item">
+          <div class="row">
+            <label>时间：</label>
+            <span>
+              {{ item.time }}
+            </span>
+          </div>
+          <div class="row">
+            <label>内容：</label>
+            <span>
+              {{ item.detail }}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-    <el-select v-model="selectedCode" size="small" @change="dataFromChange">
-      <el-option v-for="item in dataFromList" :key="item.id" :label="item.name" :value="item.code" />
-    </el-select>
   </div>
 </template>
 
 <script>
 import AppEchart from '@/components/AppEcharts'
 import fangData from '@/data/fang.js'
+import Log from '@/data/fangLog.js'
 
 const AVG_OPTION = {
   title: {
@@ -67,7 +86,8 @@ export default {
         { id: 1, name: '安居客', code: 'anjukeData' },
         { id: 2, name: '链家', code: 'lianjiaData' }
       ],
-      selectedCode: 'anjukeData'
+      selectedCode: 'anjukeData',
+      logDetail: Log
     }
   },
   mounted() {
@@ -153,12 +173,36 @@ export default {
   flex-wrap: wrap;
 
   .echart {
-    width: 45%;
-    height: 40%;
+    width: 46%;
+    height: 45%;
   }
 
-  .detail {
-    color: #aaa;
+  .detail-box {
+    .remark {
+      display: flex;
+      justify-content: space-around;
+      color: #aaa;
+    }
+
+    .log-box {
+      height: 100%;
+      overflow-y: auto;
+      font-size: 14px;
+
+      .row {
+        display: flex;
+        text-align: left;
+      }
+      label {
+        flex: 0 1 60px;
+        display: inline-block;
+        text-align: right;
+      }
+      span {
+        flex: 1;
+        display: inline-block;
+      }
+    }
   }
 }
 </style>

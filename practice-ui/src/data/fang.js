@@ -427,7 +427,7 @@ const FANG_LIST = {
       ]
     },
     {
-      time: '2020-9-21',
+      time: '2020-10-21',
       data: [
         {
           communityId: 1,
@@ -474,7 +474,7 @@ const FANG_LIST = {
       ]
     },
     {
-      time: '2020-10-21',
+      time: '2020-11-21',
       data: [
         {
           communityId: 1,
@@ -729,7 +729,7 @@ const FANG_LIST = {
       ]
     },
     {
-      time: '2020-9-21',
+      time: '2020-10-21',
       data: [
         {
           communityId: 1,
@@ -770,7 +770,7 @@ const FANG_LIST = {
       ]
     },
     {
-      time: '2020-10-21',
+      time: '2020-11-21',
       data: [
         {
           communityId: 1,

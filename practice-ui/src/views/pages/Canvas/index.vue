@@ -36,8 +36,8 @@ export default {
         { id: 3, code: '3', name: '基础图形', icon: '&#xe67b;', component: 'BasicGraphic' },
         { id: 4, code: '4', name: '太阳系', icon: '&#xe66f;', component: 'SunAnimation' },
         { id: 5, code: '5', name: '全景图', icon: '&#xe60c;', component: 'Panorama' },
-        { id: 6, code: '6', name: '弹球', icon: '', component: 'BillAnimation' },
-        { id: 7, code: '7', name: 'WebGL 开始', icon: '', component: 'StardWebGL' }
+        { id: 6, code: '6', name: '弹球', icon: '&#xe668;', component: 'BillAnimation' },
+        { id: 7, code: '7', name: 'WebGL 开始', icon: '&#xe60a;', component: 'StardWebGL' }
       ],
       activeIndex: '1',
       curComponents: 'Signature'
