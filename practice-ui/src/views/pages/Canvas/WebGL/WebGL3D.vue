@@ -125,25 +125,82 @@ export default {
       const positionBuffer = this.glContext.createBuffer()
 
       const vertices = [
-        1.0, 1.0,
-        -1.0, 1.0,
-        1.0, -1.0,
-        -1.0, -1.0
+        // Front face
+        -1.0, -1.0, 1.0,
+        1.0, -1.0, 1.0,
+        1.0, 1.0, 1.0,
+        -1.0, 1.0, 1.0,
+
+        // Back face
+        -1.0, -1.0, -1.0,
+        -1.0, 1.0, -1.0,
+        1.0, 1.0, -1.0,
+        1.0, -1.0, -1.0,
+
+        // Top face
+        -1.0, 1.0, -1.0,
+        -1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0,
+        1.0, 1.0, -1.0,
+
+        // Bottom face
+        -1.0, -1.0, -1.0,
+        1.0, -1.0, -1.0,
+        1.0, -1.0, 1.0,
+        -1.0, -1.0, 1.0,
+
+        // Right face
+        1.0, -1.0, -1.0,
+        1.0, 1.0, -1.0,
+        1.0, 1.0, 1.0,
+        1.0, -1.0, 1.0,
+
+        // Left face
+        -1.0, -1.0, -1.0,
+        -1.0, -1.0, 1.0,
+        -1.0, 1.0, 1.0,
+        -1.0, 1.0, -1.0
       ]
       this.glContext.bindBuffer(this.glContext.ARRAY_BUFFER, positionBuffer)
       this.glContext.bufferData(this.glContext.ARRAY_BUFFER, new Float32Array(vertices), this.glContext.STATIC_DRAW)
 
+      const indexBuffer = this.glContext.createBuffer()
+      const cubeVertexIndices = [
+        0, 1, 2, 0, 2, 3, // front
+        4, 5, 6, 4, 6, 7, // back
+        8, 9, 10, 8, 10, 11, // top
+        12, 13, 14, 12, 14, 15, // bottom
+        16, 17, 18, 16, 18, 19, // right
+        20, 21, 22, 20, 22, 23 // left
+      ]
+      this.glContext.bindBuffer(this.glContext.ELEMENT_ARRAY_BUFFER, indexBuffer)
+      this.glContext.bufferData(this.glContext.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeVertexIndices), this.glContext.STATIC_DRAW)
+
       const colorBuffer = this.glContext.createBuffer()
       const colors = [
-        1.0, 1.0, 1.0, 1.0,
-        1.0, 0.0, 0.0, 1.0,
-        0.0, 1.0, 0.0, 1.0,
-        0.0, 0.0, 1.0, 1.0
+        [1.0, 1.0, 1.0, 1.0], // Front face: white
+        [1.0, 0.0, 0.0, 1.0], // Back face: red
+        [0.0, 1.0, 0.0, 1.0], // Top face: green
+        [0.0, 0.0, 1.0, 1.0], // Bottom face: blue
+        [1.0, 1.0, 0.0, 1.0], // Right face: yellow
+        [1.0, 0.0, 1.0, 1.0] // Left face: purple
       ]
+      let generatedColors = []
+      // 每一个面颜色一样
+      // for (let i = 0; i < 6; i++) {
+      //   const c = colors[i]
+      //   for (let j = 0; j < 4; j++) {
+      //     generatedColors = generatedColors.concat(c)
+      //   }
+      // }
+      // 每一个面上的各个顶点颜色不一样
+      for (let j = 0; j < 4; j++) {
+        generatedColors = generatedColors.concat(...colors)
+      }
       this.glContext.bindBuffer(this.glContext.ARRAY_BUFFER, colorBuffer)
-      this.glContext.bufferData(this.glContext.ARRAY_BUFFER, new Float32Array(colors), this.glContext.STATIC_DRAW)
+      this.glContext.bufferData(this.glContext.ARRAY_BUFFER, new Float32Array(generatedColors), this.glContext.STATIC_DRAW)
 
-      this.buffers = { position: positionBuffer, color: colorBuffer }
+      this.buffers = { position: positionBuffer, color: colorBuffer, index: indexBuffer }
     },
 
     drawScene() {
@@ -168,10 +225,10 @@ export default {
       const modelViewMatrix = mat4.create()
 
       mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -6])
-      mat4.rotate(modelViewMatrix, modelViewMatrix, this.squareRotation, [0, 0, 1])
+      mat4.rotate(modelViewMatrix, modelViewMatrix, this.squareRotation, [1, 1, 0])
 
       {
-        const numComponents = 2
+        const numComponents = 3
         const type = this.glContext.FLOAT
         const normalize = false
         const stride = 0
@@ -205,19 +262,17 @@ export default {
         )
         this.glContext.enableVertexAttribArray(this.programInfo.attribLocations.vertexColorAttribute)
       }
+      this.glContext.bindBuffer(this.glContext.ELEMENT_ARRAY_BUFFER, this.buffers.index)
 
       this.glContext.useProgram(this.programInfo.program)
 
       this.glContext.uniformMatrix4fv(this.programInfo.uniformLocations.projectionMatrix, false, projectionMatrix)
       this.glContext.uniformMatrix4fv(this.programInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix)
-      {
-        const offset = 0
-        const vertexCount = 4
-        this.glContext.drawArrays(this.glContext.TRIANGLE_STRIP, offset, vertexCount)
-      }
+
+      this.glContext.drawElements(this.glContext.TRIANGLES, 36, this.glContext.UNSIGNED_SHORT, 0)
     },
 
-    // 正方形动画
+    // 动画
     animationSquare(now) {
       now *= 0.001
       this.timeDelay = now - this.lastTime

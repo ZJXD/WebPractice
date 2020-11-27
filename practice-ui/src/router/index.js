@@ -36,7 +36,7 @@ export default new Router({
         {
           path: '/bookpre',
           name: 'bookpre',
-          component: () => import('../views/pages/BookPreview.vue')
+          component: () => import('../views/pages/Book/BookPreview.vue')
         },
         {
           path: '/fang',

@@ -1,17 +1,19 @@
 <template>
   <div class="book-page">
-    <figure v-for="book in books" :key="book.id" class="book-box" :class="{'open':openBookId===book.id}">
+    <figure v-for="book in books" :key="book.id" class="book-box" :class="{'detail-open':openBookId===book.id&&(!showInside),'big-open':showInside&&openBookId===book.id}">
       <div class="perspective">
         <div class="book" data-book="book-1">
+          <div class="left-img" :style="{backgroundImage:'linear-gradient(to right,transparent 0%,rgba(0, 0, 0, 0.01) 1%,rgba(0, 0, 0, 0.1) 50%,transparent 100%),url('+book.img1+')'}" />
           <div class="cover" :img-text="book.img1">
-            <div class="front" :style="{background:'linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url('+book.img+')'}" />
+            <div class="front" :style="{backgroundImage:'linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%),url('+book.img+')'}" />
             <div class="inner inner-left" />
           </div>
           <div class="inner inner-right" />
         </div>
       </div>
+
       <div class="buttons">
-        <a>Look inside</a><a @click="onDetailClick(book.id)">Details</a>
+        <a @click="onInsideClick(book.id)">Look inside</a><a @click="onDetailClick(book.id)">Details</a>
       </div>
       <figcaption>
         <h2>{{ book.name }} <span>{{ book.author }}</span></h2>
@@ -26,12 +28,16 @@
         </ul>
       </div>
     </figure>
+
+    <BookInside v-show="showInside" :class="{'inside-open':insideState === 1}" />
   </div>
 </template>
 
 <script>
+import BookInside from './BookInside'
 
 export default {
+  components: { BookInside },
   data() {
     return {
       books: [
@@ -135,7 +141,9 @@ export default {
           detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         }
       ],
-      openBookId: null
+      openBookId: null,
+      showInside: false,
+      insideState: 2
     }
   },
   methods: {
@@ -144,6 +152,11 @@ export default {
     },
     onCloseClick() {
       this.openBookId = null
+    },
+    onInsideClick(id) {
+      this.openBookId = id
+      this.showInside = true
+      this.insideState = 1
     }
   }
 }
@@ -151,7 +164,8 @@ export default {
 
 <style lang="scss" scoped>
 .book-page {
-  max-width: 990px;
+  position: relative;
+  max-width: 1200px;
   height: 100%;
   margin: 0 auto;
 
@@ -162,8 +176,10 @@ export default {
     padding: 45px 0;
     max-width: 75%;
     width: 324px;
+    color: rgb(100, 105, 106);
     vertical-align: top;
     &::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -171,29 +187,27 @@ export default {
       width: 100%;
       height: 100%;
       background: #fff;
-      content: '';
       opacity: 0;
       transition: opacity 0.3s, visibility 0s 0.3s;
     }
     &::after {
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
       width: 100%;
       height: 0;
       background: rgba(51, 51, 51, 0.1);
-      content: '';
       opacity: 0;
       transition: opacity 0.3s, height 0s 0.3s;
       backface-visibility: hidden;
+      z-index: -1;
     }
 
     .perspective {
       position: relative;
       width: 100%;
       height: 100%;
-      perspective: 1800px;
     }
 
     .book {
@@ -205,66 +219,57 @@ export default {
 
       div {
         position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
-        backface-visibility: hidden;
+        // backface-visibility: hidden;
       }
       .cover {
         z-index: 10;
         transform-origin: 0% 50%;
         transform-style: preserve-3d;
+        transition: transform 0.5s;
       }
 
-      .cover::before {
+      .left-img {
         position: absolute;
         left: 0;
         z-index: 10;
         visibility: hidden;
         width: 20px;
         height: 100%;
-        // background: linear-gradient(
-        //     to right,
-        //     transparent 0%,
-        //     rgba(0, 0, 0, 0.01) 1%,
-        //     rgba(0, 0, 0, 0.1) 50%,
-        //     transparent 100%
-        //   ),
-        //   url(attr('img-text'));
-        content: '';
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
         transform: translateX(-100%) rotateY(-90deg);
         transform-origin: 100% 50%;
         transform-style: preserve-3d;
-        background: linear-gradient(
-          to right,
-          transparent 0%,
-          rgba(0, 0, 0, 0.01) 1%,
-          rgba(0, 0, 0, 0.1) 50%,
-          transparent 100%
-        );
+        transition: transform 0.5s;
       }
 
       .front {
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
-        background: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.1) 0%,
-          rgba(211, 211, 211, 0.1) 5%,
-          rgba(255, 255, 255, 0.15) 5%,
-          rgba(255, 255, 255, 0.1) 9%,
-          rgba(0, 0, 0, 0.01) 100%
-        );
       }
 
       .inner {
         display: none;
         border-width: 3px;
         border-style: solid;
+        border-color: lawngreen;
         background-color: #fff;
+        transform-origin: left center;
 
         &.inner-left {
+          border-right: none;
+          // transform: rotateY(180deg);
+        }
+
+        &.inner-right {
           border-left: none;
+          background-color: #f9f9f9;
         }
       }
     }
@@ -301,8 +306,8 @@ export default {
       z-index: 5;
       h2 {
         margin: 1em 0 0 0;
-        font-weight: 300;
         font-size: 1.8em;
+        font-weight: 300;
         font-family: 'Abril Fatface', serif;
 
         span {
@@ -333,10 +338,11 @@ export default {
       position: absolute;
       top: 0;
       width: 100%;
+      padding-left: 44px;
       visibility: hidden;
       z-index: 5;
       opacity: 0;
-      transition: opacity 0.3s, visibility 0s 0.3s;
+      transition: opacity 0.5s, visibility 0s 0.5s;
 
       ul {
         margin: 0;
@@ -348,7 +354,7 @@ export default {
           margin: 0 0 10px;
           font-weight: 300;
           opacity: 0;
-          transition: transform 0.3s, opacity 0.3s;
+          transition: transform 0.5s, opacity 0.5s;
           transform: translateX(100%);
 
           &:not(:first-child) {
@@ -389,23 +395,32 @@ export default {
     }
   }
 
-  .open {
+  .detail-open {
     &::before {
       visibility: visible;
       opacity: 1;
       z-index: 2;
-      transition: opacity 0.3s, visibility 0s;
+      transition: opacity 0.5s, visibility 0s;
     }
     &::after {
       height: 100%;
       opacity: 1;
       z-index: 1;
-      transition: opacity 0.3s;
+      transition: opacity 0.5s;
     }
 
     .perspective {
-      visibility: hidden;
+      z-index: 6;
+      .left-img {
+        visibility: visible;
+        transform: translateX(-56px) rotateY(0deg);
+      }
+
+      .cover {
+        transform: translateX(-36px) rotateY(85deg);
+      }
     }
+
     .details {
       visibility: visible;
       opacity: 1;
@@ -417,15 +432,86 @@ export default {
           transition-delay: 0.1s;
         }
         &:nth-child(2) {
-          transition-delay: 0.15s;
-        }
-        &:nth-child(3) {
           transition-delay: 0.2s;
         }
+        &:nth-child(3) {
+          transition-delay: 0.3s;
+        }
         &:nth-child(4) {
-          transition-delay: 0.25s;
+          transition-delay: 0.4s;
         }
       }
+    }
+  }
+
+  .big-open {
+    .inner-right {
+      display: inline-block !important;
+      // transform: scale(1.5);
+      // transition: transform 1s;
+      animation: openSmallRight 1s forwards;
+    }
+    @keyframes openSmallRight {
+      0% {
+      }
+      100% {
+        transform: scale(1.5);
+      }
+    }
+
+    .cover {
+      .inner-left {
+        display: inline-block !important;
+      }
+      // transform: scale(1.5) rotateY(-180deg);
+      // transition: transform 1s;
+      animation: openSmall 1s forwards;
+    }
+    @keyframes openSmall {
+      0% {
+      }
+      100% {
+        transform: scale(1.5) rotateY(180deg);
+      }
+    }
+  }
+
+  .inside-open {
+    animation: InsideOpen 1s forwards;
+  }
+  .inside-close {
+    animation: InsideClose 1.5s forwards;
+  }
+
+  @keyframes InsideOpen {
+    0% {
+    }
+    45% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes InsideClose {
+    0%,
+    15% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    55% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.95);
     }
   }
 }

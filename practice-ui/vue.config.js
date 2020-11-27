@@ -29,7 +29,7 @@ module.exports = {
       .set('utils', resolve('src/utils'))
       .set('style', resolve('src/style'))
 
-    /** 设置处理svg的router，使svg可直接用名称调用，无需路径 */
+    /** 设置处理svg的 loader，使svg可直接用名称调用，无需路径 */
     // svg rule loader
     // 方法1
     // const svgRule = config.module.rule('svg') // 找到svg-loader

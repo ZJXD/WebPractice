@@ -25,9 +25,10 @@ import BillAnimation from './BillAnimation'
 
 // WebGL
 import StardWebGL from './WebGL/StardWebGL'
+import WebGL3D from './WebGL/WebGL3D'
 
 export default {
-  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama, BillAnimation, StardWebGL },
+  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama, BillAnimation, StardWebGL, WebGL3D },
   data() {
     return {
       menuList: [
@@ -37,7 +38,8 @@ export default {
         { id: 4, code: '4', name: '太阳系', icon: '&#xe66f;', component: 'SunAnimation' },
         { id: 5, code: '5', name: '全景图', icon: '&#xe60c;', component: 'Panorama' },
         { id: 6, code: '6', name: '弹球', icon: '&#xe668;', component: 'BillAnimation' },
-        { id: 7, code: '7', name: 'WebGL 开始', icon: '&#xe60a;', component: 'StardWebGL' }
+        { id: 7, code: '7', name: 'WebGL 开始', icon: '&#xe60a;', component: 'StardWebGL' },
+        { id: 8, code: '8', name: 'WebGL3D', icon: '&#xe624;', component: 'WebGL3D' }
       ],
       activeIndex: '1',
       curComponents: 'Signature'
