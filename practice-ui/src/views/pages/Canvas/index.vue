@@ -26,9 +26,11 @@ import BillAnimation from './BillAnimation'
 // WebGL
 import StardWebGL from './WebGL/StardWebGL'
 import WebGL3D from './WebGL/WebGL3D'
+import WebGL3DTexture from './WebGL/WebGL3DTexture'
+import WebGLMouseMove from './WebGL/WebGLMouseMove'
 
 export default {
-  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama, BillAnimation, StardWebGL, WebGL3D },
+  components: { Signature, ShootingStar, BasicGraphic, SunAnimation, Panorama, BillAnimation, StardWebGL, WebGL3D, WebGL3DTexture, WebGLMouseMove },
   data() {
     return {
       menuList: [
@@ -39,7 +41,9 @@ export default {
         { id: 5, code: '5', name: '全景图', icon: '&#xe60c;', component: 'Panorama' },
         { id: 6, code: '6', name: '弹球', icon: '&#xe668;', component: 'BillAnimation' },
         { id: 7, code: '7', name: 'WebGL 开始', icon: '&#xe60a;', component: 'StardWebGL' },
-        { id: 8, code: '8', name: 'WebGL3D', icon: '&#xe624;', component: 'WebGL3D' }
+        { id: 8, code: '8', name: 'WebGL3D', icon: '&#xe624;', component: 'WebGL3D' },
+        { id: 9, code: '9', name: '纹理', icon: '&#xe82c;', component: 'WebGL3DTexture' },
+        { id: 10, code: '10', name: '鼠标移动', icon: '&#xe67f;', component: 'WebGLMouseMove' }
       ],
       activeIndex: '1',
       curComponents: 'Signature'

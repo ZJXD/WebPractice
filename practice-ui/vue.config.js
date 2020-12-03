@@ -79,7 +79,7 @@ module.exports = {
   }
   // #endregion
 
-  //  : {
+  //  webpackconfig: {
   //   externals: {
   //     AMap: 'AMap', // 高德地图配置
   //     T: 'T', // 天地图
