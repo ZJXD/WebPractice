@@ -1,0 +1,116 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffd3;
+}
+
+.loading{
+  position: relative;
+  width: 300px;
+  height: 400px;
+  transform-style: preserve-3d;
+  background-color: #fff;
+}
+.loading::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+.loading::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #45abc4;
+}
+
+.loading div{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.loading div:nth-child(1){
+  animation: animate 4s linear infinite;
+}
+.loading div:nth-child(2){
+  animation: animate 4s 0.5s linear infinite;
+}
+.loading div:nth-child(3){
+  animation: animate 4s 1s linear infinite;
+}
+.loading div:nth-child(4){
+  animation: animate 4s 1.5s linear infinite;
+}
+.loading div:nth-child(5){
+  animation: animate 4s 2s linear infinite;
+}
+.loading div:nth-child(6){
+  animation: animate 4s 2.5s linear infinite;
+}
+.loading div:nth-child(7){
+  animation: animate 4s 3s linear infinite;
+}
+.loading div:nth-child(8){
+  animation: animate 4s 3.5s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+    transform: perspective(1000px) translate3d(0,0,0);
+    opacity: 1;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0);
+  }
+  25%{
+    transform:perspective(1000px) translate3d(-50px,-50px,50px);
+    opacity: 1;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  }
+  35%,100%{
+    transform: perspective(1000px) translate3d(-700px,-50px,-100px);
+    opacity: 0;
+  }
+}
+
+.loading div span{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 8em;
+  font-weight: 600;
+  background-color: #45abc4;
+}
+.loading div span:nth-child(2){
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 50%;
+  background-color: transparent;
+  overflow: hidden;
+}

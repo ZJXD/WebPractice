@@ -1,0 +1,24 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+.container{
+  width: 100%;
+}
+
+.container .box{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .box img{
+  max-width: 80%;box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}

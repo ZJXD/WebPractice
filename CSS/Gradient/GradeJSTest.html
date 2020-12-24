@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./GradeJSTes.css">
+  <title>GradeJS 颜色渐变</title>
+</head>
+<body>
+  <div class="container">
+    <div class="box"><img src="./images/grade-1.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-2.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-9.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-4.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-10.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-11.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-7.jpg" alt=""></div>
+    <div class="box"><img src="./images/grade-12.jpg" alt=""></div>
+  </div>
+
+  <!-- <script src="https://unpkg.com/grade-js/docs/dist/grade.js"></script> -->
+  <script src="./Grade.js"></script>
+  <script type="text/javascript">
+      window.addEventListener('load', function(){
+          /*
+              A NodeList of all your image containers (Or a single Node).
+              The library will locate an <img /> within each
+              container to create the gradient from.
+           */
+           GradeList(document.querySelectorAll('.box'))
+      })
+  </script>
+</body>
+</html>

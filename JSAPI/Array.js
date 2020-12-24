@@ -881,4 +881,11 @@ function dedupArray(arr){
   return tempArr
 }
 
+// 方法 3（reduce）
+const arr30_reduce = arr30.reduce((pre,next)=>{
+  pre.includes(next) || pre.push(next)
+  return pre
+},[])
+console.log('arr30_reduce:',arr30_reduce)
+
 //#endregion
