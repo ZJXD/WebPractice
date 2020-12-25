@@ -5,7 +5,7 @@
     <AppEchart :options="zuOption" class="zu-echart echart" />
     <div class="detail-box echart">
       <div class="remark">
-        *说明：每月1号、11号、21号更新数据
+        *说明：每月1号、11号、21号更新数据(202012月25号起一月一更)
         <el-select v-model="selectedCode" size="small" @change="dataFromChange">
           <el-option v-for="item in dataFromList" :key="item.id" :label="item.name" :value="item.code" />
         </el-select>
@@ -192,6 +192,9 @@ export default {
       .row {
         display: flex;
         text-align: left;
+        &:first-child span {
+          color: #f00;
+        }
       }
       label {
         flex: 0 1 60px;
