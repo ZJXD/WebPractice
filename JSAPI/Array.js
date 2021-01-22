@@ -26,14 +26,21 @@ console.log(arr1_1)
 // 2、当只有一个且为数字的参数时，表示创建数组长度；0个或两个及以上，作为数组元素；
 arr1 = Array(4)
 console.log('array 1 参数:', arr1)
+arr1 = Array()
+console.log('array 0 参数:', arr1)
+arr1 = Array(1,2,3,4)
+console.log('array 2 参数以上:', arr1)
 //#endregion
 
 /**
- * ES6 新增构造函数方法 ---------------------------------------------------------------------------（一级标题）
+ * ES6 新增构造函数方法 -------------------------------------------------------------------------（一级标题）
  */
 //#region ES6 新增构造函数方法
 // 一、Array.of：用于将参数依次转化为数组的项；即使只有一个参数也是作为数组的项；若是需要数组包裹元素，推荐这个；
-let arr2 = Array.of(4, 5, 6)
+// 和 Array 区别(一个参数)
+let arr2 = Array.of(2)
+console.log('arr2 by Array.of:', arr2)
+arr2 = Array.of(4, 5, 6)
 console.log('arr2 by Array.of:', arr2)
 
 /**
@@ -47,12 +54,13 @@ console.log('arr2 by Array.of:', arr2)
 let obj = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
 let arr3 = Array.from(
   obj,
-  function (value, index) {
+  function(value, index){
     console.log(value, index, this, arguments.length)
     return value.repeat(3) // 必须指定返回，否则返回的是 undefined
   },
   obj
 )
+console.log(arr3)
 
 // 不需要指定 this 时，完全可以用箭头函数，也不用返回
 let arr4 = Array.from(obj, (value) => value.repeat(3))
@@ -103,15 +111,12 @@ console.log('isPrototypeOf:', Array.prototype.isPrototypeOf(arr5))
 // Object.getPrototypeOf
 console.log('getPrototypeOf', Object.getPrototypeOf(arr5) === Array.prototype)
 // Object.prototype.toString
-console.log(
-  'prototype.tostring',
-  Object.prototype.toString.apply(arr5) === '[object Array]'
-)
+console.log('prototype.tostring',Object.prototype.toString.apply(arr5) === '[object Array]')
 
 // 对于上面判断是否是数组，有一些情况下是不行的，如下：
 // 1、如下
-let arr6 = { __proto__: Array.prototype } // 上面的监测都是 true，但是这一块 arr6 就部署数组
-// 2、在多页面后系统间，由于每一个页面的 Array 引用地址都不一样，在其他页面监测本页面的数组，会不准确
+let arr6 = { __proto__: Array.prototype } // 上面的判断都是 true，但是这一块 arr6 就不是数组
+// 2、在多页面系统中，由于每一个页面的 Array 引用地址都不一样，在其他页面监测本页面的数组，会不准确
 // 可以验证 2 的方法是：浏览器 F12 在 console 中打印：Object.getOwnPropertyNames(Array)，输出的结果不一样。
 // 3、但是对于最后一种方法：Object.prototype.toString 是可以的（可以去撩面试官）
 
@@ -154,6 +159,7 @@ console.log('Array property:', Object.getOwnPropertyNames(Array.prototype))
 /**
  * pop() ---------------------------------------------------------------------------（二级标题）
  * pop() 用于删除数组中的最后一个元素，并返回这个元素；如果是栈的话，相当于在栈顶弹出
+ * 语法：array.pop()
  */
 let arr7 = ['cat', 'dog', 'cow', 'chicken', 'mouse']
 let popItem = arr7.pop()
@@ -180,7 +186,7 @@ let obj1_1 = {
   2: 'cow',
   3: 'chicken',
   4: 'mouse',
-  length: 0,
+  length: 5,
 }
 let objPopItem = Array.prototype.pop.call(obj1_1)
 console.log('obj1 poped:', obj1_1)
@@ -203,26 +209,54 @@ pushInt = Array.prototype.push.apply(arr8, arr8_1)
 console.log('合并后数组：', arr8)
 console.log('合并后长度：', pushInt)
 
+// 博客园代码样式 ---------------------------------------------------------------------------（二级标题）
+// <script src="https://blog-static.cnblogs.com/files/zhurong/highlight.pack.js"></script>
+// <script>
+// var preElements = document.getElementsByTagName('pre');
+// for (let i = 0; i < preElements.length; i++) {
+//   const element = preElements[i];
+//   let codeElement = document.createElement('code')
+//   codeElement.setAttribute('class','language-javascript')
+//   codeElement.innerHTML = element.innerHTML
+//   element.innerHTML = ''
+//   element.appendChild(codeElement)
+// }
+
+// console.log('添加 code')
+// setTimeout(() => {
+//   hljs.initHighlightingOnLoad();
+//   console.log('Highlight load')
+// }, 1000);
+// </script>
+
 /**
  * push 同样也可以应用于类数组对象上；
+ * length 正确匹配属性个数，直接添加并 length+1
  * 1、当不存在 length 或者不能转为数值的时候，会替换第一个；length 不存在时会创建；length 为0 同；
- * 2、length 的值小于对象中属性数；相当于在 length 处插入；
+ * 2、length 的值小于对象中属性个数；相当于在 length 处插入；
  * 3、length 的值大于等于对象中属性数，在最后添加，索引会跳跃；length 也会增加；
  */
-// 情形-1
+
+// 当 length 正确匹配属性个数
+let obj = { 0: 'football', 1: 'basketball',length :2 }
+let objPushInt = Array.prototype.push.call(obj, 'golfball')
+console.log('obj pushed:', obj) // obj pushed: { '0': 'football', '1': 'basketball', '2': 'golfball', length: 3 }
+console.log('objPushInt:', objPushInt)  // objPushInt: 3
+
+// 情形-1：length 不存在
 let obj2 = { 0: 'football', 1: 'basketball' }
-let objPushInt = Array.prototype.push.call(obj2, 'golfball')
-console.log('obj2 pushed:', obj2)
-console.log('objPushInt:', objPushInt)
-// 情形-2
-objPushInt = Array.prototype.push.call(obj2, 'volleyball')
-console.log('obj2 pushed(lenght):', obj2)
-console.log('objPushInt:', objPushInt)
-// 情形-3
+objPushInt = Array.prototype.push.call(obj2, 'golfball')
+console.log('obj2 pushed:', obj2) // obj2 pushed: { '0': 'golfball', '1': 'basketball', length: 1 }
+console.log('objPushInt:', objPushInt)  // objPushInt: 1
+// 情形-2：length 小于属性个数
+objPushInt = Array.prototype.push.call(obj2, 'volleyball') 
+console.log('obj2 pushed(lenght):', obj2) // obj2 pushed(lenght): { '0': 'golfball', '1': 'volleyball', length: 2 }
+console.log('objPushInt:', objPushInt)  // objPushInt: 2
+// 情形-3：length 大于属性个数
 obj2.length = 100
 objPushInt = Array.prototype.push.call(obj2, 'football')
-console.log('obj2 pushed(lenght==):', obj2)
-console.log('objPushInt:', objPushInt)
+console.log('obj2 pushed(lenght==):', obj2) // obj2 pushed(lenght==): { '0': 'golfball', '1': 'volleyball', '100': 'football', length: 101 }
+console.log('objPushInt:', objPushInt)  // objPushInt: 101
 
 /**
  * reverse() ---------------------------------------------------------------------------（二级标题）
@@ -860,7 +894,7 @@ while (!nex.done) {
 }
 //#endregion
 
-//#region Array 使用技巧 -------------------------------------------------------------------------（一级标题）
+//#region Array 使用技巧 -------------------------- -----------------------------------------------（一级标题）
 
 /**
  * 数组去重 ---------------------------------------------------（二级标题）

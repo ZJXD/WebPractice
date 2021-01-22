@@ -1,7 +1,43 @@
 /*
+ * @Author: ZHT 
+ * @Date: 2020-12-24 18:06:49 
+ * @Last Modified by: ZHT
+ * @Last Modified time: 2020-12-24 18:18:23
+ */
+
+/*
   flex 响应式布局
   参考：https: //mp.weixin.qq.com/s/DS62kzE1ZFcarmHET4KVzg
+
+  说明：
+    display: flex;
+    flex-direction: row;
+      row
+      row-reverse
+      column
+      column-reverse
+    flex-wrap: nowrap;
+      nowrap
+      warp
+      warp-reverse
+    flex-flow:row nowrap; 上面两个的缩写，具体值同上。
+    flex-grow:1;  参数是数值；指定剩余空间的分配。
+    flex-shrink:1;  参数是数值；元素默认主尺寸超过容器尺寸，指定怎么收缩。
+    flex-basis:auto;  指定元素主轴上的初始大小；优先级比 width 高；
+    flex: 0 1 auto; 上面三个的缩写；默认值是 0 1 auto；常用的是 flex:1; 
+
+    justify-content: flex-start;  元素在主轴方向的对齐方式；
+      flex-start
+      flex-end
+      center
+      space-around
+      space-between
+      sapce-evenly
+      baseline
+      first-baseline
+      last-baseline
 */
+
 
 * {
   margin: 0;

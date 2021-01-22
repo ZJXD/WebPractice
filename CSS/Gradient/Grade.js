@@ -1,3 +1,18 @@
+/*
+ * @Author: ZHT 
+ * @Date: 2020-12-24 17:22:07 
+ * @Last Modified by: ZHT
+ * @Last Modified time: 2020-12-24 17:24:07
+ */
+
+/**
+ * 根据图片颜色生成背景渐变色
+ * 代码来自：https://github.com/benhowdle89/grade
+ *    在原有基础做了修改：
+ *      1、等分图片
+ *      2、对每一部分颜色筛选出出现最多次数的颜色
+ *      3、从上到下依次渐变
+ */
 const prefixes = ['webkit'];
 
 class Grade {
