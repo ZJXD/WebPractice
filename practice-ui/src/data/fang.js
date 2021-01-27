@@ -566,6 +566,53 @@ const FANG_LIST = {
           zu_cunt: 42
         }
       ]
+    },
+    {
+      time: '2021-1-25',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 27442,
+          fang_count: 82,
+          zu_cunt: 64
+        },
+        {
+          communityId: 2,
+          avg_price: 28759,
+          fang_count: 43,
+          zu_cunt: 28
+        },
+        {
+          communityId: 3,
+          avg_price: 25488,
+          fang_count: 7,
+          zu_cunt: 1
+        },
+        {
+          communityId: 4,
+          avg_price: 31943,
+          fang_count: 52,
+          zu_cunt: 22
+        },
+        {
+          communityId: 5,
+          avg_price: 20256,
+          fang_count: 6,
+          zu_cunt: 0
+        },
+        {
+          communityId: 6,
+          avg_price: 31096,
+          fang_count: 17,
+          zu_cunt: 41
+        },
+        {
+          communityId: 7,
+          avg_price: 28882,
+          fang_count: 55,
+          zu_cunt: 37
+        }
+      ]
     }
   ],
   // 链家数据
@@ -895,6 +942,47 @@ const FANG_LIST = {
           communityId: 7,
           avg_price: 30768,
           fang_count: 29
+        }
+      ]
+    },
+    {
+      time: '2021-1-25',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 26260,
+          fang_count: 63
+          // zu_cunt:56
+        },
+        {
+          communityId: 2,
+          avg_price: 26027,
+          fang_count: 66
+        },
+        {
+          communityId: 3,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 4,
+          avg_price: 34850,
+          fang_count: 20
+        },
+        {
+          communityId: 5,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 6,
+          avg_price: 32277,
+          fang_count: 37
+        },
+        {
+          communityId: 7,
+          avg_price: 31058,
+          fang_count: 25
         }
       ]
     }

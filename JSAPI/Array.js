@@ -452,7 +452,7 @@ console.log('obj7 spliced:', obj7, '\nobjSpliceItem:', objSpliceItem)
  * 参数说明：
  * 1、target：目标元素，将被替换掉元素的索引；
  * 2、start：替换元素在数组中的起始索引；
- * 3、end：可选，默认为数组长度；end 小于 start时，不会替换；
+ * 3、end：可选，默认为数组长度；end 小于 start时，不会替换；start 和 end 决定了替换和被替换的长度；
  * 4、返回：返回改变后数组的引用；
  */
 let arr15 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -484,9 +484,10 @@ console.log('obj copyWithin:', obj8, '\nobjCopyWithinItem:', objCopyWithinItem)
  */
 let arr16 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 // let arrFill = arr16.fill(100, 2, 5)
+// let arrFill = arr16.fill(100)
+// let arrFill = arr16.fill(100, 4)
 let arrFill = arr16.fill(100, -20, -15)
 // let arrFill = arr16.fill(100, 4, 2)
-// let arrFill = arr16.fill(100, 4)
 console.log('arr16 filled:', arr16, '\narrFill:', arrFill)
 
 /**
@@ -511,13 +512,13 @@ console.log('obj9 fill:', obj9, '\nobjFillItem:', objFillItem)
 
 /**
  * concat() ------------------------------------------------------------------------（二级标题）
- * concat 用于连接数组、多个数组、值到当前数组尾部，并返回新的数组；原数组不变；
+ * concat 用于连接数组、多个数组、值到当前数组尾部，并返回新的数组；原数组不变；会对传入的值扁平化处理（只能处理一级，对于嵌套的不行）。
  * 返回的数组中原数组中的项是--浅复制--过去的；
  */
 let arr17 = [{ a: 1 }, 2, 3, 4]
-let arrConcat = arr17.concat(5, [6, 7, 8])
-console.log('arr17 :', arr17, '\narrConcat:', arrConcat)
-console.log('arr17[0] === arrConcat[0]:', arr17[0] === arrConcat[0])
+let arrConcat = arr17.concat(5, [6, 7, [8,9]])
+console.log('arrConcat:', arrConcat)  // [ { a: 1 }, 2, 3, 4, 5, 6, 7, [ 8, 9 ] ]
+console.log('arr17[0] === arrConcat[0]:', arr17[0] === arrConcat[0])  // true
 
 /**
  * concat 同样也适用于类数组对象
@@ -558,8 +559,8 @@ console.log('字符串重新拼接：', Array.prototype.join.call('abcdefg'))
  * 2、end：可选，结束索引；不包括该项；默认 length；
  */
 let arr19 = [0, 1, 2, 3, 4, 5, 6, 7]
-// let arrSlice = arr19.slice(1, 5)
-let arrSlice = arr19.slice(1, -100, -50)
+let arrSlice = arr19.slice(1, 5)
+arrSlice = arr19.slice(-100, -50)
 console.log('arr19:', arr19, '\narrSlice:', arrSlice)
 
 // 当数组中有引用类型存在时，slice 生成的新数组是浅复制的
@@ -595,6 +596,8 @@ console.log('arr20:', arr20, '\narrToString:', arrToString)
  * toLocaleString
  * 和 toString 类似，只是在转换的时候会本地化下
  */
+arrToString = arr20.toString()
+console.log('arr20:', arr20, '\narrToString:', arrToString)
 
 /**
  * indexOf() -----------------------------------------------------------------------（二级标题）
@@ -619,7 +622,7 @@ function GetArrayAllIndex(arr, value) {
 }
 let allIndex = GetArrayAllIndex(
   ['a', 'b', 'c', 'd', 'e', 'a', 'g', 'a', 'a'],
-  'p'
+  'a'
 )
 console.log('allIndex:', allIndex)
 
@@ -642,6 +645,18 @@ console.log('arr includes 5:', arr22.includes(5))
  * 和 indexOf 有一点区别：
  * includes 可以判断 NaN ，indexOf 不可用
  */
+
+let arr22_1 = [1, 2, 3, 4, 5, NaN, 7]
+console.log('arr includes NaN:', arr22_1.includes(NaN)) // true
+console.log('arr indexOf NaN:', arr22_1.indexOf(NaN)) // -1
+
+ /**
+  * toSource() ----------------------------------------------------------------------（二级标题）
+  * toSource 返回一个表示当前数组字面量的字符串；屏蔽原型链；
+  * 非标准方法，不一定实现（node 未实现）
+  */
+ let arr22_1 = [1, 2, 3, 4, 5, 6, 7]
+ console.log(arr22_1.toSource())
 
 //#endregion
 
@@ -684,36 +699,78 @@ arr23.forEach((item, index) => {
 })
 
 /**
+ * map() --------------------------------------------------------------------------（二级标题）
+ * map 用于返回一个新数组，是由原数组的每一个项执行一次给定的函数返回的结果；如果函数改变了项的值，原数组改变；
+ * 对于删除的、新增的、未初始化的会跳过，不执行；null 不会跳过，会转为 0
+ */
+let arr26 = [1, 2, 3, 4, 5, 6,null, 7, 8]
+let arrMap = arr26.map((item) => item * 2)  // 只有一句表达式，没有中括号，默认返回表达式的值
+// let arrMap = arr26.map((item) => {item * 2})  // 返回 undefinde 组成的数组
+console.log('arr26 :', arr26, '\narrMap:', arrMap)
+
+/**
+ * forEach 和 map 对比 ---------------------------------------------------------
+ * 循环函数    返回值       原数组              未初始化、删除
+ * forEach     undefined   根据函数是否修改      跳过
+ * map         新数组      根据函数是否修改      跳过
+ */
+
+/**
+ * find() -------------------------------------------------------------------------（二级标题）
+ * find 根据传入的函数，查找出第一个符合要求的项，并返回这个项
+ * findIndex 根据传入的函数，查找出第一个符合要求的项，并返回这个项的索引
+ */
+let arr28 = [1, 2, 3, 4, 5, 6, 7, 8]
+function getNumber(value) {
+  return value === 5
+}
+console.log(
+  'arr28 find 5:',
+  arr28.find(getNumber),
+  '\nfindIndex 5:',
+  arr28.findIndex(getNumber)
+)
+
+// 找出质数
+function isPrime(value) {
+  let start = 2
+  while (start <= Math.sqrt(value)) {
+    if (value % start++ < 1) {
+      return false
+    }
+  }
+  return value > 1
+}
+console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].find(isPrime))
+console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].filter(isPrime))
+console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].map(isPrime))
+
+/**
  * every() ------------------------------------------------------------------------（二级标题）
  * every 用于测试数组内的所有元素是否都能通过某个指定函数的测试，返回 boole 值
  * 只有全部符合才返回 true ，否则 false
  */
 let arr24 = [1, 2, 3, 4, 5, 6, 7, 8]
-console.log(
-  'arr24 all >0:',
-  arr24.every((item) => item > 0)
-)
+console.log('arr24 all >0:',arr24.every((item) => item > 0)) // true
 
 /**
  * some() -------------------------------------------------------------------------（二级标题）
- * some 正好和 every 相反，只有有一个满足条件的就返回 ture ，否则返回 false
+ * some 正好和 every 相反，只要有一个满足条件的就返回 ture ，否则返回 false
  */
-console.log(
-  'arr24 have >5:',
-  arr24.some((item) => item > 5)
-)
+console.log('arr24 have >5:',arr24.some((item) => item > 5))  // true
 
+// 数组交集（可对比多个数组）
 const intersection = (list, ...args) => {
   console.log(args)
   return list.filter((item) => args.some((list) => list.includes(item)))
 }
 
-console.log(intersection([2, 1], [2, 3], [1, 4, 6])) // [2]
-console.log(intersection([1, 2], [3, 4])) // []
+console.log(intersection([2, 1], [2, 3], [1, 4, 6])) // [2,1]
+console.log(intersection([1, 2], [2,3, 4])) // []
 
 /**
  * filter() -----------------------------------------------------------------------（二级标题）
- * filter 用于筛选数组找中满足给定条件的项，并返回这些项的新数组
+ * filter 用于筛选数组中满足给定条件的项，并返回这些项的新数组
  */
 let arr25 = [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(
@@ -744,21 +801,6 @@ function filterById(item) {
 }
 let arrJsonNoZeroId = arrJson.filter(filterById)
 console.log('arrJsonNoZeroId :', arrJsonNoZeroId)
-
-/**
- * map() --------------------------------------------------------------------------（二级标题）
- * map 用于返回一个新数组，是由原数组的每一个项执行一次给定的函数返回的结果；
- */
-let arr26 = [1, 2, 3, 4, 5, 6, 7, 8]
-let arrMap = arr26.map((item) => item * 2)
-console.log('arr26 :', arr26, '\narrMap:', arrMap)
-
-/**
- * forEach 和 map 对比 ---------------------------------------------------------
- * 循环函数    返回值       原数组    未初始化、删除
- * forEach     undefined    变化      跳过
- * map         新数组       不变      跳过
- */
 
 /**
  * reduce() -----------------------------------------------------------------------（二级标题）
@@ -838,36 +880,6 @@ console.log('对象数组分类：', groupBy(arr27_3, 'age'))
  * reduceRight 接收一个函数，用于汇总数组所有的项，并返回这个值；从右往左
  * 用法和reduce用法一致，汇总的方向不一样（这个要注意）
  */
-
-/**
- * find() -------------------------------------------------------------------------（二级标题）
- * find 根据传入的函数，查找出第一个符合要求的项，并返回这个项
- * findIndex 根据传入的函数，查找出第一个符合要求的项，并返回这个项的索引
- */
-let arr28 = [1, 2, 3, 4, 5, 6, 7, 8]
-function getNumber(value) {
-  return value === 5
-}
-console.log(
-  'arr28 find 5:',
-  arr28.find(getNumber),
-  '\nfindIndex 5:',
-  arr28.findIndex(getNumber)
-)
-
-// 找出质数
-function isPrime(value) {
-  let start = 2
-  while (start <= Math.sqrt(value)) {
-    if (value % start++ < 1) {
-      return false
-    }
-  }
-  return value > 1
-}
-console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].find(isPrime))
-console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].filter(isPrime))
-console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].map(isPrime))
 
 /**
  * entries() ----------------------------------------------------------------------（二级标题）
