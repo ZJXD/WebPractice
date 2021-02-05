@@ -688,9 +688,11 @@ console.log('arr indexOf NaN:', arr22_1.indexOf(NaN)) // -1
  */
 
 let arr23 = [1, 2, 3, 4, 5, 6, 7]
-arr23.forEach((item, index) => {
+const arr23_for = arr23.forEach((item, index) => {
   console.log('第', index, '个的平方是：', item * item)
+  return item * item
 })
+console.log(arr23_for)
 
 // 稀疏数组操作（未初始化的会跳过），null 不会跳过，会转为 0（有点坑）
 arr23 = [1, 2, 3, null, , 6, 7]
@@ -804,7 +806,7 @@ console.log('arrJsonNoZeroId :', arrJsonNoZeroId)
 
 /**
  * reduce() -----------------------------------------------------------------------（二级标题）
- * reduce 接收一个函数，用于汇总数组所有的项，并返回这个值；
+ * reduce 接收一个函数，用于汇总数组所有的项，并返回这个汇总结果；
  * 语法：array.reduce(callback(accumulator,currentValue[,index[,array]])[,initialValue])
  * 参数：
  *  1、callback：传入的汇总函数
@@ -826,7 +828,8 @@ console.log(
   arr27.reduce((pre, cur) => pre + cur, 20)
 )
 
-// 将二维数组转为一维数组
+// reduce 示例
+// 1、将二维数组转为一维数组（扁平化处理）
 let arr27_1 = [
   [1, 2],
   [3, 4],
@@ -838,7 +841,7 @@ let arrReduce = arr27_1.reduce(function (a, b) {
 }, [])
 console.log('二维数组转一维数组：', arrReduce)
 
-// 计算每个元素出现的次数（去重也可以）
+// 2、计算每个元素出现的次数（去重也可以）
 let arr27_2 = ['abc', 'bcd', 'def', 'dgf', 'abc', 'def', 'abc']
 function getNames(names, name) {
   if (name in names) {
@@ -856,7 +859,7 @@ console.log(
   Object.getOwnPropertyNames(names)
 )
 
-// 根据属性，对一组对象分类
+// 3、根据属性，对一组对象分类
 let arr27_3 = [
   { name: 'abc', age: 20 },
   { name: 'dbg', age: 21 },
@@ -889,6 +892,14 @@ console.log('对象数组分类：', groupBy(arr27_3, 'age'))
  */
 // node:8.11.4 values 不可用
 let arr29 = [1, 2, 3, 4, 5, 6, 7, 8]
+console.log(
+  'arr entries:',
+  arr29.entries(),
+  '\nkeys:',
+  arr29.keys(),
+  '\nvalues:',
+  arr29.values()
+)
 console.log(
   'arr entries:',
   arr29.entries().next(),

@@ -48,7 +48,7 @@ log(obj1.custom)
 console.log(Object.getOwnPropertyDescriptors(Object)) // 查看 Object 全部的属性
 
 /**
- * 属性描述符  ---------------------------------------------------------------------------（二级标题）
+ * 属性描述符 ---------------------------------------------------------------------------（二级标题）
  * 可以通过它对定义的属性有更大的控制权，主要有下面几个
  * value ---- 获取属性时返回的值
  * writable ---- 该属性是否可写
@@ -73,7 +73,7 @@ Object.defineProperty(person, 'legs1', {
   writable: true,
   enumerable: true,
   configurable: true
-}) //z这种方式 除了 value 默认 undefined，其他都是默认 false
+}) // 这种方式 除了 value 默认 undefined，其他都是默认 false
 // 存取描述符形式
 Object.defineProperty(person, 'legs2', {
   set: function(v) {
@@ -89,7 +89,7 @@ person.legs2 = 5
 log(person.legs, person.legs1, person.legs2)
 
 /**
- * Object.defineProperty(obj,prop,descriptor)----------------------------------------------（二级标题）
+ * Object.defineProperty(obj,prop,descriptor) ----------------------------------------------（二级标题）
  * 用于定义对象的属性
  *
  * Object.defineProperties(obj,props)
@@ -111,14 +111,14 @@ let glass = Object.defineProperties(
 log('glass.fullness:', glass.fullness)
 
 /**
- * Object.getPrototypeOf(obj)---------------------------------------------------------------（二级标题）
+ * Object.getPrototypeOf(obj) ---------------------------------------------------------------（二级标题）
  * 获取当前对象的原型
  */
 let s = new String('123')
-log('s prototype:', Object.getPrototypeOf(s))
+console.log('s prototype:', Object.getPrototypeOf(s))
 
 /**
- * Object.create(obj,descr)-----------------------------------------------------------------（二级标题）
+ * Object.create(obj,descr) -----------------------------------------------------------------（二级标题）
  * 创建一个新对象，并设置原型，用属性描述符定义对象的原型属性
  */
 let person1 = { hi: 'hello' }
@@ -140,7 +140,7 @@ console.log('child prototype:', Object.getPrototypeOf(child))
 console.log('child prop:', child.prop, ',child hi:', child.hi)
 
 /**
- * Object.getOwnPropertyDescriptor(obj,property)----------------------------------------------（二级标题）
+ * Object.getOwnPropertyDescriptor(obj,property) ----------------------------------------------（二级标题）
  * 查看一个对象的某一个属性的详情，也可以一窥内置的对象属性
  */
 console.log(
@@ -149,7 +149,7 @@ console.log(
 )
 
 /**
- * Object.getOwnPropertyNames(obj)-----------------------------------------------------------（二级标题）
+ * Object.getOwnPropertyNames(obj) -----------------------------------------------------------（二级标题）
  * 返回当前对象自身的所有属性名，包括不可枚举的
  * Object.keys(obj)：返回的是自身可枚举的
  * 都是本对象自己的，不包括原型链中的
@@ -158,7 +158,7 @@ console.log('child property:', Object.getOwnPropertyNames(child))
 console.log('child property:', Object.keys(child))
 
 /**
- * Object.preventExtensions(obj)-----------------------------------------------------------（二级标题）
+ * Object.preventExtensions(obj) -----------------------------------------------------------（二级标题）
  * Object.isExtensible(obj)
  * preventExtensions 用于禁止向对象添加更多属性（不可扩展对象，但是可在其原型中添加）
  * isExtensible 检查对象是否可以添加对象
@@ -189,7 +189,7 @@ child.childName = 'test'
 console.log('child name', child.childName)
 
 /**
- * 不可扩展、密封、冻结 对比 --------------------------------------------------------------------（二级标题）
+ * 不可扩展、密封、冻结 对比 -------------------------------------------------------------------（二级标题）
  */
 // 方法名	                    增(extensible)	  删(configurable)	  改(writable)
 // Object.preventExtensions	  ×                 √	                  √
@@ -201,7 +201,7 @@ console.log('child name', child.childName)
  */
 
 /**
- * Object.is(value1,value2)------------------------------------------------------------------（二级标题）
+ * Object.is(value1,value2) ------------------------------------------------------------------（二级标题）
  * 用于比较两个值是否严格相等 基本等同于（===）
  * 有两个地方不一样：+0 不等于 -0，NaN 等于自身
  */
