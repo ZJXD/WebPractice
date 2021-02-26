@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>事件绑定</title>
+  <style>
+    strong{
+      color: #007aff;
+    }
+  </style>
+</head>
+
+<body>
+  <p>使用 addEventListener 添加 click 事件，绑定两次（两次绑定都会触发）。addEventListener 是 <strong>DOM Level 2 中提供的新函数</strong></p>
+  <button type="submit" class="login" id="btn-1">addEventListener</button>
+
+  <p>使用 onclick 绑定单击事件，同样绑定两次（只有最后一次绑定触发）。onclick 是元素的<strong>事件处理属性</strong></p>
+  <button type="submit" id="btn-2">onclick</button>
+  <script type="text/javascript">
+    const btn1 = document.getElementById('btn-1')
+    btn1.addEventListener('click', function () {
+      alert('btn-1-A');
+    })
+    btn1.addEventListener('click', function () {
+      alert('btn-1-B');
+    })
+
+    const btn2 = document.getElementById('btn-2')
+    btn2.onclick = function () {
+      alert('btn-2-A')
+    }
+    btn2.onclick = function () {
+      alert('btn-2-B')
+    }
+  </script>
+</body>
+
+</html>
