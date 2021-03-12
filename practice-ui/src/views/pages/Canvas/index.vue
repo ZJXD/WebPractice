@@ -1,6 +1,6 @@
 <template>
   <div class="canvas-page">
-    <el-menu class="menu-box" :default-active="activeIndex" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="menuSelected">
+    <el-menu class="page-menu-box" :default-active="activeIndex" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="menuSelected">
       <el-menu-item v-for="menu in menuList" :key="menu.id" :index="menu.code">
         <template slot="title">
           <i class="iconfont" v-html="menu.icon" />
@@ -8,8 +8,8 @@
         </template>
       </el-menu-item>
     </el-menu>
-    <div class="right-content">
-      <h3>Canvas 示例</h3>
+    <div class="page-right-content">
+      <h3>Canvas 示例-{{ comName }}</h3>
       <component :is="curComponents" />
     </div>
   </div>
@@ -46,24 +46,18 @@ export default {
         { id: 10, code: '10', name: '鼠标移动', icon: '&#xe67f;', component: 'WebGLMouseMove' }
       ],
       activeIndex: '1',
+      comName: '电子签名',
       curComponents: 'Signature'
     }
   },
   methods: {
     menuSelected(index) {
+      this.comName = this.menuList.find(item => item.code === index).name
       this.curComponents = this.menuList.find(item => item.code === index).component
     }
   }
 }
 </script>
-
-<style lang="scss">
-.canvas-page {
-  .el-menu-item {
-    text-align: left;
-  }
-}
-</style>
 
 <style lang="scss" scoped>
 .canvas-page {
@@ -71,24 +65,5 @@ export default {
   height: 100%;
   padding: 0;
   display: flex;
-
-  .menu-box {
-    width: 200px;
-    height: 100%;
-
-    .iconfont {
-      font-size: 16px;
-    }
-  }
-
-  .right-content {
-    height: 100%;
-    flex: 1;
-    overflow-y: auto;
-
-    h3 {
-      margin: 18px 0;
-    }
-  }
 }
 </style>

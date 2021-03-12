@@ -39,18 +39,22 @@ export default {
         routerLink: '/firstPage'
       }, {
         id: 3,
-        name: 'Canvas',
-        routerLink: '/canvas'
+        name: 'CSS',
+        routerLink: '/css'
       }, {
         id: 4,
         name: '动画',
         routerLink: '/animation'
       }, {
         id: 5,
+        name: 'Canvas',
+        routerLink: '/canvas'
+      }, {
+        id: 6,
         name: 'Book',
         routerLink: '/bookpre'
       }, {
-        id: 6,
+        id: 7,
         name: 'Fang',
         routerLink: '/fang'
       }

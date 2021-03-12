@@ -24,14 +24,19 @@ export default new Router({
           component: FirstPage
         },
         {
-          path: '/canvas',
-          name: 'canvas',
-          component: () => import('../views/pages/Canvas/index.vue')
+          path: '/css',
+          name: 'css',
+          component: () => import('../views/pages/CSS/index.vue')
         },
         {
           path: '/animation',
           name: 'animation',
           component: () => import('../views/pages/Animation.vue')
+        },
+        {
+          path: '/canvas',
+          name: 'canvas',
+          component: () => import('../views/pages/Canvas/index.vue')
         },
         {
           path: '/bookpre',

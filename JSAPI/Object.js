@@ -12,15 +12,38 @@ const { log } = console
  * 3、create 创建
  * 分别对应下面几个 */
 
-let obj1 = new Object('obj1')
+let obj1 = new Object({age:20})
+obj1.name = 'obj1'
+// console.log(obj1.hasOwnProperty('name'))
+// console.log(Object.getPrototypeOf(obj1))
+// console.log('person descriptors:', Object.getOwnPropertyDescriptors(obj1.constructor))
+// console.log('person descriptors:', Object.getOwnPropertyDescriptors(obj1.constructor.prototype))
+
 let obj2 = {
   name: 'obj2',
   value: 123
 }
+obj2.age = 12
+Object.setPrototypeOf(obj2,obj1)
+console.log(obj2.__proto__)
+console.log(obj2)
+
 let obj3 = Object.create({
   name: 'obj3',
   value: 130
 })
+console.log(obj3.__proto__)
+// for (const key in object) {
+//   if (Object.hasOwnProperty.call(object, key)) {
+//     const element = object[key];
+    
+//   }
+// }
+// console.log(obj3.__proto__.__proto__.constructor)
+console.log(obj3.hasOwnProperty('name'))
+console.log(obj3.toString())
+console.log('person descriptors:', Object.getOwnPropertyDescriptors(obj3.constructor))
+console.log('person descriptors:', Object.getOwnPropertyDescriptors(obj3.constructor.prototype))
 
 // log(obj1.name, obj2.name, obj3.name)
 
@@ -45,7 +68,13 @@ log(obj1.custom)
  * ES5 中附加的 Object 属性 ---------------------------------------------------------------------------（一级标题）
  */
 
+console.log(Object.getOwnPropertyDescriptors(Object.prototype)) // 查看 Object 原型上的属性
 console.log(Object.getOwnPropertyDescriptors(Object)) // 查看 Object 全部的属性
+console.log(Object.getOwnPropertyNames(Object)) // 查看 Object 全部的属性名称列表
+console.log(Object.prototype.toString()) // 查看 Object 全部的属性名称列表
+console.log(Function.toString())
+console.log(Object.getOwnPropertyDescriptors(Function.prototype)) // 查看 Function 原型上的属性
+console.log(Object.getOwnPropertyDescriptors(Function)) // 查看 Function
 
 /**
  * 属性描述符 ---------------------------------------------------------------------------（二级标题）
@@ -62,18 +91,18 @@ console.log(Object.getOwnPropertyDescriptors(Object)) // 查看 Object 全部的
  * 存取描述符：get()、set()、enumerable、configurable
  */
 
-// 下面是两种添加属性的方式，下面一种对属性有更大控制权
-// 除了 value 默认 undefined，其他都是默认 false
 let person = {}
+// 直接赋值，是数值描述符
 person.legs = 2 // 这种方式添加的属性，其他描述符都是 true
-console.log('person descriptors:', Object.getOwnPropertyDescriptors(person))
-// 数据描述符形式
+console.log('person descriptors:', Object.getOwnPropertyDescriptors(person))  // legs: { value: 2, writable: true, enumerable: true, configurable: true }
+
+// 数据描述符形式，这种方式 除了 value 默认 undefined，其他都是默认 false
 Object.defineProperty(person, 'legs1', {
   value: 2,
   writable: true,
   enumerable: true,
   configurable: true
-}) // 这种方式 除了 value 默认 undefined，其他都是默认 false
+})
 // 存取描述符形式
 Object.defineProperty(person, 'legs2', {
   set: function(v) {
@@ -86,7 +115,7 @@ Object.defineProperty(person, 'legs2', {
   configurable: true
 })
 person.legs2 = 5
-log(person.legs, person.legs1, person.legs2)
+console.log(person.legs, person.legs1, person.legs2)
 
 /**
  * Object.defineProperty(obj,prop,descriptor) ----------------------------------------------（二级标题）
@@ -120,12 +149,16 @@ console.log('s prototype:', Object.getPrototypeOf(s))
 /**
  * Object.create(obj,descr) -----------------------------------------------------------------（二级标题）
  * 创建一个新对象，并设置原型，用属性描述符定义对象的原型属性
+ *  obj：创建新对象的原型
+ *  descr：新对象的属性，以对象形式
  */
 let person1 = { hi: 'hello' }
 Object.defineProperty(person1, 'name', {
   value: 'ZHT',
   enumerable: true
 })
+
+// 新创建的 child 的原型是 person1
 let child = Object.create(person1, {
   prop: {
     value: 1
@@ -150,7 +183,7 @@ console.log(
 
 /**
  * Object.getOwnPropertyNames(obj) -----------------------------------------------------------（二级标题）
- * 返回当前对象自身的所有属性名，包括不可枚举的
+ * 返回当前对象自身的所有属性名，包括不可枚举的，不包含对象的 Symbol 属性
  * Object.keys(obj)：返回的是自身可枚举的
  * 都是本对象自己的，不包括原型链中的
  */
@@ -158,9 +191,15 @@ console.log('child property:', Object.getOwnPropertyNames(child))
 console.log('child property:', Object.keys(child))
 
 /**
+ * Object.getOwnPropertySymbols(obj) ---------------------------------------------------------（二级标题）
+ * 返回当前对象的 Symbol 属性，一个对象初始化后不包含 Symbol 属性
+ * 只有当赋值了 Symbol 属性才可以取到值
+ */
+
+/**
  * Object.preventExtensions(obj) -----------------------------------------------------------（二级标题）
  * Object.isExtensible(obj)
- * preventExtensions 用于禁止向对象添加更多属性（不可扩展对象，但是可在其原型中添加）
+ * preventExtensions 用于禁止向对象添加更多属性（不可扩展对象，但是可在其原型中添加）不可逆操作
  * isExtensible 检查对象是否可以添加对象
  */
 // Object.preventExtensions(child)
@@ -170,7 +209,7 @@ console.log('child isExtensible:', Object.isExtensible(child))
  * Object.seal(obj)-------------------------------------------------------------------------（二级标题）
  * Object.isSealed(obj)
  * seal 用于密封一个对象，并返回密封后的对象。这个对象的属性不可配置：这种情况下，只能变更现有属性的值，
- * 不能删除或者重新配置属性的值
+ *  不能删除或者重新配置属性的值
  * isSeal 判断是否是密封的
  * 密封对象 不可扩展
  */
@@ -216,7 +255,7 @@ console.log(Object.is(NaN, NaN))
  * 只复制自身的可枚举的属性
  * 属性类型是 Symbol 的也可以复制
  * 对于嵌套类型的对象，是直接替换
- * 对于数组，取 length 最长的未长度，并后面覆盖前面
+ * 对于数组，取 length 最大值，并后面覆盖前面
  */
 let target = { a: 1 }
 let source1 = { b: 2 }
@@ -246,7 +285,7 @@ console.log(Object.assign([1, 2], [3, 4, 5], [6, 7]))
 
 /**
  * Object.getOwnPropertyDescriptors(obj) --------------------------------------------------（二级标题）
- * 用于获取自身所有属性的描述
+ * 用于获取对象所有属性的描述
  */
 
 console.log('child all property:', Object.getOwnPropertyDescriptors(child))
