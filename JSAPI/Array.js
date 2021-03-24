@@ -724,7 +724,7 @@ console.log('arr26 :', arr26, '\narrMap:', arrMap)
  */
 let arr28 = [1, 2, 3, 4, 5, 6, 7, 8]
 function getNumber(value) {
-  return value === 5
+  return value === 10
 }
 console.log(
   'arr28 find 5:',
