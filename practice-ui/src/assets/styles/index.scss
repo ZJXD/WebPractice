@@ -38,9 +38,15 @@ section {
 .page-right-content {
   height: 100%;
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
 
   h3 {
     margin: 18px 0;
   }
+}
+
+.main-contariner-content{
+  width: 100%;
+  height: calc(100% - 61px);
+  overflow-y: auto;
 }

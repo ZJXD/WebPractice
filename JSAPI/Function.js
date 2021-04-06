@@ -12,6 +12,7 @@ function add(x, y) {
   return x + y
 }
 console.log(add(3, 4))
+console.log(add.constructor === Function)
 
 // 函数表达式
 let add = function (x, y) {
@@ -52,7 +53,7 @@ let greeting = () => {
 greeting()
 Console.log('now')
 
-// 参会括号内的局部变量，外部也不可访问
+// 括号内的局部变量，外部也不可访问
 let greeting = (now = new Date()) => 'Good day'
 greeting()
 Console.log(now)
@@ -82,7 +83,7 @@ console.log(v())
 console.log(v())
 
 // 箭头函数使用递归
-let fact = (x) => (x == 0 ? 1 : x * fact(x - 1))
+let fact = (x) => (x === 0 ? 1 : x * fact(x - 1))
 console.log(fact(5))
 
 //#endregion
@@ -118,6 +119,8 @@ sh.next(5)
 
 //#endregion
 
+
+//#region bind、apply、call
 /**
  * bind() --------------------------------------------------------------------------
  */
@@ -125,7 +128,7 @@ sh.next(5)
 
 // 参数 thisArg，要绑定的 this
 // 1、有传入，这个传入的值就是要绑定的 this
-// 2、new 的时候，忽略该值，函数原函数的 this
+// 2、new 的时候，忽略该值，this 是原函数的 this
 // 3、如果参数列表为空，执行作用域的 this 视为新函数的 thisArg
 
 // 下面是对 bind 后的函数进行 new，绑定的 this 被忽略（对应上面的 2）
@@ -160,11 +163,11 @@ p()
 /**
  * 1、call 第一个参数是 this 指向的对象
  * 2、如果第一参数没有实现，默认指向 window/global
- * 3、后面的参数是要执行函数的参数
+ * 3、后面的参数是要执行函数的参数（分开传递）
  */
 
 // 手写一个 call 的实现
-Function.prototype.call = function () {
+Function.prototype.myCall = function () {
   let [thisArg, ...args] = arguments
   if (!thisArg) {
     thisArg = typeof window === 'undefined' ? global : window
@@ -185,7 +188,7 @@ Function.prototype.call = function () {
 /**
  * 1、apply 第一个参数是 this 指向的对象
  * 2、如果第一参数没有实现，默认指向 window/global
- * 3、后面的参数是要执行函数的参数的数组，用的时候要解构
+ * 3、后面的参数是要执行函数的参数的数组，用的时候要解构（传递数组）
  */
 
 // 手写一个 apply 的实现
@@ -206,11 +209,13 @@ Function.prototype.apply = function (thisArg, rest) {
   delete thisArg.func
   return results
 }
+//#endregion
 
 /**
  * 柯里化函数 -----------------------------------------------------------------------
  */
 
+//#region 柯里化函数
 /**
  * 特点：
  * 1、把接受多个参数的函数变换为接受一个单一参数的函数
@@ -229,3 +234,39 @@ let sun = curry(sunFun)
 console.log(sun(2)(3)(4))
 console.log(sun(2, 3, 4))
 console.log(sun(2)(3, 4))
+
+//#endregion
+
+
+/**
+ * 执行脚本 ------------------------------------------------------------------------
+ */
+//#region 直接脚本
+
+/**
+ * Function([arg1[,arg2...]],functionBody)
+ *  1、前面的是动态创建函数的参数
+ *  2、要创建的函数的函数体
+ */
+
+const adder = new Function('a','b','return a+b')
+
+console.log(adder.constructor === Function)  // true
+console.log(adder.__proto__ === Function.prototype)  // true
+console.log(Object.getOwnPropertyDescriptors(adder.__proto__))
+
+console.log(eval('2+2'))  // 4
+console.log(eval(new String('2+2')))  // [String: '2+2']
+
+const adder1 = new Function('a','b',new String('return a+b'))
+console.log(adder1(3,4))
+
+var x = 5
+function createFun() {
+  var x = 10
+  return new Function('return x;')
+}
+const fun1 = createFun()
+console.log(fun1())   // 5
+
+//#endregion

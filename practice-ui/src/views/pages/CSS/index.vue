@@ -17,13 +17,15 @@
 
 <script>
 import BoxReflect from './BoxReflect'
+import TextCSS from './TextCSS.vue'
 
 export default {
-  components: { BoxReflect },
+  components: { BoxReflect, TextCSS },
   data() {
     return {
       menuList: [
-        { id: 1, code: '1', name: '倒影', icon: '&#xe618;', component: 'BoxReflect' }
+        { id: 1, code: '1', name: '倒影', icon: '&#xe618;', component: 'BoxReflect' },
+        { id: 2, code: '2', name: '文字装饰', icon: '&#xe7a3;', component: 'TextCSS' }
       ],
       activeIndex: '1',
       comName: '倒影',

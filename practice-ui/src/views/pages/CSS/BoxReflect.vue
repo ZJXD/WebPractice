@@ -1,5 +1,5 @@
 <template>
-  <div class="box-reflect-com">
+  <div class="box-reflect-com main-contariner-content">
     <div class="btn-ex">
       <a v-for="item in btnList" :key="item.id" href="#" :style="{'--customColor':item.color}">{{ item.name }}</a>
     </div>
@@ -61,11 +61,8 @@ export default {
 
 <style lang="scss" scoped>
 .box-reflect-com {
-  width: 100%;
-  height: calc(100% - 61px);
   display: flex;
   flex-wrap: wrap;
-  overflow-y: auto;
   background-color: #000;
 
   .btn-ex {
