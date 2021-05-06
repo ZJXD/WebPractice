@@ -386,7 +386,6 @@ export default {
 <style lang="scss" scoped>
 .stard-gl {
   width: 100%;
-  height: calc(100% - 61px);
 
   .canvas-box {
     width: 100%;

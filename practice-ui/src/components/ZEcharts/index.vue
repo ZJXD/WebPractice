@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+import * as echarts from 'echarts'
 
 export default {
   name: 'AppEcharts',
@@ -35,6 +35,9 @@ export default {
     window.resizeCallbackList.push(() => {
       this.chart && this.chart.resize()
     })
+  },
+  beforeDestroy() {
+    this.chart && this.chart.dispose()
   },
   methods: {
     setOptions(options) {

@@ -660,6 +660,53 @@ const FANG_LIST = {
           zu_cunt: 29
         }
       ]
+    },
+    {
+      time: '2021-4-25',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 30024,
+          fang_count: 121,
+          zu_cunt: 85
+        },
+        {
+          communityId: 2,
+          avg_price: 31383,
+          fang_count: 46,
+          zu_cunt: 40
+        },
+        {
+          communityId: 3,
+          avg_price: 25452,
+          fang_count: 8,
+          zu_cunt: 0
+        },
+        {
+          communityId: 4,
+          avg_price: 37357,
+          fang_count: 152,
+          zu_cunt: 57
+        },
+        {
+          communityId: 5,
+          avg_price: 26080,
+          fang_count: 3,
+          zu_cunt: 2
+        },
+        {
+          communityId: 6,
+          avg_price: 35326,
+          fang_count: 14,
+          zu_cunt: 93
+        },
+        {
+          communityId: 7,
+          avg_price: 36299,
+          fang_count: 26,
+          zu_cunt: 57
+        }
+      ]
     }
   ],
   // 链家数据
@@ -1071,6 +1118,47 @@ const FANG_LIST = {
           communityId: 7,
           avg_price: 31428,
           fang_count: 30
+        }
+      ]
+    },
+    {
+      time: '2021-4-25',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 26678,
+          fang_count: 34
+          // zu_cunt:56
+        },
+        {
+          communityId: 2,
+          avg_price: 26216,
+          fang_count: 50
+        },
+        {
+          communityId: 3,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 4,
+          avg_price: 35323,
+          fang_count: 32
+        },
+        {
+          communityId: 5,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 6,
+          avg_price: 32832,
+          fang_count: 46
+        },
+        {
+          communityId: 7,
+          avg_price: 36299,
+          fang_count: 32
         }
       ]
     }

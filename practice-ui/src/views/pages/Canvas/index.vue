@@ -10,7 +10,7 @@
     </el-menu>
     <div class="page-right-content">
       <h3>Canvas 示例-{{ comName }}</h3>
-      <component :is="curComponents" />
+      <component :is="curComponents" class="content-container" />
     </div>
   </div>
 </template>

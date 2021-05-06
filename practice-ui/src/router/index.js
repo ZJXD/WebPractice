@@ -39,6 +39,11 @@ export default new Router({
           component: () => import('../views/pages/Canvas/index.vue')
         },
         {
+          path: '/charts',
+          name: 'charts',
+          component: () => import('../views/pages/Charts/index.vue')
+        },
+        {
           path: '/bookpre',
           name: 'bookpre',
           component: () => import('../views/pages/Book/BookPreview.vue')

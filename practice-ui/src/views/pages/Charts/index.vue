@@ -1,5 +1,5 @@
 <template>
-  <div class="css-page">
+  <div class="charts-page">
     <el-menu class="page-menu-box" :default-active="activeIndex" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="menuSelected">
       <el-menu-item v-for="menu in menuList" :key="menu.id" :index="menu.code">
         <template slot="title">
@@ -9,27 +9,25 @@
       </el-menu-item>
     </el-menu>
     <div class="page-right-content">
-      <h3>CSS 示例-{{ comName }}</h3>
+      <h3>图表示例-{{ comName }}</h3>
       <component :is="curComponents" class="content-container" />
     </div>
   </div>
 </template>
 
 <script>
-import BoxReflect from './BoxReflect'
-import TextCSS from './TextCSS.vue'
+import dynamicHighlight from './dynamicHighlight'
 
 export default {
-  components: { BoxReflect, TextCSS },
+  components: { dynamicHighlight },
   data() {
     return {
       menuList: [
-        { id: 1, code: '1', name: '倒影', icon: '&#xe618;', component: 'BoxReflect' },
-        { id: 2, code: '2', name: '文字装饰', icon: '&#xe7a3;', component: 'TextCSS' }
+        { id: 1, code: '1', name: '动态高亮', icon: '&#xe615;', component: 'dynamicHighlight' }
       ],
       activeIndex: '1',
-      comName: '倒影',
-      curComponents: 'BoxReflect'
+      comName: '动态高亮',
+      curComponents: 'dynamicHighlight'
     }
   },
   methods: {
@@ -42,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.css-page {
+.charts-page {
   width: 100%;
   height: 100%;
   padding: 0;

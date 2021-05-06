@@ -61,7 +61,6 @@ export default {
 <style lang="scss" scoped>
 .star-page {
   width: 100%;
-  height: calc(100% - 61px);
   background: url('../../../assets/images/nightSky1.jpg');
   background-attachment: fixed;
   background-position: bottom;

@@ -1,8 +1,8 @@
 <template>
   <div class="fang-page p20">
-    <AppEchart :options="avgOption" class="avg-echart echart" />
-    <AppEchart :options="esfOption" class="esf-echart echart" />
-    <AppEchart :options="zuOption" class="zu-echart echart" />
+    <ZEcharts :options="avgOption" class="avg-echart echart" />
+    <ZEcharts :options="esfOption" class="esf-echart echart" />
+    <ZEcharts :options="zuOption" class="zu-echart echart" />
     <div class="detail-box echart">
       <div class="remark">
         *说明：每月1号、11号、21号更新数据(202012月25号起一月一更)
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import AppEchart from '@/components/AppEcharts'
+import ZEcharts from '@/components/ZEcharts'
 import fangData from '@/data/fang.js'
 import Log from '@/data/fangLog.js'
 
@@ -76,7 +76,7 @@ const AVG_OPTION = {
 }
 
 export default {
-  components: { AppEchart },
+  components: { ZEcharts },
   data() {
     return {
       avgOption: null,

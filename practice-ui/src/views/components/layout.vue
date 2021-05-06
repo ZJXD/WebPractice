@@ -51,10 +51,14 @@ export default {
         routerLink: '/canvas'
       }, {
         id: 6,
+        name: '图表',
+        routerLink: '/charts'
+      }, {
+        id: 100,
         name: 'Book',
         routerLink: '/bookpre'
       }, {
-        id: 7,
+        id: 101,
         name: 'Fang',
         routerLink: '/fang'
       }

@@ -9,9 +9,10 @@
     "reinstall": "rimraf node_modules && npm i"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "babel-plugin-component": "^1.1.1",
     "core-js": "^3.3.2",
-    "echarts": "^4.8.0",
+    "echarts": "^5.1.1",
     "element-ui": "^2.13.0",
     "gl-matrix": "^3.3.0",
     "svg-sprite-loader": "^5.0.0",

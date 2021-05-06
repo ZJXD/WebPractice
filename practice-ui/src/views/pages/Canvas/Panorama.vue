@@ -88,7 +88,6 @@ export default {
 .panorama-page {
   // width: 100%;
   width: 800px;
-  height: calc(100% - 61px);
 
   .canvas-box {
     width: 100%;
