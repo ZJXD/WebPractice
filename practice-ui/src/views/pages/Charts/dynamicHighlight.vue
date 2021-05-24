@@ -53,7 +53,7 @@ export default {
   mounted() {
     this.pieChart = this.$refs.pieChart.chart
     this.intervalHandler()
-    // 重写 mouseover 事件
+    // 绑定 mouseover 事件
     this.pieChart.on('mouseover', (params) => {
       clearInterval(this.highlightInterval)
 
@@ -73,7 +73,7 @@ export default {
       this.higIndex = params.dataIndex
     })
 
-    // 重写 mouseout 事件
+    // 绑定 mouseout 事件
     this.pieChart.on('mouseout', (params) => {
       this.intervalHandler()
     })

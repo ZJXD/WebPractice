@@ -201,8 +201,7 @@ new Promise((resolve, reject) => {
 new Promise((resolve, reject) => {
   // resolve(1)
   reject(1)
-})
-  .then(
+}).then(
     value => {
       console.log('onResolved 1:', value)
       return 2

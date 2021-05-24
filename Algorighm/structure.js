@@ -4,8 +4,10 @@
  */
 
 /**
- * 1、栈 --------------------------------------------------------------------------
+ * 1、栈 ---------------------------------------------------------------------------
  */
+//#region 栈
+
 /**
  * Stack（栈）
  * 特点：后进先出（last in first out）
@@ -55,9 +57,12 @@ class Stack {
 // console.log(s.storage);
 // console.log(s.length());
 
+//#endregion
+
 /**
  * 2、队列 -------------------------------------------------------------------------
  */
+//#region 队列
 /**
  * Queue（队列）
  * 特点：先进先出（first in first out）
@@ -118,10 +123,12 @@ class Queue {
   }
 }
 
+//#endregion
+
 /**
  * 3、链表 -------------------------------------------------------------------------
  */
-
+//#region 链表
 /**
  * 链表结构
  * 特定：
@@ -286,10 +293,12 @@ class LinkedList {
 // link.removeAt(1)
 // console.log('link',link)
 
+//#endregion
 
 /**
  * 4、集合 -------------------------------------------------------------------------
  */
+//#region 集合
 /**
  * 集合：具有某种特性的对象汇总成的集体
  *      不允许出现重复元素，且是无序的
@@ -382,10 +391,12 @@ class MySet {
 // console.log('difference:',set1.difference(set2))
 // console.log('subset',set1.subset(set2))
 
+//#endregion
 
 /**
- * 5、哈希表 ------------------------------------------------------------------------
+ * 5、哈希表 -----------------------------------------------------------------------
  */
+//#region 哈希表
 /**
  * 计算hash值
  * @param {*} string
@@ -466,9 +477,12 @@ class HashTable {
 // hTable.add('tyfhy',897)
 // console.log(hTable.storage)
 
+//#endregion
+
 /**
  * 6、树 --------------------------------------------------------------------------
  */
+//#region 树
 /**
  * 树节点类
  * 树是一个非线性的数据结构，插入和搜索的效率很高
@@ -483,17 +497,17 @@ class TreeNode {
 
 /**
  * Binary Search Tree
- * 二叉查找树：每个节点最多两个节点，且左节点小于父节点，右节点大于父节点
+ * 二叉查找树：每个节点最多两个节点，且左节点小于父节点，右节点大于父节点（数中的一个常用分类）
  */
-class BTS {
+class BST {
   constructor() {
     this.root = null
   }
 
   // 插入节点，在插入过程中用到递归
   add(data) {
-    const nood = this.root
-    if (nood === null) {
+    const node = this.root
+    if (node === null) {
       this.root = new TreeNode(data)
       return
     } else {
@@ -505,7 +519,7 @@ class BTS {
           } else {
             searchTree(node.left)
           }
-        } else if (data > node.right) {
+        } else if (data > node.data) {
           if (node.right === null) {
             node.right = new TreeNode(data)
             return
@@ -572,12 +586,85 @@ class BTS {
   }
 
   // 删除指定元素
+  remove(data){
+    // 对树进行遍历，删除要删除的节点数据，并更新值
+    const removeNode = function(node,data){
+      if(node === null){
+        return null
+      }
+      if(data === node.data){
+        // node 没有子节点
+        if(node.left === null && node.right === null){
+          return null
+        }
+
+        // node 没有左侧节点
+        if(node.left === null){
+          return node.right
+        }
+
+        // node 没有右侧节点
+        if(node.right === null){
+          return node.left
+        }
+
+        // node 有两个节点
+        let tempNode = node.right
+        while (tempNode.left!==null) {
+          tempNode = tempNode.left
+        }
+        node.data = tempNode.data
+        node.right = removeNode(node.right,tempNode.data)
+        return node
+      } else if(data<node.data){
+        node.left = removeNode(node.left,data)
+        return node
+      } else {
+        node.right = removeNode(node.right,data)
+        return node
+      }
+    }
+
+    this.root = removeNode(this.root,data)
+  }
 }
 
+// 测试
+const bst = new BST()
+
+bst.add(4)
+bst.add(2)
+bst.add(6)
+bst.add(1)
+bst.add(3)
+bst.add(5)
+bst.add(7)
+console.log(bst.root.right)
+console.log('Min:',bst.findMin())
+console.log('Max:',bst.findMax())
+bst.remove(7)
+console.log('Max:',bst.findMax())
+console.log('isPresent:',bst.isPresent(4))
+bst.remove(4)
+console.log('isPresent:',bst.isPresent(4))
+console.log(bst)
+
+//#endregion
+
 /**
- * 7、字典树 -----------------------------------------------------------------------
+ * 7、堆 ---------------------------------------------------------------------------
+ */
+//#region 堆
+/**
+ * 堆：
+ *  
+ */
+//#endregion
+
+/**
+ * 8、字典树 -----------------------------------------------------------------------
  */
 
 /**
- * 8、图 ---------------------------------------------------------------------------
+ * 9、图 ---------------------------------------------------------------------------
  */

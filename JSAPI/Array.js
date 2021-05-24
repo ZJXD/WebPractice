@@ -154,6 +154,7 @@ console.log('Array property:', Object.getOwnPropertyNames(Array.prototype))
 /**
  * Array 改变自身的9个方法 ------------------------------------------------------------------------（一级标题）
  * 对于改变自身的方法，在使用的时候要注意，尽量避免在循环遍历中取改变原数组的项
+ *  pop、push、shift、unshift、reverse、sort、splice、copyWithin、fill
  */
 //#region Array 改变自身的9个方法
 /**
@@ -359,9 +360,9 @@ console.log('obj5 length>=n unshift:', obj5)
  *  省略时：数组元素将按照各自转换为字符的 Unicode 位点进行排序(如：Boy 排在 apple 前，数字 25 排在 8 前)
  */
 let arr12 = ['apple', 'Boy', 'cat', 'dog']
-console.log('arr12 sorted:', arr12.sort())
-arr12 = [4, 10, 20, 15]
-console.log('arr12 number sorted:', arr12.sort())
+console.log('arr12 sorted:', arr12.sort(),arr12)
+arr12_1 = [4, 10, 20, 15]
+console.log('arr12 number sorted:', arr12_1.sort(),arr12_1)
 
 /**
  * comparefn 有值：
