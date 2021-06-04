@@ -1,7 +1,7 @@
 <template>
   <div class="css-text-page main-contariner-content">
     <h4>text-decoration 文字装饰</h4>
-    <div class="decoration-box box-content">
+    <div class="box-content decoration-box">
       <div v-for="stype in lineStyleList" :key="stype.id" class="style">
         <p :style="{textDecorationStyle:stype.text}">
           {{ stype.text }}
@@ -33,7 +33,7 @@
     </div>
 
     <h4>text-emphasis 文字强调</h4>
-    <div class="emphasis-box box-content">
+    <div class="box-content emphasis-box">
       <div>
         <p>This is <span>Text-emphasis</span></p>
       </div>
@@ -48,6 +48,24 @@
       </div>
     </div>
     <h4>tbackground 模拟下划线</h4>
+    <div class="box-content downline-box">
+      <p class="downline-background">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <a>Mollitia nostrum placeat consequatur deserunt velit ducimus possimus commodi temporibus debitis quam</a>, molestiae laboriosam sit repellendus sed sapiente quidem quod accusantium vero.
+      </p>
+      <p class="downline-background">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <a class="dotted">Mollitia nostrum placeat consequatur deserunt velit ducimus possimus commodi temporibus debitis quam</a>, molestiae laboriosam sit repellendus sed sapiente quidem quod accusantium vero.
+      </p>
+      <p class="downline-background">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <a class="hover-line">Mollitia nostrum placeat consequatur deserunt velit ducimus possimus commodi temporibus debitis quam</a>, molestiae laboriosam sit repellendus sed sapiente quidem quod accusantium vero.
+      </p>
+      <p class="downline-background">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <a class="hover-line-back">Mollitia nostrum placeat consequatur deserunt velit ducimus possimus commodi temporibus debitis quam</a>, molestiae laboriosam sit repellendus sed sapiente quidem quod accusantium vero.
+      </p>
+    </div>
+
+    <p class="quote">
+      参考自Coco博客：<a href="https://www.cnblogs.com/coco1s/p/14620738.html" target="_blank">CSS 文字装饰 text-decoration & text-emphasis</a>
+    </p>
   </div>
 </template>
 
@@ -200,6 +218,61 @@ export default {
         }
       }
     }
+  }
+
+  .downline-box {
+    .downline-background {
+      width: 600px;
+      font-size: 24px;
+      color: #666;
+
+      a {
+        background: linear-gradient(90deg, #0cc, #0cc);
+        background-size: 100% 3px;
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+        color: #0cc;
+      }
+
+      .dotted {
+        background: linear-gradient(90deg, #0cc 50%, transparent 50%);
+        background-size: 10px 2px;
+        background-repeat: repeat-x;
+        background-position: 100% 100%;
+      }
+
+      .hover-line {
+        background: linear-gradient(90deg, #ff3c41, #fc0, #0ebeff);
+        background-size: 0 3px;
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        transition: 1s all;
+
+        &:hover {
+          background-size: 100% 3px;
+          color: #000;
+        }
+      }
+
+      .hover-line-back {
+        background: linear-gradient(90deg, #0cc, #0cc),
+          linear-gradient(90deg, #ff3c41, #fc0, #0ebeff);
+        background-size: 100% 3px, 0 3px;
+        background-repeat: no-repeat;
+        background-position: 100% 100%, 100% 100%;
+        transition: 1s all;
+
+        &:hover {
+          background-size: 0 3px, 100% 3px;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .quote {
+    color: #999;
+    text-align: left;
   }
 }
 </style>

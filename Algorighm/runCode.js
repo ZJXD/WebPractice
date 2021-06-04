@@ -161,3 +161,4 @@ console.log('Max:',bst.findMax())
 console.log('isPresent:',bst.isPresent(4))
 bst.remove(4)
 console.log('isPresent:',bst.isPresent(4))
+

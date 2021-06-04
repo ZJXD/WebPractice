@@ -2,7 +2,7 @@
  * @Author: ZHT 
  * @Date: 2021-05-24 13:19:09 
  * @Last Modified by: ZHT
- * @Last Modified time: 2021-05-24 15:41:46
+ * @Last Modified time: 2021-05-27 10:03:43
  */
  
 本文件是一个面试题记录的
@@ -27,6 +27,7 @@ Vue 问题
 16、Vue 组件的响应式，对数组做了哪些额外处理？
 17、Vue 的虚拟 DOM 和 diff 算法，并从创建和更新角度说下
 18、diff 用了什么算法
+19、vue 路由：hash 和 history url 输入到渲染过程区别
 
 
 JS 问题
@@ -54,7 +55,15 @@ JS 问题
 9、ES6 新增了哪些新特性？常用的哪些
 10、箭头函数和普通函数区别
 11、JS 引擎，除了 V8 还有哪些
-12、
+    1、参考“从JS引擎到JS运行时（https://zhuanlan.zhihu.com/p/104333176?utm_source=weibo）”
+12、var、let、const 声明的变量在全局的挂载问题
+    1、var 在全局声明会挂载到 window
+    2、let、const 在全局声明不会挂载到 window，是 script（这个是什么？待深入）
+    3、
+13、垃圾回收机制
+    1、垃圾回收考虑的几个点
+    2、几种算法：标记清除，标记压缩，引用计数，GC复制算法
+14、
 
 
 浏览器：
@@ -62,6 +71,7 @@ JS 问题
 1、强制缓存是对比 header 的哪个属性？
 2、什么是协商缓存？协商缓存在什么时候读取？
 3、有没有了解资源的缓存策略？html、js、css 是怎么设置的？
+4、
 
 
 TS 问题

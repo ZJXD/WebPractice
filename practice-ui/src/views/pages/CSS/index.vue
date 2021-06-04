@@ -18,14 +18,16 @@
 <script>
 import BoxReflect from './BoxReflect'
 import TextCSS from './TextCSS.vue'
+import SingleDIV from './SingleDIV'
 
 export default {
-  components: { BoxReflect, TextCSS },
+  components: { BoxReflect, TextCSS, SingleDIV },
   data() {
     return {
       menuList: [
         { id: 1, code: '1', name: '倒影', icon: '&#xe618;', component: 'BoxReflect' },
-        { id: 2, code: '2', name: '文字装饰', icon: '&#xe7a3;', component: 'TextCSS' }
+        { id: 2, code: '2', name: '文字装饰', icon: '&#xe7a3;', component: 'TextCSS' },
+        { id: 3, code: '3', name: 'Single DIV', icon: '&#xe666;', component: 'SingleDIV' }
       ],
       activeIndex: '1',
       comName: '倒影',
