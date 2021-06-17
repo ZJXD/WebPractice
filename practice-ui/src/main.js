@@ -12,6 +12,12 @@ import 'tailwindcss/utilities.css'
 // import './utils/rem.js'
 
 // sync(store, router)
+window.resizeCallbackList = []
+window.onresize = () => {
+  window.resizeCallbackList.map(callback => {
+    callback.fun()
+  })
+}
 
 Vue.config.productionTip = false
 

@@ -15,7 +15,8 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      chartSymbol: null
     }
   },
   watch: {
@@ -32,11 +33,16 @@ export default {
   mounted() {
     this.chart = echarts.init(this.$refs.echart)
     this.setOptions(this.options)
+
+    this.chartSymbol = Symbol('chart')
+    window.resizeCallbackList.push({ id: this.chartSymbol, fun: this.chart.resize })
     window.resizeCallbackList.push(() => {
       this.chart && this.chart.resize()
     })
   },
   beforeDestroy() {
+    const index = window.resizeCallbackList.indexOf({ id: this.chartSymbol, fun: this.chart.resize })
+    window.resizeCallbackList.splice(index, 1)
     this.chart && this.chart.dispose()
   },
   methods: {
