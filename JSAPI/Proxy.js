@@ -2,7 +2,7 @@
  * @Author: ZHT 
  * @Date: 2021-02-21 10:18:18 
  * @Last Modified by: ZHT
- * @Last Modified time: 2021-04-21 09:57:11
+ * @Last Modified time: 2021-06-10 15:45:29
  */
 
 // 参考：
@@ -153,6 +153,6 @@ const {proxy,revoke} = Proxy.revocable({},{})
 proxy.name = 'ZHT'
 console.log(proxy.name)
 
-// 撤销后，代理对象不可用执行任何操作
+// 撤销后，代理对象不可以执行任何操作
 revoke()
 console.log(proxy.name)

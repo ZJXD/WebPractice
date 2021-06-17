@@ -130,3 +130,24 @@ export default {
 
 // 遇到的难点
 // 1、调用接口，怎么就是不行，总是出错？（用 axios ，看了源码找到了问题）
+
+
+// v-model 自定义使用
+Vue.component('base-checkbox',{
+  // 改变 v-model 默认的绑定属性和抛出事件
+  model:{
+    prop:'checked',
+    event:'change'
+  },
+  props:{
+    checked:Boolean
+  },
+  // 绑定 checked 值，并绑定 change 抛出事件
+  template:`
+    <input type="checkbox" v-bind="checked" v-on:change="$emit('change',$event.target.checked)">
+  `
+})
+
+// 使用
+{/* <base-checkbox v-model="lovingVue"></base-checkbox> */}
+

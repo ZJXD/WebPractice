@@ -49,6 +49,9 @@ let pro1 = new Promise((resolve, reject) => {
 console.log('Promise 外面的')
 
 // Promise API 使用 -----------------------------------------------------------------------------------------
+
+//#region 
+
 const p1 = new Promise((resolve, reject) => {
   resolve(1)
 })
@@ -56,12 +59,18 @@ const p1 = new Promise((resolve, reject) => {
 // Promise.resolve 和 Promise.reject 都是静态函数
 const p2 = Promise.resolve(2)
 
-const p3 = Promise.reject(3)
+// 这个返回的是一个函数
+const p3 = Promise.reject(()=>{
+  console.log(4)
+  return 3
+})
+
+console.log(5)
 
 p1.then(value => console.log('p1 成功的回调：', value))
 p2.then(value => console.log('p2 成功的回调：', value))
-p3.then(null, reason => console.log('p3 失败的回调：', reason))
-p3.catch(reason => console.log('p3 的另一个失败的回调：', reason))
+p3.then(null, reason => console.log('p3 失败的回调：', reason()))
+p3.catch(reason => console.log('p3 的另一个失败的回调：', reason()))
 
 // 执行一个 promise 数组
 // const pAll = Promise.all([p1, p2, p3])
@@ -83,7 +92,11 @@ pRace.then(
   reason => console.log('race onReject：', reason),
 )
 
+//#endregion
+
 // Promise 几个关键问题 --------------------------------------------------------------------------------------
+
+//#region
 /**
  * 状态改变---------------------
  * 可以三种方法改变：
@@ -228,3 +241,23 @@ new Promise((resolve, reject) => {
     value => console.log('onResolved 4:', value),
     reason => console.log('onRejected 2:', reason),
   )
+
+  //#endregion
+
+// Promise 一些使用示例 --------------------------------------------------------------------------------------
+
+// 异步函数 Promise 化 -----------------------------------
+// 下面以 request 为例看怎么 Promise
+const async_request = (url)=>{
+  // 返回一个 Promise 对象
+  return new Promise((resolve,reject)=>{
+    // 根据请求结果返回调用 resolve 或者 reject
+    request.get(url,(res,err)=>{
+      if(err){
+        reject(err)
+      }else{
+        resolve(res)
+      }
+    })
+  })
+}

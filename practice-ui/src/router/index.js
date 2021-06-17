@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../views/components/layout.vue'
 import Welcome from '../views/pages/WelcomePage.vue'
-import FirstPage from '../views/pages/FirstPage.vue'
+import FirstPage from '../views/pages/FirstPage/FirstPage.vue'
 
 Vue.use(Router)
 

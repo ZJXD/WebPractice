@@ -4,6 +4,9 @@ function resolve(dir) {
   return path.join(__dirname, './', dir)
 }
 
+// 是否为生产环境
+const isProduction = process.env.NODE_ENV !== 'development'
+
 module.exports = {
 // css 配置
   css: {
@@ -58,6 +61,14 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]'
       })
+
+    // 配置开发环境 source-map
+    config
+    // https://webpack.js.org/configuration/devtool/#development
+      .when(!isProduction,
+      // config => config.devtool('cheap-source-map')
+        config => config.devtool('source-map')
+      )
   },
 
   // #region 开发环境配置

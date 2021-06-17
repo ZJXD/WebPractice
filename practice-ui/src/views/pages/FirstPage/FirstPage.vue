@@ -61,7 +61,7 @@
 
 <script>
 import Clock from './Clock'
-import canvasText from '../../components/canvas-text/index'
+import canvasText from '../../../components/canvas-text/index'
 
 export default {
   name: 'FirstPage',

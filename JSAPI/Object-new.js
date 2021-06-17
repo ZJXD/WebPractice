@@ -1,12 +1,16 @@
 /**
  * 对象属性
  */
+
+ // 对象的属性的类型：数值、访问器
  // 数值属性 ---------------------------------------------
  // 又叫“数据属性”，是对象 property （属性）的属性
+ // 数据类的有几个特性来描述：[[Configurable]]、[[Enumerable]]、[[Writable]]、[[Value]]
 
  // 构造函数有 prototype ，实例对象是 __proto__ （部分浏览器实现的）
 
  // 访问器属性 -------------------------------------------
+ // 同样访问器属性也有几个特性描述：[[Configurable]]、[[Enumerable]]、[[Get]]、[[Set]]
  let book = {
    year_ : 2017,
    edition : 1
@@ -43,17 +47,17 @@
    edition:{
      value:1
    },
-year:{
-  get(){
-    return this.year_
-  },
-  set(newVal){
-    if(newVal>2017){
-      this.year_ = newVal
-      this.edition += newVal - 2017
+  year:{
+    get(){
+      return this.year_
+    },
+    set(newVal){
+      if(newVal>2017){
+        this.year_ = newVal
+        this.edition += newVal - 2017
+      }
     }
   }
-}
  })
 
  // 增强语法 ----------------------------------------------

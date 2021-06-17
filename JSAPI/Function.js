@@ -167,6 +167,12 @@ p()
  */
 
 // 手写一个 call 的实现
+// 其中几个步骤：
+//    1、分离参数，是否传了 this，有 用传入的，没有使用 window 或 global
+//    2、当前函数设置为 this 的一个方法
+//    3、执行这个方法，并删除
+//    4、返回执行的结果
+
 Function.prototype.myCall = function () {
   let [thisArg, ...args] = arguments
   if (!thisArg) {
