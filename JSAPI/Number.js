@@ -53,6 +53,9 @@ console.log(Number.parseFloat('ff123.45##'))  // NaN
  * 用法：字符串转换为整数，舍弃小数点后数值
  *  Number.parseInt(string)
  *    string:出去空格外，第一个字符是数值，否则为 NaN
+ *    radix:表示以什么进制解析第一个数值，0 和空按照 10 进制，2-36按照给定值进制算，其他值直接返回 NaN
+ *    
+ *    注意：如第一值不符合 radix 给定的进制要求，也是返回 NaN
  */
 console.log(Number.parseInt('123.55'))      // 123
 console.log(Number.parseInt('123.45##'))    // 123

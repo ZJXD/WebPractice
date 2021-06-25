@@ -948,4 +948,14 @@ const arr30_reduce = arr30.reduce((pre,next)=>{
 },[])
 console.log('arr30_reduce:',arr30_reduce)
 
+
+/**
+ * map 传参 ---------------------------------------------------（二级标题）
+ */
+const parseD = ['1','2','3'].map(parseInt)
+
+console.log(['3','2','1'].map(parseInt))
+console.log(['1','2','3'].map(parseInt))
+console.log(parseInt('3',2))
+
 //#endregion

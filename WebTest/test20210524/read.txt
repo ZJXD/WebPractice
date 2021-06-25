@@ -83,7 +83,12 @@ Vue 问题
     4、computed 有缓存（再次获取，如果依赖的没有改变就使用缓存）
     5、
 27、Vue-cli 基本原理
-28、
+28、nextTick 原理
+    1、DOM 更新完成和页面 UI 渲染完成要区别开来（取值的时候是直接从 DOM 中取，不需要渲染完成）
+    2、Vue DOM 更新机制，是在当前执行栈执行完成后统一更新 DOM，所有在绑定值后立即去取是取不到的
+    3、Vue 源码实现，依次判断环境中 Promise、MutationObserver、Immediate、setTimeout
+    4、参考（https://segmentfault.com/a/1190000012861862、https://www.cnblogs.com/hity-tt/p/6729118.html）
+29、
 
 
 JS 问题
