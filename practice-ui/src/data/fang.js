@@ -707,6 +707,101 @@ const FANG_LIST = {
           zu_cunt: 57
         }
       ]
+    },
+    {
+      time: '2021-6-25',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 32329,
+          fang_count: 106,
+          zu_cunt: 85
+        },
+        {
+          communityId: 2,
+          avg_price: 32693,
+          fang_count: 50,
+          zu_cunt: 61
+        },
+        {
+          communityId: 3,
+          avg_price: 25161,
+          fang_count: 2,
+          zu_cunt: 0
+        },
+        {
+          communityId: 4,
+          avg_price: 37245,
+          fang_count: 108,
+          zu_cunt: 41
+        },
+        {
+          communityId: 5,
+          avg_price: 21391,
+          fang_count: 6,
+          zu_cunt: 4
+        },
+        {
+          communityId: 6,
+          avg_price: 37112,
+          fang_count: 104,
+          zu_cunt: 79
+        },
+        {
+          communityId: 7,
+          avg_price: 36532,
+          fang_count: 25,
+          zu_cunt: 53
+        }
+      ]
+    },
+    {
+      time: '2021-7-25',
+      color: '#f00',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 33028,
+          fang_count: 133,
+          zu_cunt: 84
+        },
+        {
+          communityId: 2,
+          avg_price: 32916,
+          fang_count: 47,
+          zu_cunt: 37
+        },
+        {
+          communityId: 3,
+          avg_price: 27762,
+          fang_count: 42,
+          zu_cunt: 7
+        },
+        {
+          communityId: 4,
+          avg_price: 37450,
+          fang_count: 79,
+          zu_cunt: 49
+        },
+        {
+          communityId: 5,
+          avg_price: 20792,
+          fang_count: 3,
+          zu_cunt: 5
+        },
+        {
+          communityId: 6,
+          avg_price: 37013,
+          fang_count: 47,
+          zu_cunt: 66
+        },
+        {
+          communityId: 7,
+          avg_price: 37746,
+          fang_count: 12,
+          zu_cunt: 64
+        }
+      ]
     }
   ],
   // 链家数据
@@ -1123,6 +1218,48 @@ const FANG_LIST = {
     },
     {
       time: '2021-4-25',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 26678,
+          fang_count: 34
+          // zu_cunt:56
+        },
+        {
+          communityId: 2,
+          avg_price: 26216,
+          fang_count: 50
+        },
+        {
+          communityId: 3,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 4,
+          avg_price: 35323,
+          fang_count: 32
+        },
+        {
+          communityId: 5,
+          avg_price: 20000,
+          fang_count: null
+        },
+        {
+          communityId: 6,
+          avg_price: 32832,
+          fang_count: 46
+        },
+        {
+          communityId: 7,
+          avg_price: 36299,
+          fang_count: 32
+        }
+      ]
+    },
+    {
+      time: '2021-4-25',
+      color: '#00F',
       data: [
         {
           communityId: 1,
