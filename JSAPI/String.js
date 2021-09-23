@@ -161,3 +161,33 @@ ${s},
 年龄：${getAge()}`
 
 console.log(str21)
+
+
+/**
+ * 用法：
+ *  str.split(separator,limit)
+ *    separator：分隔字符，也可以是正则表达式。当不传时，直接返回全部字符
+ *    limit：限制风格字符后 array 的长度，超过该值结束分隔。不传就全部分隔
+ */
+
+// limit 传值
+ var myString = "Hello World. How are you doing?";
+ var splits = myString.split(" ", 3);
+ 
+ console.log(splits);
+
+ // 正则表达式
+ var myString = "Hello 1 word. Sentence number 2.";
+ var splits = myString.split(/(\d)/);
+ 
+ console.log(splits);
+
+ // 使用数值作为分隔符
+const myString = 'ca,bc,a,bca,bca,bc';
+const splits = myString.split(['a','b']);
+// myString.split(['a','b']) 相当于 myString.split(String(['a','b']))，所以是下面的结果
+console.log(splits);  //["c", "c,", "c", "c", "c"]
+
+// split 翻转字符串
+const str = 'asdfghjkl';
+const strReverse = str.split('').reverse().join(''); // 'lkjhgfdsa'

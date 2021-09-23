@@ -2,7 +2,7 @@
  * @Author: ZHT 
  * @Date: 2021-05-24 09:23:56 
  * @Last Modified by: ZHT
- * @Last Modified time: 2021-05-24 10:51:00
+ * @Last Modified time: 2021-08-17 10:04:37
  */
 
 /**
@@ -98,3 +98,46 @@ function foo() {
     return
 }
 foo()
+
+
+// 综合示例 ----------------------------------------
+// 参考走自：https://mp.weixin.qq.com/s/wPFwIpiP0Z1gRaQ0wpeEeg
+
+function Foo(){
+  getName = function(){
+      console.log(1);
+  };
+  return this;
+} 
+Foo.getName = function(){
+  console.log(2);
+}
+Foo.prototype.getName = function(){
+  console.log(3);
+}
+var getName = function(){
+  console.log(4);
+}
+function getName(){
+  console.log(5);
+}
+//输出以下的输出结果
+Foo.getName();
+getName();
+// Foo().getName();
+getName();
+new Foo.getName();
+new Foo().getName();
+new new Foo().getName();
+
+/**
+ * 在 Node 环境下，Foo().getName() 报错，浏览器下可行
+ *  1、Foo.getName() 是调用静态方法，所以是 2
+ *  2、如上面的函数声明会提升，下面的 var getName = 会覆盖掉提升的
+ *  3、执行 Foo() 返回的 this 是 window（在浏览器环境下，此函数为全局函数，this 就是 window）
+ *     在 Foo() 的时候，getName 又再次被重新覆盖，所以是 1
+ *  4、已经被覆盖，所以结果同 3
+ *  5、是直接调用 Foo 上的 getName，所以是 2
+ *  6、因为是 Foo()，所以 new 是作用在 Foo()上，等同于 (new Foo()).getName()，这个调用的就是 prototype 上的
+ *  7、new (new Foo()).getName() 所以也是 3
+ */

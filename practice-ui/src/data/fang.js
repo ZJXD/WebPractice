@@ -3,7 +3,7 @@ const FANG_LIST = {
     id: 1,
     name: '七贤郡',
     // 总住户
-    house_count: 2058,
+    house_count: 2117,
     // 建筑面积 ㎡
     area: 495000
   },
@@ -15,14 +15,16 @@ const FANG_LIST = {
   },
   {
     id: 3,
-    name: '大溪谷'
+    name: '大溪谷',
+    house_count: 1950,
+    area: 495000
   },
-  // {
-  //   id: 4,
-  //   name: "未来城",
-  //   house_count:5290,
-  //   area: 192536
-  // },
+  {
+    id: 4,
+    name: '未来城',
+    house_count: 5290,
+    area: 192536
+  },
   // {
   //   id: 5,
   //   name: "和光尘樾"
@@ -38,7 +40,14 @@ const FANG_LIST = {
     name: '和昌府',
     house_count: 856,
     area: 124659
-  }],
+  },
+  {
+    id: 8,
+    name: '缦云坊',
+    house_count: 2308,
+    area: 124659
+  }
+  ],
   // 安居客数据
   anjukeData: [
     {
