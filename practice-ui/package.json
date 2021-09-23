@@ -9,7 +9,7 @@
     "reinstall": "rimraf node_modules && npm i"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "babel-plugin-component": "^1.1.1",
     "core-js": "^3.3.2",
     "echarts": "^5.1.1",
