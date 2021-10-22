@@ -80,6 +80,7 @@ let add = (i = 0) => {
 }
 let v = add()
 console.log(v())
+// console.log(i)
 console.log(v())
 
 // 箭头函数使用递归
@@ -181,7 +182,7 @@ Function.prototype.myCall = function () {
   // this 的指向是当前函数
   thisArg.func = this
   // 执行函数
-  let results = thisArg.func(args)
+  let results = thisArg.func(...args)
   // thisArg 上面并没有 func 所以要移除
   delete thisArg.func
   return results

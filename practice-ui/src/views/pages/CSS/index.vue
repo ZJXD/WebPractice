@@ -19,15 +19,17 @@
 import BoxReflect from './BoxReflect'
 import TextCSS from './TextCSS.vue'
 import SingleDIV from './SingleDIV'
+import DropShadow from './DropShadow.vue'
 
 export default {
-  components: { BoxReflect, TextCSS, SingleDIV },
+  components: { BoxReflect, TextCSS, SingleDIV, DropShadow },
   data() {
     return {
       menuList: [
         { id: 1, code: '1', name: '倒影', icon: '&#xe618;', component: 'BoxReflect' },
         { id: 2, code: '2', name: '文字装饰', icon: '&#xe7a3;', component: 'TextCSS' },
-        { id: 3, code: '3', name: 'Single DIV', icon: '&#xe666;', component: 'SingleDIV' }
+        { id: 3, code: '3', name: 'Single DIV', icon: '&#xe666;', component: 'SingleDIV' },
+        { id: 4, code: '4', name: 'DropShadow', icon: '&#xe666;', component: 'DropShadow' }
       ],
       activeIndex: '1',
       comName: '倒影',

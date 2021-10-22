@@ -52,6 +52,11 @@ export default new Router({
           path: '/fang',
           name: 'fang',
           component: () => import('../views/pages/Fang.vue')
+        },
+        {
+          path: '/video',
+          name: 'video',
+          component: () => import('../views/pages/Videos/index.vue')
         }
       ]
     }

@@ -54,6 +54,10 @@ export default {
         name: '图表',
         routerLink: '/charts'
       }, {
+        id: 7,
+        name: 'Video',
+        routerLink: '/video'
+      }, {
         id: 100,
         name: 'Book',
         routerLink: '/bookpre'
