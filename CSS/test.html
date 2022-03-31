@@ -12,6 +12,77 @@
     BFC 作用，会使父元素上面出现空白（margin-top）
     <div style="background-color: blueviolet;margin-top: 200px;">内盒子</div>
   </div>
+
+  <div class="center-test">
+    <div class="container">
+      <div class="box"></div>
+    </div>
+    <div class="container">
+      <span class="box-text">这个测试，是否中间</span>
+    </div>
+    <ul class="ul-flex">
+      <li>liA</li>
+      <li>liB</li>
+      <li>liC</li>
+      <li>liD</li>
+      <li>liE</li>
+    </ul>
+  </div>
+
+  <input min="1" max="100" value="50" class="rangeIn" type="range" onchange="onInputChange" oninput="onInputChange">
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .center-test {
+      display: flex;
+    }
+
+    .container {
+      /* height: 30%; */
+      width: 200px;
+      height: 200px;
+      display: flex;
+      border: 1px red solid;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      border: 1px blue solid;
+    }
+
+    .box-text {
+      margin: auto;
+      border: 1px blue solid;
+    }
+
+    .ul-flex {
+      width: 500px;
+      display: flex;
+      padding-inline-start: 0;
+      margin: 0;
+      border: 1px red solid;
+    }
+
+    .ul-flex li {
+      margin: auto;
+      list-style-type: none;
+    }
+  </style>
+
+  <script>
+    function onInputChange(event){
+      console.log('input value:',event.target.value)
+    }
+  </script>
 </body>
 
 </html>

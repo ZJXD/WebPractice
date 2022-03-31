@@ -43,7 +43,7 @@ const AVG_OPTION = {
     trigger: 'axis'
   },
   legend: {
-    data: ['七贤郡', '劝学里', '大溪谷', '未来城', '和光尘樾', '融信澜天', '和昌府']
+    data: ['七贤郡', '劝学里', '大溪谷', '未来城', '和光尘樾', '融信澜天', '和昌府', '缦云坊']
   },
   grid: {
     left: '3%',
@@ -67,7 +67,7 @@ const AVG_OPTION = {
   },
   series: [
     {
-      name: '邮件营销',
+      name: '',
       type: 'line',
       stack: '总量',
       data: [120, 132, 101, 134, 90, 230, 210]

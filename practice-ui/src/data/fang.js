@@ -1,52 +1,53 @@
 const FANG_LIST = {
-  community: [{
-    id: 1,
-    name: '七贤郡',
-    // 总住户
-    house_count: 2117,
-    // 建筑面积 ㎡
-    area: 495000
-  },
-  {
-    id: 2,
-    name: '劝学里',
-    house_count: 929,
-    area: 133495.5
-  },
-  {
-    id: 3,
-    name: '大溪谷',
-    house_count: 1950,
-    area: 495000
-  },
-  {
-    id: 4,
-    name: '未来城',
-    house_count: 5290,
-    area: 192536
-  },
-  // {
-  //   id: 5,
-  //   name: "和光尘樾"
-  // },
-  {
-    id: 6,
-    name: '融信澜天',
-    house_count: 540,
-    area: 248791
-  },
-  {
-    id: 7,
-    name: '和昌府',
-    house_count: 856,
-    area: 124659
-  },
-  {
-    id: 8,
-    name: '缦云坊',
-    house_count: 2308,
-    area: 124659
-  }
+  community: [
+    {
+      id: 1,
+      name: '七贤郡',
+      // 总住户
+      house_count: 2117,
+      // 建筑面积 ㎡
+      area: 495000
+    },
+    {
+      id: 2,
+      name: '劝学里',
+      house_count: 929,
+      area: 133495.5
+    },
+    {
+      id: 3,
+      name: '大溪谷',
+      house_count: 1950,
+      area: 495000
+    },
+    {
+      id: 4,
+      name: '未来城',
+      house_count: 5290,
+      area: 192536
+    },
+    // {
+    //   id: 5,
+    //   name: "和光尘樾"
+    // },
+    {
+      id: 6,
+      name: '融信澜天',
+      house_count: 540,
+      area: 248791
+    },
+    {
+      id: 7,
+      name: '和昌府',
+      house_count: 856,
+      area: 124659
+    },
+    {
+      id: 8,
+      name: '缦云坊',
+      house_count: 2308,
+      area: 124659
+    }
   ],
   // 安居客数据
   anjukeData: [
@@ -813,7 +814,6 @@ const FANG_LIST = {
     },
     {
       time: '2021-10-22',
-      color: '#f00',
       data: [
         {
           communityId: 1,
@@ -862,6 +862,272 @@ const FANG_LIST = {
           avg_price: 33848,
           fang_count: 79,
           zu_cunt: 56
+        }
+      ]
+    },
+    {
+      time: '2021-11-5',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 34797,
+          fang_count: 82,
+          zu_cunt: 173
+        },
+        {
+          communityId: 2,
+          avg_price: 36108,
+          fang_count: 36,
+          zu_cunt: 21
+        },
+        {
+          communityId: 3,
+          avg_price: 34683,
+          fang_count: 2,
+          zu_cunt: 10
+        },
+        {
+          communityId: 4,
+          avg_price: 40123,
+          fang_count: 41,
+          zu_cunt: 65
+        },
+        {
+          communityId: 5,
+          avg_price: 20911,
+          fang_count: 0,
+          zu_cunt: 1
+        },
+        {
+          communityId: 6,
+          avg_price: 41276,
+          fang_count: 22,
+          zu_cunt: 162
+        },
+        {
+          communityId: 7,
+          avg_price: 39248,
+          fang_count: 25,
+          zu_cunt: 71
+        },
+        {
+          communityId: 8,
+          avg_price: 33967,
+          fang_count: 66,
+          zu_cunt: 72
+        }
+      ]
+    },
+    {
+      time: '2021-12-20',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 34157,
+          fang_count: 80,
+          zu_cunt: 149
+        },
+        {
+          communityId: 2,
+          avg_price: 36204,
+          fang_count: 38,
+          zu_cunt: 30
+        },
+        {
+          communityId: 3,
+          avg_price: 34683,
+          fang_count: 4,
+          zu_cunt: 15
+        },
+        {
+          communityId: 4,
+          avg_price: 39084,
+          fang_count: 40,
+          zu_cunt: 83
+        },
+        {
+          communityId: 5,
+          avg_price: 20911,
+          fang_count: 0,
+          zu_cunt: 1
+        },
+        {
+          communityId: 6,
+          avg_price: 40087,
+          fang_count: 21,
+          zu_cunt: 106
+        },
+        {
+          communityId: 7,
+          avg_price: 39158,
+          fang_count: 13,
+          zu_cunt: 39
+        },
+        {
+          communityId: 8,
+          avg_price: 35251,
+          fang_count: 82,
+          zu_cunt: 41
+        }
+      ]
+    },
+    {
+      time: '2022-01-26',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 31289,
+          fang_count: 55,
+          zu_cunt: 97
+        },
+        {
+          communityId: 2,
+          avg_price: 35845,
+          fang_count: 26,
+          zu_cunt: 22
+        },
+        {
+          communityId: 3,
+          avg_price: 36462,
+          fang_count: 1,
+          zu_cunt: 8
+        },
+        {
+          communityId: 4,
+          avg_price: 37229,
+          fang_count: 33,
+          zu_cunt: 46
+        },
+        {
+          communityId: 5,
+          avg_price: 20911,
+          fang_count: 0,
+          zu_cunt: 1
+        },
+        {
+          communityId: 6,
+          avg_price: 40291,
+          fang_count: 28,
+          zu_cunt: 46
+        },
+        {
+          communityId: 7,
+          avg_price: 38055,
+          fang_count: 12,
+          zu_cunt: 29
+        },
+        {
+          communityId: 8,
+          avg_price: 33666,
+          fang_count: 45,
+          zu_cunt: 19
+        }
+      ]
+    },
+    {
+      time: '2022-02-21',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 30762,
+          fang_count: 141,
+          zu_cunt: 85
+        },
+        {
+          communityId: 2,
+          avg_price: 34667,
+          fang_count: 24,
+          zu_cunt: 20
+        },
+        {
+          communityId: 3,
+          avg_price: 36948,
+          fang_count: 15,
+          zu_cunt: 2
+        },
+        {
+          communityId: 4,
+          avg_price: 38619,
+          fang_count: 72,
+          zu_cunt: 61
+        },
+        {
+          communityId: 5,
+          avg_price: 20911,
+          fang_count: 0,
+          zu_cunt: 1
+        },
+        {
+          communityId: 6,
+          avg_price: 40385,
+          fang_count: 95,
+          zu_cunt: 84
+        },
+        {
+          communityId: 7,
+          avg_price: 37574,
+          fang_count: 29,
+          zu_cunt: 44
+        },
+        {
+          communityId: 8,
+          avg_price: 33158,
+          fang_count: 136,
+          zu_cunt: 28
+        }
+      ]
+    },
+    {
+      time: '2022-03-21',
+      color: '#f00',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 31022,
+          fang_count: 94,
+          zu_cunt: 66
+        },
+        {
+          communityId: 2,
+          avg_price: 34813,
+          fang_count: 17,
+          zu_cunt: 11
+        },
+        {
+          communityId: 3,
+          avg_price: 34937,
+          fang_count: 39,
+          zu_cunt: 39
+        },
+        {
+          communityId: 4,
+          avg_price: 38769,
+          fang_count: 115,
+          zu_cunt: 65
+        },
+        {
+          communityId: 5,
+          avg_price: 33333,
+          fang_count: 0,
+          zu_cunt: 1
+        },
+        {
+          communityId: 6,
+          avg_price: 40200,
+          fang_count: 64,
+          zu_cunt: 64
+        },
+        {
+          communityId: 7,
+          avg_price: 37926,
+          fang_count: 19,
+          zu_cunt: 60
+        },
+        {
+          communityId: 8,
+          avg_price: 33025,
+          fang_count: 100,
+          zu_cunt: 20
         }
       ]
     }
