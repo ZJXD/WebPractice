@@ -22,6 +22,7 @@ const FANG_LIST = {
     },
     {
       id: 4,
+      // 梦溪里
       name: '未来城',
       house_count: 5290,
       area: 192536
@@ -1079,7 +1080,6 @@ const FANG_LIST = {
     },
     {
       time: '2022-03-21',
-      color: '#f00',
       data: [
         {
           communityId: 1,
@@ -1128,6 +1128,113 @@ const FANG_LIST = {
           avg_price: 33025,
           fang_count: 100,
           zu_cunt: 20
+        }
+      ]
+    },
+    {
+      time: '2022-04-22',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 31345,
+          fang_count: 170,
+          zu_cunt: 86
+        },
+        {
+          communityId: 2,
+          avg_price: 33780,
+          fang_count: 30,
+          zu_cunt: 21
+        },
+        {
+          communityId: 3,
+          avg_price: 35703,
+          fang_count: 27,
+          zu_cunt: 77
+        },
+        {
+          communityId: 4,
+          avg_price: 38424,
+          fang_count: 113,
+          zu_cunt: 54
+        },
+        {
+          communityId: 5,
+          avg_price: 33333,
+          fang_count: 0,
+          zu_cunt: 1
+        },
+        {
+          communityId: 6,
+          avg_price: 39210,
+          fang_count: 57,
+          zu_cunt: 43
+        },
+        {
+          communityId: 7,
+          avg_price: 38587,
+          fang_count: 11,
+          zu_cunt: 58
+        },
+        {
+          communityId: 8,
+          avg_price: 33116,
+          fang_count: 78,
+          zu_cunt: 20
+        }
+      ]
+    },
+    {
+      time: '2022-05-24',
+      color: '#f00',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 31124,
+          fang_count: 155,
+          zu_cunt: 135
+        },
+        {
+          communityId: 2,
+          avg_price: 32875,
+          fang_count: 33,
+          zu_cunt: 35
+        },
+        {
+          communityId: 3,
+          avg_price: 37645,
+          fang_count: 77,
+          zu_cunt: 68
+        },
+        {
+          communityId: 4,
+          avg_price: 38061,
+          fang_count: 94,
+          zu_cunt: 56
+        },
+        {
+          communityId: 5,
+          avg_price: 31143,
+          fang_count: 48,
+          zu_cunt: 2
+        },
+        {
+          communityId: 6,
+          avg_price: 39270,
+          fang_count: 87,
+          zu_cunt: 37
+        },
+        {
+          communityId: 7,
+          avg_price: 39411,
+          fang_count: 13,
+          zu_cunt: 40
+        },
+        {
+          communityId: 8,
+          avg_price: 31265,
+          fang_count: 68,
+          zu_cunt: 37
         }
       ]
     }

@@ -60,3 +60,5 @@ function getRowStyle(row, rowIndex){
 }
 
 console.log(getRowStyle(data, 1))
+
+
