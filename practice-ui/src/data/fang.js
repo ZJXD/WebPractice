@@ -1398,7 +1398,6 @@ const FANG_LIST = {
     },
     {
       time: '2022-09-21',
-      color: '#f00',
       data: [
         {
           communityId: 1,
@@ -1447,6 +1446,113 @@ const FANG_LIST = {
           avg_price: 30897,
           fang_count: 28,
           zu_cunt: 35
+        }
+      ]
+    },
+    {
+      time: '2022-10-21',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 28887,
+          fang_count: 46,
+          zu_cunt: 81
+        },
+        {
+          communityId: 2,
+          avg_price: 31846,
+          fang_count: 11,
+          zu_cunt: 25
+        },
+        {
+          communityId: 3,
+          avg_price: 31678,
+          fang_count: 45,
+          zu_cunt: 102
+        },
+        {
+          communityId: 4,
+          avg_price: 36805,
+          fang_count: 38,
+          zu_cunt: 43
+        },
+        {
+          communityId: 5,
+          avg_price: 38075,
+          fang_count: 57,
+          zu_cunt: 133
+        },
+        {
+          communityId: 6,
+          avg_price: 37302,
+          fang_count: 21,
+          zu_cunt: 47
+        },
+        {
+          communityId: 7,
+          avg_price: 37926,
+          fang_count: 1,
+          zu_cunt: 35
+        },
+        {
+          communityId: 8,
+          avg_price: 30678,
+          fang_count: 28,
+          zu_cunt: 30
+        }
+      ]
+    },
+    {
+      time: '2022-11-24',
+      color: '#f00',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 28545,
+          fang_count: 48,
+          zu_cunt: 115
+        },
+        {
+          communityId: 2,
+          avg_price: 30834,
+          fang_count: 8,
+          zu_cunt: 27
+        },
+        {
+          communityId: 3,
+          avg_price: 30886,
+          fang_count: 48,
+          zu_cunt: 70
+        },
+        {
+          communityId: 4,
+          avg_price: 37147,
+          fang_count: 30,
+          zu_cunt: 43
+        },
+        {
+          communityId: 5,
+          avg_price: 37609,
+          fang_count: 50,
+          zu_cunt: 55
+        },
+        {
+          communityId: 6,
+          avg_price: 37330,
+          fang_count: 22,
+          zu_cunt: 53
+        },
+        {
+          communityId: 7,
+          avg_price: 37926,
+          fang_count: 7,
+          zu_cunt: 28
+        },
+        {
+          communityId: 8,
+          avg_price: 30083,
+          fang_count: 29,
+          zu_cunt: 38
         }
       ]
     }

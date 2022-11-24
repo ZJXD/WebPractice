@@ -28,7 +28,7 @@ arr1 = Array(4)
 console.log('array 1 参数:', arr1)
 arr1 = Array()
 console.log('array 0 参数:', arr1)
-arr1 = Array(1,2,3,4)
+arr1 = Array(1, 2, 3, 4)
 console.log('array 2 参数以上:', arr1)
 //#endregion
 
@@ -51,10 +51,15 @@ console.log('arr2 by Array.of:', arr2)
  * 第三个参数：this 作用域，表示加工函数执行时 this 的值，可选；
  */
 // 当使用 function 和箭头函数时，中间打印结果会不一样
-let obj = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
+let obj = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 3
+}
 let arr3 = Array.from(
   obj,
-  function(value, index){
+  function(value, index) {
     console.log(value, index, this, arguments.length)
     return value.repeat(3) // 必须指定返回，否则返回的是 undefined
   },
@@ -79,6 +84,7 @@ console.log(
     ])
   )
 )
+
 function fn() {
   return Array.from(arguments)
 }
@@ -87,7 +93,9 @@ console.log('array from arguments:', fn(1, 2, 3))
 // 一个重要使用场景：生成一个从 0 到 n 的数组
 console.log(
   '0-n array:',
-  Array.from({ length: 10 }, (v, i) => i)
+  Array.from({
+    length: 10
+  }, (v, i) => i)
 )
 //#endregion
 
@@ -111,11 +119,13 @@ console.log('isPrototypeOf:', Array.prototype.isPrototypeOf(arr5))
 // Object.getPrototypeOf
 console.log('getPrototypeOf', Object.getPrototypeOf(arr5) === Array.prototype)
 // Object.prototype.toString
-console.log('prototype.tostring',Object.prototype.toString.apply(arr5) === '[object Array]')
+console.log('prototype.tostring', Object.prototype.toString.apply(arr5) === '[object Array]')
 
 // 对于上面判断是否是数组，有一些情况下是不行的，如下：
 // 1、如下
-let arr6 = { __proto__: Array.prototype } // 上面的判断都是 true，但是这一块 arr6 就不是数组
+let arr6 = {
+  __proto__: Array.prototype
+} // 上面的判断都是 true，但是这一块 arr6 就不是数组
 // 2、在多页面系统中，由于每一个页面的 Array 引用地址都不一样，在其他页面监测本页面的数组，会不准确
 // 可以验证 2 的方法是：浏览器 F12 在 console 中打印：Object.getOwnPropertyNames(Array)，输出的结果不一样。
 // 3、但是对于最后一种方法：Object.prototype.toString 是可以的（可以去撩面试官）
@@ -130,7 +140,7 @@ console.log(
 
 // 通过 Object.prototype.toString 去判断变量类型，是各大主流库的标准；下面是用该方法实现
 if (!Array.isArray) {
-  Array.isArray = function (arg) {
+  Array.isArray = function(arg) {
     return Object.prototype.toString.call(arg) === '[object Array]'
   }
 }
@@ -239,25 +249,32 @@ console.log('合并后长度：', pushInt)
  */
 
 // 当 length 正确匹配属性个数
-let obj = { 0: 'football', 1: 'basketball',length :2 }
-let objPushInt = Array.prototype.push.call(obj, 'golfball')
-console.log('obj pushed:', obj) // obj pushed: { '0': 'football', '1': 'basketball', '2': 'golfball', length: 3 }
-console.log('objPushInt:', objPushInt)  // objPushInt: 3
+let obj_t = {
+  0: 'football',
+  1: 'basketball',
+  length: 2
+}
+let objPushInt = Array.prototype.push.call(obj_t, 'golfball')
+console.log('obj pushed:', obj_t) // obj pushed: { '0': 'football', '1': 'basketball', '2': 'golfball', length: 3 }
+console.log('objPushInt:', objPushInt) // objPushInt: 3
 
 // 情形-1：length 不存在
-let obj2 = { 0: 'football', 1: 'basketball' }
+let obj2 = {
+  0: 'football',
+  1: 'basketball'
+}
 objPushInt = Array.prototype.push.call(obj2, 'golfball')
 console.log('obj2 pushed:', obj2) // obj2 pushed: { '0': 'golfball', '1': 'basketball', length: 1 }
-console.log('objPushInt:', objPushInt)  // objPushInt: 1
+console.log('objPushInt:', objPushInt) // objPushInt: 1
 // 情形-2：length 小于属性个数
-objPushInt = Array.prototype.push.call(obj2, 'volleyball') 
+objPushInt = Array.prototype.push.call(obj2, 'volleyball')
 console.log('obj2 pushed(lenght):', obj2) // obj2 pushed(lenght): { '0': 'golfball', '1': 'volleyball', length: 2 }
-console.log('objPushInt:', objPushInt)  // objPushInt: 2
+console.log('objPushInt:', objPushInt) // objPushInt: 2
 // 情形-3：length 大于属性个数
 obj2.length = 100
 objPushInt = Array.prototype.push.call(obj2, 'football')
 console.log('obj2 pushed(lenght==):', obj2) // obj2 pushed(lenght==): { '0': 'golfball', '1': 'volleyball', '100': 'football', length: 101 }
-console.log('objPushInt:', objPushInt)  // objPushInt: 101
+console.log('objPushInt:', objPushInt) // objPushInt: 101
 
 /**
  * reverse() ---------------------------------------------------------------------------（二级标题）
@@ -277,7 +294,12 @@ console.log('reverse arr9:', arr9_1)
  * 3、length 值较大，类数组对象的“索引”会靠近 length 值；
  */
 // 情形-1
-let obj3 = { 0: 'a', 1: 'b', 2: 'c', length: 2 }
+let obj3 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 2
+}
 console.log('obj3:', obj3)
 // 情形-2
 let obj3_1 = Array.prototype.reverse.call(obj3)
@@ -303,7 +325,13 @@ console.log('shiftItme:', shiftItem)
  * 2、length 值 >0 ，删除第一个；索引重新从 0 开始；
  */
 // 情形-1
-let obj4 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', length: 'aa' }
+let obj4 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  3: 'd',
+  length: 'aa'
+}
 let objShiftItem = Array.prototype.shift.call(obj4)
 console.log('obj4 shift:', obj4)
 console.log('objShiftItem:', objShiftItem)
@@ -331,7 +359,12 @@ console.log('arr11 unshift array:', arr11)
  * 3、length 的值大于等于类数组对象属性数，在前面添加；
  */
 // 情形-1
-let obj5 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd' }
+let obj5 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  3: 'd'
+}
 Array.prototype.unshift.call(obj5, 100)
 console.log('obj5 unshift:', obj5)
 // 情形-2
@@ -360,9 +393,9 @@ console.log('obj5 length>=n unshift:', obj5)
  *  省略时：数组元素将按照各自转换为字符的 Unicode 位点进行排序(如：Boy 排在 apple 前，数字 25 排在 8 前)
  */
 let arr12 = ['apple', 'Boy', 'cat', 'dog']
-console.log('arr12 sorted:', arr12.sort(),arr12)
+console.log('arr12 sorted:', arr12.sort(), arr12)
 arr12_1 = [4, 10, 20, 15]
-console.log('arr12 number sorted:', arr12_1.sort(),arr12_1)
+console.log('arr12 number sorted:', arr12_1.sort(), arr12_1)
 
 /**
  * comparefn 有值：
@@ -379,7 +412,7 @@ function compareNum(a, b) {
 let arr13 = ['互', '联', '网', '改', '变', '世', '界']
 let arr13_1 = arr13.sort()
 let arr13_2 = ['互', '联', '网', '改', '变', '世', '界']
-let arr13_3 = arr13_2.sort(function (a, b) {
+let arr13_3 = arr13_2.sort(function(a, b) {
   return a.localeCompare(b)
 })
 console.log('arr13 sort:', arr13_1, '\nby localeCompare sort:', arr13_3)
@@ -399,7 +432,7 @@ let obj6 = {
 }
 console.log('obj6 sort:', Array.prototype.sort.call(obj6))
 
-console.log([3,-2,-1].sort())
+console.log([3, -2, -1].sort())
 
 /**
  * splice() ---------------------------------------------------------------------------（二级标题）
@@ -441,7 +474,12 @@ changeArr()
  * splice 同样也适用于类数组对象
  * 1、不存在length，添加length，初始化为0；length 不是数值，设置为0；length 为0 ；都不删除
  */
-let obj7 = { 0: 'a', 1: 'b', 2: 'c', length: 1 }
+let obj7 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 1
+}
 let objSpliceItem = Array.prototype.splice.call(obj7, 2, 1)
 console.log('obj7 spliced:', obj7, '\nobjSpliceItem:', objSpliceItem)
 
@@ -469,7 +507,15 @@ console.log('arr15 copyWinthin:', arr15, '\ncopyWithinArr:', copyWithinArr)
  * length 同样对结果有影响
  * 1、length 不存在、不是数值，不替换，也不会添加改变 length 值；
  */
-let obj8 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', length: 6 }
+let obj8 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  3: 'd',
+  4: 'e',
+  5: 'f',
+  length: 6
+}
 let objCopyWithinItem = Array.prototype.copyWithin.call(obj8, 1, 3, 4)
 console.log('obj copyWithin:', obj8, '\nobjCopyWithinItem:', objCopyWithinItem)
 
@@ -499,7 +545,14 @@ console.log('arr16 filled:', arr16, '\narrFill:', arrFill)
  * 2、length 值小于类数组对象属性数，那就替换 length 个；
  * 3、其他同 Array；
  */
-let obj9 = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', length: 6 }
+let obj9 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  3: 'd',
+  4: 'e',
+  length: 6
+}
 // let objFillItem = Array.prototype.fill.call(obj9, 'aaaa', 1, 2)
 // let objFillItem = Array.prototype.fill.call(obj9, 'aaaa', 1)
 let objFillItem = Array.prototype.fill.call(obj9, 'aaaa', 4, 2)
@@ -518,16 +571,23 @@ console.log('obj9 fill:', obj9, '\nobjFillItem:', objFillItem)
  * concat 用于连接数组、多个数组、值到当前数组尾部，并返回新的数组；原数组不变；会对传入的值扁平化处理（只能处理一级，对于嵌套的不行）。
  * 返回的数组中原数组中的项是--浅复制--过去的；
  */
-let arr17 = [{ a: 1 }, 2, 3, 4]
-let arrConcat = arr17.concat(5, [6, 7, [8,9]])
-console.log('arrConcat:', arrConcat)  // [ { a: 1 }, 2, 3, 4, 5, 6, 7, [ 8, 9 ] ]
-console.log('arr17[0] === arrConcat[0]:', arr17[0] === arrConcat[0])  // true
+let arr17 = [{
+  a: 1
+}, 2, 3, 4]
+let arrConcat = arr17.concat(5, [6, 7, [8, 9]])
+console.log('arrConcat:', arrConcat) // [ { a: 1 }, 2, 3, 4, 5, 6, 7, [ 8, 9 ] ]
+console.log('arr17[0] === arrConcat[0]:', arr17[0] === arrConcat[0]) // true
 
 /**
  * concat 同样也适用于类数组对象
  * 但是其结果并不是预期的效果，可以舍弃
  */
-let obj10 = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
+let obj10 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 3
+}
 let objConcat = Array.prototype.concat.call(obj10, 'd')
 console.log('obj10 :', obj10, '\nobjConcat:', objConcat)
 
@@ -545,7 +605,12 @@ console.log('arr18:', arr18, '\narrJoin:', arrJoin)
 /**
  * join 同样适用于类数组对象
  */
-let obj11 = { 0: 'a', 1: 'b', 2: 'c', length: 3 }
+let obj11 = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 3
+}
 let objJoin = Array.prototype.join.call(obj11, '+')
 console.log('obj11:', obj11, '\nobjJoin:', objJoin)
 console.log('字符串重新拼接：', Array.prototype.join.call('abcdefg'))
@@ -568,7 +633,9 @@ console.log('arr19:', arr19, '\narrSlice:', arrSlice)
 
 // 当数组中有引用类型存在时，slice 生成的新数组是浅复制的
 // 当新数组中的值改变时，原数组也会改变
-let arr19_1 = [{ a: 100 }, 101, 102, 103]
+let arr19_1 = [{
+  a: 100
+}, 101, 102, 103]
 let arrSlice_1 = arr19_1.slice(0, 3)
 console.log('arr19_1:', arr19_1, '\narrSlice_1:', arrSlice_1)
 arrSlice_1[0].a = 200
@@ -653,13 +720,13 @@ let arr22_1 = [1, 2, 3, 4, 5, NaN, 7]
 console.log('arr includes NaN:', arr22_1.includes(NaN)) // true
 console.log('arr indexOf NaN:', arr22_1.indexOf(NaN)) // -1
 
- /**
-  * toSource() ----------------------------------------------------------------------（二级标题）
-  * toSource 返回一个表示当前数组字面量的字符串；屏蔽原型链；
-  * 非标准方法，不一定实现（node 未实现）
-  */
- let arr22_1 = [1, 2, 3, 4, 5, 6, 7]
- console.log(arr22_1.toSource())
+/**
+ * toSource() ----------------------------------------------------------------------（二级标题）
+ * toSource 返回一个表示当前数组字面量的字符串；屏蔽原型链；
+ * 非标准方法，不一定实现（node 未实现）
+ */
+let arr22_2 = [1, 2, 3, 4, 5, 6, 7]
+console.log(arr22_2.toSource())
 
 //#endregion
 
@@ -708,8 +775,8 @@ arr23.forEach((item, index) => {
  * map 用于返回一个新数组，是由原数组的每一个项执行一次给定的函数返回的结果；如果函数改变了项的值，原数组改变；
  * 对于删除的、新增的、未初始化的会跳过，不执行；null 不会跳过，会转为 0
  */
-let arr26 = [1, 2, 3, 4, 5, 6,null, 7, 8]
-let arrMap = arr26.map((item) => item * 2)  // 只有一句表达式，没有中括号，默认返回表达式的值
+let arr26 = [1, 2, 3, 4, 5, 6, null, 7, 8]
+let arrMap = arr26.map((item) => item * 2) // 只有一句表达式，没有中括号，默认返回表达式的值
 // let arrMap = arr26.map((item) => {item * 2})  // 返回 undefinde 组成的数组
 console.log('arr26 :', arr26, '\narrMap:', arrMap)
 
@@ -726,6 +793,7 @@ console.log('arr26 :', arr26, '\narrMap:', arrMap)
  * findIndex 根据传入的函数，查找出第一个符合要求的项，并返回这个项的索引
  */
 let arr28 = [1, 2, 3, 4, 5, 6, 7, 8]
+
 function getNumber(value) {
   return value === 10
 }
@@ -756,13 +824,13 @@ console.log('数组中的质数：', [1, 2, 3, 4, 5, 6, 7].map(isPrime))
  * 只有全部符合才返回 true ，否则 false
  */
 let arr24 = [1, 2, 3, 4, 5, 6, 7, 8]
-console.log('arr24 all >0:',arr24.every((item) => item > 0)) // true
+console.log('arr24 all >0:', arr24.every((item) => item > 0)) // true
 
 /**
  * some() -------------------------------------------------------------------------（二级标题）
  * some 正好和 every 相反，只要有一个满足条件的就返回 ture ，否则返回 false
  */
-console.log('arr24 have >5:',arr24.some((item) => item > 5))  // true
+console.log('arr24 have >5:', arr24.some((item) => item > 5)) // true
 
 // 数组交集（可对比多个数组）
 const intersection = (list, ...args) => {
@@ -771,7 +839,7 @@ const intersection = (list, ...args) => {
 }
 
 console.log(intersection([2, 1], [2, 3], [1, 4, 6])) // [2,1]
-console.log(intersection([1, 2], [2,3, 4])) // []
+console.log(intersection([1, 2], [2, 3, 4])) // []
 
 /**
  * filter() -----------------------------------------------------------------------（二级标题）
@@ -784,20 +852,37 @@ console.log(
 )
 
 // 使用 filter 创建具有非0 id 的json
-var arrJson = [
-  { id: 15 },
-  { id: -1 },
-  { id: 0 },
-  { id: 3 },
-  { id: 12.2 },
+var arrJson = [{
+    id: 15
+  },
+  {
+    id: -1
+  },
+  {
+    id: 0
+  },
+  {
+    id: 3
+  },
+  {
+    id: 12.2
+  },
   {},
-  { id: null },
-  { id: NaN },
-  { id: 'undefined' },
+  {
+    id: null
+  },
+  {
+    id: NaN
+  },
+  {
+    id: 'undefined'
+  },
 ]
+
 function isNumber(obj) {
   return obj !== undefined && typeof obj === 'number' && !isNaN(obj)
 }
+
 function filterById(item) {
   if (isNumber(item.id) && item.id !== 0) {
     return true
@@ -839,13 +924,14 @@ let arr27_1 = [
   [5, 6],
   [7, 8],
 ]
-let arrReduce = arr27_1.reduce(function (a, b) {
+let arrReduce = arr27_1.reduce(function(a, b) {
   return a.concat(b)
 }, [])
 console.log('二维数组转一维数组：', arrReduce)
 
 // 2、计算每个元素出现的次数（去重也可以）
 let arr27_2 = ['abc', 'bcd', 'def', 'dgf', 'abc', 'def', 'abc']
+
 function getNames(names, name) {
   if (name in names) {
     names[name]++
@@ -863,13 +949,22 @@ console.log(
 )
 
 // 3、根据属性，对一组对象分类
-let arr27_3 = [
-  { name: 'abc', age: 20 },
-  { name: 'dbg', age: 21 },
-  { name: 'edv', age: 20 },
+let arr27_3 = [{
+    name: 'abc',
+    age: 20
+  },
+  {
+    name: 'dbg',
+    age: 21
+  },
+  {
+    name: 'edv',
+    age: 20
+  },
 ]
+
 function groupBy(objectArr, property) {
-  return objectArr.reduce(function (acc, curItem) {
+  return objectArr.reduce(function(acc, curItem) {
     let key = curItem[property]
     if (acc[key]) {
       acc[key].push(curItem)
@@ -925,37 +1020,37 @@ while (!nex.done) {
 /**
  * 数组去重 ---------------------------------------------------（二级标题）
  */
-let arr30 = [1,2,3,4,3,2,1,'ab','ac','ab','aw','ac']
+let arr30 = [1, 2, 3, 4, 3, 2, 1, 'ab', 'ac', 'ab', 'aw', 'ac']
 
 // 方法 1（使用 Set）
-const setArr = [... new Set(arr30)]
+const setArr = [...new Set(arr30)]
 
 // 方法 2（循环遍历）
-function dedupArray(arr){
+function dedupArray(arr) {
   let tempArr = []
   arr.forEach(a => {
-     if(!tempArr.includes(a)){
-       tempArr.push(a)
-     }
+    if (!tempArr.includes(a)) {
+      tempArr.push(a)
+    }
   })
   return tempArr
 }
 
 // 方法 3（reduce）
-const arr30_reduce = arr30.reduce((pre,next)=>{
+const arr30_reduce = arr30.reduce((pre, next) => {
   pre.includes(next) || pre.push(next)
   return pre
-},[])
-console.log('arr30_reduce:',arr30_reduce)
+}, [])
+console.log('arr30_reduce:', arr30_reduce)
 
 
 /**
  * map 传参 ---------------------------------------------------（二级标题）
  */
-const parseD = ['1','2','3'].map(parseInt)
+const parseD = ['1', '2', '3'].map(parseInt)
 
-console.log(['3','2','1'].map(parseInt))
-console.log(['1','2','3'].map(parseInt))
-console.log(parseInt('3',2))
+console.log(['3', '2', '1'].map(parseInt))
+console.log(['1', '2', '3'].map(parseInt))
+console.log(parseInt('3', 2))
 
 //#endregion

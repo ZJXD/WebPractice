@@ -39,21 +39,21 @@ Vue三要素
 // 注册一个全局指令
 Vue.directive('focus', {
   // 当被绑定的元素插入到 DOM 中时
-  inserted: function(el) {
+  inserted: function (el) {
     // 聚焦元素
     el.focus()
-  },
+  }
 })
 
 // 在组件中注册，添加 direcitves 选项
 var vue = {
   directives: {
     focus: {
-      inserted: function(el) {
+      inserted: function (el) {
         el.focus()
-      },
-    },
-  },
+      }
+    }
+  }
 }
 
 // 如下所示使用 自定义指令
@@ -96,7 +96,7 @@ export default {
   // 数据存放的地方，（单一状态数，唯一数据源）
   state: {
     name: 'zht',
-    address: 'xihu',
+    address: 'xihu'
   },
   // 获取数据，对应可以用：this.$store.getName()
   getters: {
@@ -106,7 +106,7 @@ export default {
     },
     getAddress() {
       return state.address
-    },
+    }
   },
   // 修改数据，这里面的都是同步的事务，有两个同时调用时，得到的是一样的，这样不理想，对应的是：this.$store.commit('SET_NAME','dl')
   mutations: {
@@ -115,7 +115,7 @@ export default {
     },
     SET_ADDRESS: (state, address) => {
       state.address = address
-    },
+    }
   },
   // 包含任意异步操作，这里面的方法是用来异步触发 mutations 中的方法，对应的是：this.$store.dispatch('updateName','dl')
   actions: {
@@ -124,30 +124,30 @@ export default {
     },
     changeAddress({ commit }, params) {
       commit('SET_ADDRESS', params)
-    },
-  },
+    }
+  }
 }
 
 // 遇到的难点
 // 1、调用接口，怎么就是不行，总是出错？（用 axios ，看了源码找到了问题）
 
-
 // v-model 自定义使用
-Vue.component('base-checkbox',{
+Vue.component('base-checkbox', {
   // 改变 v-model 默认的绑定属性和抛出事件
-  model:{
-    prop:'checked',
-    event:'change'
+  model: {
+    prop: 'checked',
+    event: 'change'
   },
-  props:{
-    checked:Boolean
+  props: {
+    checked: Boolean
   },
   // 绑定 checked 值，并绑定 change 抛出事件
-  template:`
+  template: `
     <input type="checkbox" v-bind="checked" v-on:change="$emit('change',$event.target.checked)">
   `
 })
 
 // 使用
-{/* <base-checkbox v-model="lovingVue"></base-checkbox> */}
-
+{
+  /* <base-checkbox v-model="lovingVue"></base-checkbox> */
+}
