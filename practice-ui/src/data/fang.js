@@ -1504,7 +1504,6 @@ const FANG_LIST = {
     },
     {
       time: '2022-11-24',
-      color: '#f00',
       data: [
         {
           communityId: 1,
@@ -1553,6 +1552,60 @@ const FANG_LIST = {
           avg_price: 30083,
           fang_count: 29,
           zu_cunt: 38
+        }
+      ]
+    },
+    {
+      time: '2022-12-26',
+      color: '#f00',
+      data: [
+        {
+          communityId: 1,
+          avg_price: 27532,
+          fang_count: 56,
+          zu_cunt: 28
+        },
+        {
+          communityId: 2,
+          avg_price: 32647,
+          fang_count: 16,
+          zu_cunt: 4
+        },
+        {
+          communityId: 3,
+          avg_price: 28995,
+          fang_count: 48,
+          zu_cunt: 16
+        },
+        {
+          communityId: 4,
+          avg_price: 36164,
+          fang_count: 44,
+          zu_cunt: 17
+        },
+        {
+          communityId: 5,
+          avg_price: 37540,
+          fang_count: 65,
+          zu_cunt: 50
+        },
+        {
+          communityId: 6,
+          avg_price: 36420,
+          fang_count: 31,
+          zu_cunt: 48
+        },
+        {
+          communityId: 7,
+          avg_price: 37926,
+          fang_count: 2,
+          zu_cunt: 20
+        },
+        {
+          communityId: 8,
+          avg_price: 29900,
+          fang_count: 35,
+          zu_cunt: 13
         }
       ]
     }
