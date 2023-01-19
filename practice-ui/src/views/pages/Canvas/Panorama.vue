@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import allImg from './images/capitan_meadows,_yosemite_national_park.jpg'
+
 const CanvasWidth = 800
 const CanvasHeight = 200
 const Speed = 30
@@ -33,7 +35,8 @@ export default {
     this.canvasTxt = canvas.getContext('2d')
 
     this.img = new Image()
-    this.img.src = 'https://mdn.mozillademos.org/files/4553/Capitan_Meadows,_Yosemite_National_Park.jpg'
+    this.img.src = allImg
+    // 'https://yari-demos.prod.mdn.mozit.cloud/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations/capitan_meadows,_yosemite_national_park.jpg'
     this.img.onload = () => {
       this.imgWidth = this.img.width * Scale
       this.imgHeight = this.img.height * Scale
@@ -60,23 +63,47 @@ export default {
         }
 
         if (this.xOffset > 0) {
-          this.canvasTxt.drawImage(this.img, this.xOffset - this.imgWidth, Y, this.imgWidth, this.imgHeight)
+          this.canvasTxt.drawImage(
+            this.img,
+            this.xOffset - this.imgWidth,
+            Y,
+            this.imgWidth,
+            this.imgHeight
+          )
         }
 
         if (this.xOffset - this.imgWidth > 0) {
-          this.canvasTxt.drawImage(this.img, this.xOffset - this.imgWidth * 2, Y, this.imgWidth, this.imgHeight)
+          this.canvasTxt.drawImage(
+            this.img,
+            this.xOffset - this.imgWidth * 2,
+            Y,
+            this.imgWidth,
+            this.imgHeight
+          )
         }
       } else {
         if (this.xOffset > CanvasWidth) {
           this.xOffset = CanvasWidth - this.imgWidth
         }
 
-        if (this.xOffset > (CanvasWidth - this.imgWidth)) {
-          this.canvasTxt.drawImage(this.img, this.xOffset - this.imgWidth + 1, Y, this.imgWidth, this.imgHeight)
+        if (this.xOffset > CanvasWidth - this.imgWidth) {
+          this.canvasTxt.drawImage(
+            this.img,
+            this.xOffset - this.imgWidth + 1,
+            Y,
+            this.imgWidth,
+            this.imgHeight
+          )
         }
       }
 
-      this.canvasTxt.drawImage(this.img, this.xOffset, Y, this.imgWidth, this.imgHeight)
+      this.canvasTxt.drawImage(
+        this.img,
+        this.xOffset,
+        Y,
+        this.imgWidth,
+        this.imgHeight
+      )
 
       this.xOffset += DX
     }
