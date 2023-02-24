@@ -1,6 +1,13 @@
 <template>
   <div class="css-page">
-    <el-menu class="page-menu-box" :default-active="activeIndex" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="menuSelected">
+    <el-menu
+      class="page-menu-box"
+      :default-active="activeIndex"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      @select="menuSelected"
+    >
       <el-menu-item v-for="menu in menuList" :key="menu.id" :index="menu.code">
         <template slot="title">
           <i class="iconfont" v-html="menu.icon" />
@@ -20,16 +27,48 @@ import BoxReflect from './BoxReflect'
 import TextCSS from './TextCSS.vue'
 import SingleDIV from './SingleDIV'
 import DropShadow from './DropShadow.vue'
+import SwipeButton from './SwipeButton.vue'
 
 export default {
-  components: { BoxReflect, TextCSS, SingleDIV, DropShadow },
+  components: { BoxReflect, TextCSS, SingleDIV, DropShadow, SwipeButton },
   data() {
     return {
       menuList: [
-        { id: 1, code: '1', name: '倒影', icon: '&#xe618;', component: 'BoxReflect' },
-        { id: 2, code: '2', name: '文字装饰', icon: '&#xe7a3;', component: 'TextCSS' },
-        { id: 3, code: '3', name: 'Single DIV', icon: '&#xe666;', component: 'SingleDIV' },
-        { id: 4, code: '4', name: 'DropShadow', icon: '&#xe666;', component: 'DropShadow' }
+        {
+          id: 1,
+          code: '1',
+          name: '倒影',
+          icon: '&#xe618;',
+          component: 'BoxReflect'
+        },
+        {
+          id: 2,
+          code: '2',
+          name: '文字装饰',
+          icon: '&#xe7a3;',
+          component: 'TextCSS'
+        },
+        {
+          id: 3,
+          code: '3',
+          name: 'Single DIV',
+          icon: '&#xe666;',
+          component: 'SingleDIV'
+        },
+        {
+          id: 4,
+          code: '4',
+          name: 'DropShadow',
+          icon: '&#xe666;',
+          component: 'DropShadow'
+        },
+        {
+          id: 5,
+          code: '5',
+          name: 'SwipeButton',
+          icon: '&#xee08;',
+          component: 'SwipeButton'
+        }
       ],
       activeIndex: '1',
       comName: '倒影',
@@ -38,8 +77,10 @@ export default {
   },
   methods: {
     menuSelected(index) {
-      this.comName = this.menuList.find(item => item.code === index).name
-      this.curComponents = this.menuList.find(item => item.code === index).component
+      this.comName = this.menuList.find((item) => item.code === index).name
+      this.curComponents = this.menuList.find(
+        (item) => item.code === index
+      ).component
     }
   }
 }

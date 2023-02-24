@@ -1,0 +1,240 @@
+{
+  "id": "1893300",
+  "name": "ZHT",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "示例项目中使用",
+  "glyphs": [
+    {
+      "icon_id": "1203",
+      "name": "向左",
+      "font_class": "xiangzuo1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1205",
+      "name": "向右",
+      "font_class": "xiangyou1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "6808674",
+      "name": "Swipe-Left & Right",
+      "font_class": "Swipe-LeftRight",
+      "unicode": "ee08",
+      "unicode_decimal": 60936
+    },
+    {
+      "icon_id": "7937654",
+      "name": "方向箭头-向下",
+      "font_class": "arrow-",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "7937655",
+      "name": "方向箭头-向上",
+      "font_class": "arrow-1",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "7937656",
+      "name": "方向箭头-向右",
+      "font_class": "fangxiangjiantou-xiangyou",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "7937657",
+      "name": "方向箭头-向左",
+      "font_class": "fangxiangjiantou-xiangzuo",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "11349338",
+      "name": "singlecheck",
+      "font_class": "singlecheck",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "1058900",
+      "name": "图表 2",
+      "font_class": "tubiao1",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "18010257",
+      "name": "文字",
+      "font_class": "wenzi",
+      "unicode": "e7a3",
+      "unicode_decimal": 59299
+    },
+    {
+      "icon_id": "13978875",
+      "name": "倒影",
+      "font_class": "yy-",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "5732821",
+      "name": "贴图",
+      "font_class": "tietu",
+      "unicode": "e82c",
+      "unicode_decimal": 59436
+    },
+    {
+      "icon_id": "13784332",
+      "name": "鼠标移动",
+      "font_class": "shubiaoyidong",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "705711",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "15921395",
+      "name": "优抚优待",
+      "font_class": "youfuyoudai",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "13302910",
+      "name": "3d",
+      "font_class": "d",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "18051162",
+      "name": "3D",
+      "font_class": "3D",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
+      "icon_id": "4333917",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "4337761",
+      "name": "向左",
+      "font_class": "xiangzuo",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "4337763",
+      "name": "向右",
+      "font_class": "xiangyou",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "12687407",
+      "name": "球",
+      "font_class": "icon-",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "16092281",
+      "name": "图形查看",
+      "font_class": "tuxingchakan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "11511732",
+      "name": "全景图",
+      "font_class": "quanjingtu",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "3768883",
+      "name": "太阳系",
+      "font_class": "taiyangxi",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "5278055",
+      "name": "航空航天-aerospace-太阳系-s",
+      "font_class": "hangkonghangtian-aerospace-taiyangxi-s",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "4922681",
+      "name": "图形",
+      "font_class": "graphical",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "2699250",
+      "name": "流星",
+      "font_class": "tianqi_icon",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "6926721",
+      "name": "签名",
+      "font_class": "qianming",
+      "unicode": "e6ca",
+      "unicode_decimal": 59082
+    },
+    {
+      "icon_id": "486905",
+      "name": "叉号",
+      "font_class": "chahao",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "7291772",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "7978431",
+      "name": "定位",
+      "font_class": "location",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "6399125",
+      "name": "返回键",
+      "font_class": "weibiaoti--",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "7913439",
+      "name": "全屏 ",
+      "font_class": "quanping",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    }
+  ]
+}
