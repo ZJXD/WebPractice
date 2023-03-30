@@ -45,14 +45,20 @@ export default {
       this.canvasTxt.translate(150, 150)
 
       const time = new Date()
-      this.canvasTxt.rotate((2 * Math.PI / 60) * time.getSeconds() + (2 * Math.PI / 60000) * time.getMilliseconds())
+      this.canvasTxt.rotate(
+        ((2 * Math.PI) / 60) * time.getSeconds() +
+          ((2 * Math.PI) / 60000) * time.getMilliseconds()
+      )
       this.canvasTxt.translate(105, 0)
       // 地球阴影
       this.canvasTxt.fillRect(0, -12, 30, 24)
       this.canvasTxt.drawImage(this.earth, -12, -12, 24, 24)
       this.canvasTxt.save()
 
-      this.canvasTxt.rotate((2 * Math.PI / 6) * time.getSeconds() + (2 * Math.PI / 6000) * time.getMilliseconds())
+      this.canvasTxt.rotate(
+        ((2 * Math.PI) / 6) * time.getSeconds() +
+          ((2 * Math.PI) / 6000) * time.getMilliseconds()
+      )
       this.canvasTxt.translate(0, 25)
       this.canvasTxt.drawImage(this.moon, -3.5, -3.5, 7, 7)
 

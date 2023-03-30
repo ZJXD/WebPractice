@@ -1,13 +1,6 @@
 <template>
   <div class="css-page">
-    <el-menu
-      class="page-menu-box"
-      :default-active="activeIndex"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      @select="menuSelected"
-    >
+    <el-menu class="page-menu-box" :default-active="activeIndex" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="menuSelected">
       <el-menu-item v-for="menu in menuList" :key="menu.id" :index="menu.code">
         <template slot="title">
           <i class="iconfont" v-html="menu.icon" />
@@ -77,10 +70,8 @@ export default {
   },
   methods: {
     menuSelected(index) {
-      this.comName = this.menuList.find((item) => item.code === index).name
-      this.curComponents = this.menuList.find(
-        (item) => item.code === index
-      ).component
+      this.comName = this.menuList.find(item => item.code === index).name
+      this.curComponents = this.menuList.find(item => item.code === index).component
     }
   }
 }

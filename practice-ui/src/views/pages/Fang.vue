@@ -7,12 +7,7 @@
       <div class="remark">
         *说明：每月1号、11号、21号更新数据(202012月25号起一月一更)
         <el-select v-model="selectedCode" size="small" @change="dataFromChange">
-          <el-option
-            v-for="item in dataFromList"
-            :key="item.id"
-            :label="item.name"
-            :value="item.code"
-          />
+          <el-option v-for="item in dataFromList" :key="item.id" :label="item.name" :value="item.code" />
         </el-select>
       </div>
       <div class="log-box">
@@ -48,16 +43,7 @@ const AVG_OPTION = {
     trigger: 'axis'
   },
   legend: {
-    data: [
-      '七贤郡',
-      '劝学里',
-      '大溪谷',
-      '未来城',
-      '和光尘樾',
-      '融信澜天',
-      '和昌府',
-      '缦云坊'
-    ]
+    data: ['七贤郡', '劝学里', '大溪谷', '未来城', '和光尘樾', '融信澜天', '和昌府', '缦云坊']
   },
   grid: {
     left: '3%',
@@ -123,7 +109,7 @@ export default {
       const esfSeriesDatas = []
       const zuSeriesDatas = []
       let min = 100000
-      communityList.map((community) => {
+      communityList.map(community => {
         const communityData = {
           name: community.name,
           type: 'line',
@@ -139,8 +125,8 @@ export default {
           type: 'line',
           data: []
         }
-        tempData.map((item) => {
-          const timeData = item.data.find((d) => d.communityId === community.id)
+        tempData.map(item => {
+          const timeData = item.data.find(d => d.communityId === community.id)
           if (timeData) {
             communityData.data.push(timeData.avg_price)
             communityCountData.data.push(timeData.fang_count)
@@ -158,7 +144,7 @@ export default {
         zuSeriesDatas.push(communityZuData)
       })
 
-      const timeList = tempData.map((time) => time.time)
+      const timeList = tempData.map(time => time.time)
 
       const tempAvgOption = JSON.parse(JSON.stringify(AVG_OPTION))
       tempAvgOption.xAxis.data = timeList

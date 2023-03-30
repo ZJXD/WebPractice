@@ -63,23 +63,11 @@ export default {
         }
 
         if (this.xOffset > 0) {
-          this.canvasTxt.drawImage(
-            this.img,
-            this.xOffset - this.imgWidth,
-            Y,
-            this.imgWidth,
-            this.imgHeight
-          )
+          this.canvasTxt.drawImage(this.img, this.xOffset - this.imgWidth, Y, this.imgWidth, this.imgHeight)
         }
 
         if (this.xOffset - this.imgWidth > 0) {
-          this.canvasTxt.drawImage(
-            this.img,
-            this.xOffset - this.imgWidth * 2,
-            Y,
-            this.imgWidth,
-            this.imgHeight
-          )
+          this.canvasTxt.drawImage(this.img, this.xOffset - this.imgWidth * 2, Y, this.imgWidth, this.imgHeight)
         }
       } else {
         if (this.xOffset > CanvasWidth) {
@@ -87,23 +75,11 @@ export default {
         }
 
         if (this.xOffset > CanvasWidth - this.imgWidth) {
-          this.canvasTxt.drawImage(
-            this.img,
-            this.xOffset - this.imgWidth + 1,
-            Y,
-            this.imgWidth,
-            this.imgHeight
-          )
+          this.canvasTxt.drawImage(this.img, this.xOffset - this.imgWidth + 1, Y, this.imgWidth, this.imgHeight)
         }
       }
 
-      this.canvasTxt.drawImage(
-        this.img,
-        this.xOffset,
-        Y,
-        this.imgWidth,
-        this.imgHeight
-      )
+      this.canvasTxt.drawImage(this.img, this.xOffset, Y, this.imgWidth, this.imgHeight)
 
       this.xOffset += DX
     }
